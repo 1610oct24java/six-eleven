@@ -1,2 +1,3 @@
-# six-eleven
-The repository for the 611 team
+# Splice #
+## 611++ ##
+tcg/deckbuilder web-app
