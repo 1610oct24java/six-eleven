@@ -1,3 +1,3 @@
-# six-eleven
-The repository for the 611 team
-MY name is Connor
+# Splice #
+## 611++ ##
+tcg/deckbuilder web-app
