@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- 
+ * 2016/12/01
+ * Hibernate Mapping XML 
+ * Location: /src/main/java/resources/Product.hbm.xml
+ * Purpose: Configures Hibernate connection to database
+ * Requires: Database URL for jdbc, DB username and password
+ *
+ * Author: Ric Smith
+ * Version: 1.0
+ -->
+ 
+<hibernate-mapping>
+	<class name="com.zubair.pojo.Product" table="products2">
+
+<!-- 		 <cache usage="read-only" />  
+ -->		<id name="prodId" column="pid">
+			<generator class="increment" />
+		</id>
+		<property name="prodName" column="pname" length="10" />
+		<property name="price" column ="price" />
+
+	</class>
+</hibernate-mapping>
