@@ -1,29 +1,28 @@
-var app = angular.module("spliceGame", []);
+var app = angular.module("gameApp", []); 
+app.controller("myCtrl", function($scope, $http) {
 
-app.controller("loginCtrl", function loginCtrl($scope){
+	$scope.user;
+	$scope.pass;
 	
-	//$scope.
+	// this function pulls the login info from the textfields and sends as a http post
+	$scope.getUsername = function(){
+		// JSON object
+		var loginData = JSON.stringify({user: {userId: -1, username: $scope.user, password: $scope.pass}});
+		
+		postData(loginData);
+		console.log("Username: " + $scope.user + " Password: " + $scope.pass);
+		console.log(loginData); 
+	}
 	
+	// postData takes in JSON, sends with HTTP POST to given servlet url
+	function postData(data){
+		$http({
+			method: 'POST',
+			url: 'Login.do',
+			headers: {'Content-Type': 'application/json'},
+			data: data
+		}).success(function (output){
+			console.log(JSON.parse(output));
+		});
+	}
 });
-
-app.controller("logoutCtrl", function logoutCtrl($scope){
-	
-});
-
-app.directive("loginBox", function() {
-	return{
-		templateURL:"login-box.html"
-	};
-});
-
-app.directive("logoutBox", function() {
-	return{
-		templateURL:"logout-box.html"
-	};
-});
-
-//html
-// <login-box></login-box>
-
-//login-box.html
-// <div> form </div>

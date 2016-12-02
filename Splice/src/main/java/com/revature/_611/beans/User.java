@@ -32,8 +32,13 @@ public class User implements Serializable {
 	@Column(name="PASSWORD")
 	private String password;
 	
-	public User() { super(); }
-
+	public User() { 
+		super(); 
+		this.userId = -1;
+		this.username = "";
+		this.password = "";
+	}
+	
 	public User(int userId, String username, String password) 
 	{
 		super();
