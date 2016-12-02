@@ -1,4 +1,4 @@
-package com.revature._611.dao;
+ package com.revature._611.dao;
 
 import com.revature._611.utils.HibernateUtil;
 
@@ -11,6 +11,7 @@ import com.revature._611.utils.HibernateUtil;
  */
 public interface UserDAO {
 
+	
 	
 	
 	
