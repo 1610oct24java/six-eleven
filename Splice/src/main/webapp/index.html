@@ -4,6 +4,9 @@
 <meta charset="ISO-8859-1">
 <title>Splice</title>
 
+<!-- AngularJS -->
+<script src="js/angular.min.js"></script>
+
 <!-- CSS - Bootstrap -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link
@@ -104,10 +107,13 @@
 		</div>
 	</div>
 
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script>var $jq = jQuery.noConflict();</script>
-	<script src="js/angular.min.js"></script>
+<div ng-controller="GetUserCtrl">
+   <button ng-click="getUserData()">Fetch data from server</button>
+       <p>Username : {{user.username}}</p>
+       <p>Password : {{user.password}}</p>
+</div>
+
+	
 	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/login-box-script.js"></script>
 </body>
 </html>
