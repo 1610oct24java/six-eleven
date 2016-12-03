@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+.lobby-container {
+	position: relative;
+}
+
+.top-left {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+}
+
+.centered {
+	position: absolute;
+	left: 0;
+	width: 100%;
+}
