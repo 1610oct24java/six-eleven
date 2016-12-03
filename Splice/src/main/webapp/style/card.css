@@ -1,0 +1,84 @@
+.container {
+  margin: 0 auto;
+  padding: 20px; }
+  .container .card {
+    float: left;
+    position: relative;
+    width: 160px;
+    height: 200px;
+    margin: 40px 20px;
+    background: #fff;
+    border-radius: 5px;
+    border: 5px solid;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-color: black;
+}
+
+.name {
+    position: absolute;
+    top: 5px;
+    left: 5px; 
+    width: 100px;
+}
+.name span {
+    font-size:14px;
+    text-align: left;
+}
+.stat {
+    font-size: 14px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 50px;
+    text-align: right;
+}
+.stat .vit {
+    top: 5px;
+    width: inherit;
+    text-align: inherit;
+}
+.stat .pow {
+    position: relative;
+    width:inherit;
+    text-align: inherit;
+    top: 100px;
+}
+.stat .def {
+    position: relative;
+    width:inherit;
+    text-align: inherit;
+    top: 100px;
+}
+.stat .spd {
+    position: relative;
+    width:inherit;
+    text-align: inherit;
+    top: 100px;
+}
+.stat .int {
+    position: relative;
+    width:inherit;
+    text-align: inherit;
+    top:100px;
+}
+
+.flavor {
+    position: absolute;
+    top: 100px;
+    left: 5px;
+    font-size: 8px;
+    width: 90px;
+    border-radius: 1px;
+    border-color: black;
+    border: 1px SOLID;
+} .flavor p{
+    padding: 2px;
+}
+.cardart {
+    text-align: center;
+} .cardart img{
+    position: relative;
+    top: 19px;
+    width: 115px;
+    
+}
