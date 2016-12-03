@@ -3,9 +3,9 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<!-- Database Configuration -->
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <!-- Database Configuration -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		
 		<!-- For local testing purposes, you should modify your DB properties here. 
 		     But do NOT delete the main online DB connection, just comment it out so during pushes,
