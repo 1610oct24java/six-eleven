@@ -14,16 +14,15 @@
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
 
 	<!-- CSS - Custom -->
-	<link rel="stylesheet" type="text/css" href="css/login-box-styling.css" />
-	<link rel="stylesheet" type="text/css" href="css/lobby-box-styling.css" />
+	<link rel="stylesheet" type="text/css" href="../css/common-box-styling.css" />
 </head>
-<body style="background: black;">
+<body>
 <div class="container-fluid">
 <!-- ====================================================================================== -->
 
-<div class="lobby-box">
+<div class="main-box">
 
-  <div class="row lobby-header">
+  <div class="row box-top-header">
   	<div class="col-md-2 col-md-offset-1 txt-center">
   		SPLICE
   	</div>
@@ -32,19 +31,20 @@
   		PlayerName --- Wins: 200 --- Losses: 1
   	</div>
   	
-  	<div class="col-md-2 lobby-logout">
-  		<button class="btn btn-md btn-danger right" type="button" ng-click="lobby.logOut()">Log Out</button>
+  	<div class="col-md-2">
+  		<button class="btn btn-md btn-danger box-right" type="button" ng-click="lobby.logOut()">Log Out</button>
   	</div>
   </div>
   
   <div class="row">
     <div class="col-md-2 col-md-offset-1">
-      <div class="txt-center box-title">Online [{{NUM}}]</div>
-      <div>
+      <div class="txt-center box-frame-title">Online [{{NUM}}]</div>
+      <div class="box-frame-list">
         <ul>
           <li>player1</li>
           <li>player2</li>
           <li>player4</li>
+          <li>Ricster</li>
         </ul>
       </div>
     </div>
@@ -52,10 +52,10 @@
     <div class="col-md-7">
     	
     	<div class="row">
-    		<div class="box-title">Game Sessions [{{NUM}}]</div>
+    		<div class="box-frame-title">Game Sessions [{{NUM}}]</div>
     	</div>
     	
-    	<div class="row chat-box">
+    	<div class="row box-frame-content">
     		  <table>
     		    <tr>
     		      <td>Players</td>
@@ -73,14 +73,14 @@
     	</div>
     	
     	<div class="row">
-    	  <form class="right">
+    	  <form class="box-right">
              <input type="text" class="" name="gamename" placeholder="Game Name">
              <button class="btn btn-md btn-success" type="button"  ng-click="lobby.createGame()">Create New Game</button>
           </form>
     	</div>
     	
 		<div class="row">
-		  <div class="chat-box">
+		  <div class="box-frame-content">
 		  lol<br>
 		  lol<br>
 		  lol<br>
