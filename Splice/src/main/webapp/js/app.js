@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 var app = angular.module("gameApp", []); 
 app.controller("myCtrl", function($scope, $http) {
 
@@ -28,4 +27,3 @@ app.controller("myCtrl", function($scope, $http) {
 		});
 	}
 });
->>>>>>> c13ba7fb43408815d1b02cbbc224f6a11159b1a1

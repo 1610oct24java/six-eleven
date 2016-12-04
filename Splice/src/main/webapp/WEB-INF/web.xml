@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>Splice</display-name>
@@ -20,27 +19,4 @@
   	<error-code>500</error-code>
   	<location>/error500.html</location>
   </error-page>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>Splice</display-name>
-  <servlet>
-    <description></description>
-    <display-name>FrontController</display-name>
-    <servlet-name>FrontController</servlet-name>
-    <servlet-class>com.revature._611.frontcontroller.MasterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FrontController</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
-  <error-page>
-  	<error-code>404</error-code>
-  	<location>/error404.html</location>
-  </error-page>
-  <error-page>
-  	<error-code>500</error-code>
-  	<location>/error500.html</location>
-  </error-page>
->>>>>>> c13ba7fb43408815d1b02cbbc224f6a11159b1a1
 </web-app>

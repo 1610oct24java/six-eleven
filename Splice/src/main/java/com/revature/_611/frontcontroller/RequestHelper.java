@@ -69,7 +69,7 @@ public class RequestHelper {
 			
 			return "some string of data or something like  game.html";
 		
-		case("/Splice/GetUser.do"):
+		case("/Splice/GetUsers.do"):
 			User testUser = new User();
 			testUser.setUsername("testUsername");
 			testUser.setPassword("testPassword");
