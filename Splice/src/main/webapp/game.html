@@ -8,12 +8,19 @@
     <script type="text/javascript" src="js/game.js"></script>
   </head>
     
-<body class="list-group" ng-controller="StoreController as store">
+<body class="list-group">
     <header>
       <h1 class="text-center">Splice</h1>
     </header>
         <div class = "container">
-            <section ng-controller = "WyldsController as wylds">
+            <section id = "opponent">
+                <div class = "container cf">
+                    <div class = "card">
+                    
+                    </div>
+                </div>
+            </section id = "player">
+            <section id = "wylds" ng-controller = "WyldsController as wylds">
                 <div class = "container cf">
                     <div class = "card" ng-repeat="creature in wylds.creatures">
                         <div class = "name">
@@ -45,45 +52,38 @@
                     </div>
                 </div>
             </section>
-        </div>
-      
-      
-    <div class="list-group-item" ng-repeat="product in store.products">
-      <h3>
-        {{product.name}}
-        <em class="pull-right">{{product.price | currency}}</em>
-      </h3>
-      <section ng-show="product.images.length">
-        <img ng-src="{{product.images[0]}}" />
-        <ul class="list-inline thumbs">
-          <li class="thumbnail" ng-repeat="image in product.images">
-            <img ng-src="{{image}}" />
-          </li>
-        </ul>
-      </section>
-
-      <section class="tab">
-        <ul class="nav nav-pills">
-          <li>
-            <a href>Description</a></li>
-          <li>
-            <a href>Specs</a></li>
-          <li>
-            <a href>Reviews</a></li>
-        </ul>
-        <div>
-          <h4>Description</h4>
-          <blockquote></blockquote>
-        </div>
-        <div>
-          <h4>Specs</h4>
-          <blockquote>Shine: </blockquote>
-        </div>
-        <div>
-          <h4>Reviews</h4>
-          <blockquote></blockquote>
-        </div>
-      </section>
+            <section id = "player" ng-controller = "PlayerController as p">
+                <div class = "container cf">
+                    <div class = "card">
+                        <div class = "name">
+                            <span>{{p.sorcerer.name}}</span>
+                        </div>
+                        <div class = "stat">
+                            <div class = "vit">
+                                <span>VIT: {{creature.vit}}</span>
+                            </div>
+                            <div class = "pow">
+                                <span>POW: {{creature.pow}}</span>
+                            </div>
+                            <div class = "def">
+                                <span>DEF: {{creature.def}}</span>
+                            </div>
+                            <div class = "spd">
+                                <span>SPD: {{creature.spd}}</span>
+                            </div>
+                            <div class = "int">
+                                <span>INT: {{creature.int}}</span>
+                            </div>
+                        </div>
+                        <div class = "flavor">
+                            <span>{{creature.flavor}}</span>
+                        </div>
+                        <div class = "cardart">
+                            <img ng_src = "images/{{creature.image}}">
+                        </div>
+                    </div>
+                </div>
+            </section id = "player">
     </div>
   </body>
 </html>
