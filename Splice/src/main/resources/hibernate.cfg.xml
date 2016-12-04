@@ -5,14 +5,14 @@
 	<session-factory>
         <!-- Database Configuration -->
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		
 		<!-- For local testing purposes, you should modify your DB properties here. 
 		     But do NOT delete the main online DB connection, just comment it out so during pushes,
 		     no one loses the main online connection properties. -->
 		<!-- TODO connection url matches our aws rds instance, driver info needs to match mysql format -->     
-		<property name="hibernate.connection.url">jdbc:mysql:@game611.cmidwbhaqwzg.us-east-1.rds.amazonaws.com:3306</property>
-		<property name="hibernate.connection.username">GameMaster</property>
+		<property name="hibernate.connection.url">jdbc:mysql://game611.cmidwbhaqwzg.us-east-1.rds.amazonaws.com:3306/Game611</property>
+		<property name="hibernate.connection.username">gamemaster</property>
 		<property name="hibernate.connection.password">gamemaster</property>
 		<property name="hibernate.connection.pool_size">35</property>
 		

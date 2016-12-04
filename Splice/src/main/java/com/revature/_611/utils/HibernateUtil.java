@@ -14,6 +14,7 @@ import org.hibernate.service.ServiceRegistry;
  * Overrides: toString(), hashCode(), equals()
  * 
  * @author Ric Smith
+ * @author Matt Pierzynski
  * @version 1.0
  */
 public class HibernateUtil
