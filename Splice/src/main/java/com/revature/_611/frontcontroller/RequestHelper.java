@@ -65,24 +65,6 @@ public class RequestHelper {
 //				// TODO Auto-generated catch block
 //				e1.printStackTrace();
 //			}
-			objectMapper = new ObjectMapper();
-			//User user;
-			
-			try {
-				
-				user = objectMapper.readValue(request.getParameter("user"), User.class);
-				System.out.println(user.toString());
-				
-			} catch (JsonParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (JsonMappingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			
 			//TODO haha nice return value peggy
 			return "some string of data or something like  game.html";
