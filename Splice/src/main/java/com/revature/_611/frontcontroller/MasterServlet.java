@@ -24,9 +24,4 @@ public class MasterServlet extends HttpServlet {
 		requestHelper = new RequestHelper().process(request, response);
 		response.getWriter().write(requestHelper);
 	}
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 949b4135701f1a92b73a375dfde983a32e2d003e

@@ -12,10 +12,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature._611.beans.User;
-<<<<<<< HEAD
 import com.revature._611.dao.UserDAOImpl;
-=======
->>>>>>> 949b4135701f1a92b73a375dfde983a32e2d003e
 
 public class RequestHelper {
 	private ObjectMapper objectMapper;
@@ -29,7 +26,6 @@ public class RequestHelper {
 			System.out.println("We made it into the DOOOO");
 			JSONObject json = new JSONObject(request.getReader().readLine());
 			System.out.println("JSON: " + json.toString());
-<<<<<<< HEAD
 			
 			//System.out.println("USER: " + user.toString());
 			
@@ -40,7 +36,6 @@ public class RequestHelper {
 				System.out.println("did it work?:" +jUser.toString());
 				UserDAOImpl fuckYeah = new UserDAOImpl();
 				fuckYeah.registerNewUser(jUser);
-=======
 			User user = new User(-1, "ric", "Password8");;
 			System.out.println("USER: " + user.toString());
 			
@@ -48,7 +43,6 @@ public class RequestHelper {
 			try {
 				User jUser = objectMapper.readValue(json.toString(), User.class);
 				System.out.println("did it work?:" +jUser.toString());
->>>>>>> 949b4135701f1a92b73a375dfde983a32e2d003e
 				
 			} catch (JsonParseException e1) {
 				// TODO Auto-generated catch block
@@ -64,7 +58,6 @@ public class RequestHelper {
 			
 		case("/Splice/AuthenticateUser.do"):
 			
-<<<<<<< HEAD
 //			objectMapper = new ObjectMapper();
 //			//User user;
 //			
@@ -83,7 +76,6 @@ public class RequestHelper {
 //				// TODO Auto-generated catch block
 //				e1.printStackTrace();
 //			}
-=======
 			objectMapper = new ObjectMapper();
 			//User user;
 			
@@ -102,16 +94,11 @@ public class RequestHelper {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
->>>>>>> 949b4135701f1a92b73a375dfde983a32e2d003e
 			
 			
 			return "some string of data or something like  game.html";
 		
-<<<<<<< HEAD
 		case("/Splice/GetUser.do"):
-=======
-		case("/Splice/GetUsers.do"):
->>>>>>> 949b4135701f1a92b73a375dfde983a32e2d003e
 			User testUser = new User();
 			testUser.setUsername("testUsername");
 			testUser.setPassword("testPassword");
@@ -132,8 +119,4 @@ public class RequestHelper {
 			return "error404.html";
 		}
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 949b4135701f1a92b73a375dfde983a32e2d003e
