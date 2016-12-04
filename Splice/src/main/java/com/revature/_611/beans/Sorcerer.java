@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.revature._611.beans;
 
 import java.io.Serializable;
@@ -16,3 +17,12 @@ public class Sorcerer extends Card implements Serializable {
 	
 	
 }
+=======
+package com.revature._611.beans;
+
+public class Sorcerer {
+	
+	private int vitality;
+
+}
+>>>>>>> 949b4135701f1a92b73a375dfde983a32e2d003e

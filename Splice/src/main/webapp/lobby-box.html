@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html ng-app="gameApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Splice</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.min.js"></script>
+
+	<!-- CSS - Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+
+	<!-- CSS - Custom -->
+	<link rel="stylesheet" type="text/css" href="css/login-box-styling.css" />
+	<link rel="stylesheet" type="text/css" href="css/lobby-box-styling.css" />
+</head>
+<body style="background: black;">
+<div class="container-fluid">
+<!-- ====================================================================================== -->
+
+<div class="lobby-box">
+
+  <div class="row lobby-header">
+  	<div class="col-md-2 col-md-offset-1 txt-center">
+  		SPLICE
+  	</div>
+  	
+  	<div class="col-md-5 txt-center">
+  		PlayerName --- Wins: 200 --- Losses: 1
+  	</div>
+  	
+  	<div class="col-md-2 lobby-logout">
+  		<button class="btn btn-md btn-danger right" type="button" ng-click="lobby.logOut()">Log Out</button>
+  	</div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <div class="txt-center box-title">Online [{{NUM}}]</div>
+      <div>
+        <ul>
+          <li>player1</li>
+          <li>player2</li>
+          <li>player4</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="col-md-7">
+    	
+    	<div class="row">
+    		<div class="box-title">Game Sessions [{{NUM}}]</div>
+    	</div>
+    	
+    	<div class="row chat-box">
+    		  <table>
+    		    <tr>
+    		      <td>Players</td>
+    		      <td>Creator</td>
+    		      <td>Name</td>
+    		      <td></td>
+    		    </tr>
+    		    <tr>
+    		      <td>1/2</td>
+    		      <td>noobs only</td>
+    		      <td>Ric</td>
+    		      <td><button class="btn btn-xs btn-info" type="button" ng-click="lobby.joinGame()">Join</button></td>
+    		    </tr>
+    		  </table>
+    	</div>
+    	
+    	<div class="row">
+    	  <form class="right">
+             <input type="text" class="" name="gamename" placeholder="Game Name">
+             <button class="btn btn-md btn-success" type="button"  ng-click="lobby.createGame()">Create New Game</button>
+          </form>
+    	</div>
+    	
+		<div class="row">
+		  <div class="chat-box">
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  lol<br>
+		  </div>
+		</div>    	
+    	
+    	<div class="row">
+    	  <form>
+             <input type="text" class="col-md-10" name="message" placeholder="type a message">
+             <button class="col-md-2 btn btn-md btn-success" type="button" ng-click="lobby.sendMessage()">Send</button>
+          </form>
+    	</div>
+    	
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- ====================================================================================== -->
+</div>
+	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/controllers/loginCtrl.js"></script>
+</body>
+</html>
