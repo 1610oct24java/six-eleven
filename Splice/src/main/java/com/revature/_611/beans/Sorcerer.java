@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 package com.revature._611.beans;
 
 import java.io.Serializable;

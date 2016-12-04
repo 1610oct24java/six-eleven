@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
- package com.revature._611.dao;
+package com.revature._611.dao;
 
 import com.revature._611.beans.User;
 import com.revature._611.utils.HibernateUtil;
