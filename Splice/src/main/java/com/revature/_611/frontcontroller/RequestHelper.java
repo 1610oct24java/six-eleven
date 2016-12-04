@@ -23,19 +23,15 @@ public class RequestHelper {
 		
 		case("/Splice/Login.do"):
 			objectMapper = new ObjectMapper();
-			System.out.println("We made it into the DOOOO");
 			JSONObject json = new JSONObject(request.getReader().readLine());
 			System.out.println("JSON: " + json.toString());
 			
-			//System.out.println("USER: " + user.toString());
-			
-			
 			try {
-				//TODO RYAN THIS IS WHERE YOU WANT TO BE
+				
 				User jUser = objectMapper.readValue(json.toString(), User.class);
-				System.out.println("did it work?:" +jUser.toString());
-				UserDAOImpl fuckYeah = new UserDAOImpl();
-				fuckYeah.registerNewUser(jUser);
+				UserDAOImpl newUser = new UserDAOImpl();
+				newUser.registerNewUser(jUser);
+				System.out.println("Registered user: " + jUser);
 				
 			} catch (JsonParseException e1) {
 				// TODO Auto-generated catch block
@@ -70,7 +66,7 @@ public class RequestHelper {
 //				e1.printStackTrace();
 //			}
 			
-			
+			//TODO haha nice return value peggy
 			return "some string of data or something like  game.html";
 		
 		case("/Splice/GetUser.do"):

@@ -3,15 +3,34 @@ package com.revature._611.beans;
 import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "sorcerer")
+@PrimaryKeyJoinColumn(name = "card_id")
 public class Sorcerer extends Card implements Serializable {
 
 	private static final long serialVersionUID = 2507717115716407808L;
 	
+	@Column(name="vit")
 	private int vitality;
+	
+	@Column(name="pow")
 	private int power;
+	
+	@Column(name="def")
 	private int defense;
+	
+	@Column(name="spd")
 	private int speed;
+	
+	@Column(name="itl")
 	private int intelligence;
+	
 	private int woundCounters;
 	
 	/*----------------------------------
@@ -85,6 +104,7 @@ public class Sorcerer extends Card implements Serializable {
 		return dead;
 	}
 	
+	//roll on stat for number of successes
 	public int roll(int stat) {
 		
 		int numSuccesses = 0;
@@ -92,23 +112,23 @@ public class Sorcerer extends Card implements Serializable {
 		switch(stat) {
 		
 		case 1: //rolling for vit
-			
+			numSuccesses = randInt(0,this.vitality);
 			break;
 			
 		case 2: //rolling for pow
-			
+			numSuccesses = randInt(0,this.power);
 			break;
 			
 		case 3: //rolling for def
-			
+			numSuccesses = randInt(0,this.defense);
 			break;
 			
 		case 4: //rolling for spd
-			
+			numSuccesses = randInt(0,this.speed);
 			break;
 			
 		case 5: //rolling for itl
-			
+			numSuccesses = randInt(0,this.intelligence);
 			break;
 			
 		default:
@@ -121,7 +141,14 @@ public class Sorcerer extends Card implements Serializable {
 		return numSuccesses;
 	}
 	
-	//TODO roll, upgrade
+	//upgrade sorcerer stats after researching creature
+	public boolean upgrade(Creature cretin) {
+		
+		boolean success = false;
+		//TODO make this do something
+		return success;
+		
+	}
 	
 	/*----------------------------------
 	 * Getters

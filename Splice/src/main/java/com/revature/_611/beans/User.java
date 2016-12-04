@@ -16,6 +16,7 @@ import javax.persistence.Table;
  * @author Matt Pierzynski
  * @version 1.0
  */
+
 @Entity
 @Table(name = "user_login")
 public class User implements Serializable {

@@ -2,16 +2,47 @@ package com.revature._611.beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+/**
+ * 3-DEC-2016
+ * Card abstract class for use in Splice
+ * 
+ * @author Matt Pierzynski (with some help from eclipse auto-generation
+ * @version 1.0
+ */
+
+@Entity
+@Table(name="card")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Card implements Serializable {
 
 	private static final long serialVersionUID = 7058798466007079496L;
 	
+	@Id
+	@Column(name="card_id")
 	private int cardID;
+	
+	@Column(name="img_front")
 	private String imgFront;
+	
+	@Column(name="img_back")
 	private String imgBack;
+	
+	@Column(name="img_border")
 	private String imgBorder;
+	
+	@Column(name="card_name")
 	private String name;
+	
+	@Column(name="card_flavor")
 	private String flavor;
+	
 	private boolean faceUp;
 	
 	public Card() {
