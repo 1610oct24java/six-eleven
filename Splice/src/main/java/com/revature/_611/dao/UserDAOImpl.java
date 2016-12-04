@@ -1,5 +1,8 @@
 package com.revature._611.dao;
 
+import java.util.ArrayList;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -12,8 +15,10 @@ import com.revature._611.utils.HibernateUtil;
  * 
  * @author Ric Smith
  * @author Matt Pierzynski
+ * @author Ryan Lawson
  * @version 1.0
  */
+
 public class UserDAOImpl implements UserDAO {
 
 	private static HibernateUtil hu = new HibernateUtil();
@@ -21,23 +26,63 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean registerNewUser(User usr) {
 		
-		boolean success = false;
+		ArrayList<User> users;
 		
-		Session sesh = hu.getSession();
-		Transaction trans = sesh.beginTransaction();
+		Session session;
+		Query query;
 		
-		//TODO check if username is available
-		sesh.save(usr);
+		session = hu.getSession();
+		Transaction trans = session.beginTransaction();
+		String hql = "FROM User AS u WHERE u.username = :usr";
+		query = session.createQuery(hql);
+		query.setParameter("usr", usr.getUsername());
+		users = (ArrayList<User>) query.list();
+		if(users.size()>0)
+		{
+			trans.rollback();
+			session.close();
+			return false;
+		}
+
+		session.save(usr);
+		
 		trans.commit();
 		
-		sesh.close();
+		session.close();
 		
-		return success;
+		return true;
 	}
 
 	@Override
 	public User userLogin(User usr) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<User> users;
+		User user = null;
+		
+		Session session;
+		Query query;
+		
+		session = hu.getSession();
+		Transaction trans = session.beginTransaction();
+		String hql = "FROM User AS u WHERE u.username = :usr AND u.password = :pwd";
+		query = session.createQuery(hql);
+		query.setParameter("usr", usr.getUsername());
+		query.setParameter("pwd", usr.getPassword());
+		users = (ArrayList<User>) query.list();
+		for(User u : users)
+			user = u;
+		
+		if(user == null){
+			trans.rollback();
+			session.close();
+			return null;
+		}
+		
+		session.save(user);
+		trans.commit();
+		
+		session.close();
+		
+		return user;
 	}
 }
