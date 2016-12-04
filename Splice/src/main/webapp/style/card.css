@@ -4,8 +4,8 @@
   .container .card {
     float: left;
     position: relative;
-    width: 160px;
-    height: 200px;
+    width: 150px;
+    height: 210px;
     margin: 40px 20px;
     background: #fff;
     border-radius: 5px;
@@ -21,15 +21,15 @@
     width: 100px;
 }
 .name span {
-    font-size:14px;
+    font-size:12px;
     text-align: left;
 }
 .stat {
-    font-size: 14px;
+    font-size: 10px;
     position: absolute;
     top: 5px;
-    right: 10px;
-    width: 50px;
+    right: 5px;
+    width: 40px;
     text-align: right;
 }
 .stat .vit {
@@ -41,33 +41,34 @@
     position: relative;
     width:inherit;
     text-align: inherit;
-    top: 100px;
+    top: 110px;
 }
 .stat .def {
     position: relative;
     width:inherit;
     text-align: inherit;
-    top: 100px;
+    top: 110px;
 }
 .stat .spd {
     position: relative;
     width:inherit;
     text-align: inherit;
-    top: 100px;
+    top: 110px;
 }
 .stat .int {
     position: relative;
     width:inherit;
     text-align: inherit;
-    top:100px;
+    top:110px;
 }
 
 .flavor {
     position: absolute;
-    top: 100px;
+    top: 125px;
     left: 5px;
     font-size: 8px;
     width: 90px;
+    height: 75px;
     border-radius: 1px;
     border-color: black;
     border: 1px SOLID;
@@ -78,7 +79,8 @@
     text-align: center;
 } .cardart img{
     position: relative;
-    top: 19px;
+    top: 25px;
+    height: 90px;
     width: 115px;
     
 }

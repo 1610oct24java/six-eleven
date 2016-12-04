@@ -31,7 +31,8 @@
             int: 0,
             flavor: "A noble creature with a savage secret: A hart's horns will only grow a new point the next season if they spill hot blood.",
             favStat: 2,
-            dmpStat: 5
+            dmpStat: 5,
+            image: "grand_hart.png"
         },
         {
             name: 'Crag Wasp',
@@ -42,7 +43,8 @@
             int: 1,
             flavor: "Their hives keep the drakes from moving to the warmer southern peaks.",
             favStat: 4,
-            dmpStat: 1
+            dmpStat: 1,
+            image: "stickSorc.png"
         }
     ];
   var gems = [
