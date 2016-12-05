@@ -9,9 +9,12 @@
 		
 		<!-- AWS RDS instance information -->
 		<!-- Change to localhost for testing -->
-		<property name="hibernate.connection.url">jdbc:mysql://game611.cmidwbhaqwzg.us-east-1.rds.amazonaws.com:3306/Game611</property>
+<!-- 		<property name="hibernate.connection.url">jdbc:mysql://game611.cmidwbhaqwzg.us-east-1.rds.amazonaws.com:3306/Game611</property>
 		<property name="hibernate.connection.username">gamemaster</property>
-		<property name="hibernate.connection.password">gamemaster</property>
+		<property name="hibernate.connection.password">gamemaster</property> -->
+		<property name="hibernate.connection.url">jdbc:mysql:localhost:8889/splice_tester</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
 		<property name="hibernate.connection.pool_size">35</property>
 		
 		<property name="show_sql">true</property>

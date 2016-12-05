@@ -2,8 +2,11 @@ package com.revature._611.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
 
 import com.revature._611.beans.Card;
 import com.revature._611.beans.Creature;
@@ -20,29 +23,40 @@ import com.revature._611.utils.HibernateUtil;
 
 public class CardDAOimp implements CardDAO {
 
-	private HibernateUtil hu;
+	private HibernateUtil hu = new HibernateUtil();
 	
 	public CardDAOimp() {
 		super();
-		hu = new HibernateUtil();
-	}
-	
-	@Override
-	public Card getCard(int id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public List<Sorcerer> getSorcerers() {
+	public Sorcerer getSorcererByID(int id) {
 		
-		Session sesh = hu.getSession();
+		Sorcerer sorcerer = null;
 		
-		String hql = "FROM com.revature._611.beans.Sorcerer";
+		Session sesh;
+		
+		sesh = hu.getSession();
+		
+		sorcerer = (Sorcerer) sesh.get(Sorcerer.class, id);
+		
+		sesh.close();
+		
+		return sorcerer;
+	}
+
+	@Override
+	public List<Sorcerer> getAllSorcerers() {
+		
+		Session sesh;
+		
+		sesh = hu.getSession();
+		
+		String hql = "FROM Sorcerer";
 		
 		Query query = sesh.createQuery(hql);
 		
-		List sorcerers = query.list();
+		List<Sorcerer> sorcerers = query.list();
 		
 		sesh.close();
 		
@@ -50,9 +64,22 @@ public class CardDAOimp implements CardDAO {
 	}
 
 	@Override
-	public List<Creature> getCreatures() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Creature> getAllCreatures() {
+		Session sesh;
+		
+		sesh = hu.getSession();
+		
+		String hql = "FROM Creature";
+		
+		Query query = sesh.createQuery(hql);
+		
+		List<Creature> creatures = query.list();
+		
+		sesh.close();
+		
+		return creatures;
 	}
+	
+
 
 }

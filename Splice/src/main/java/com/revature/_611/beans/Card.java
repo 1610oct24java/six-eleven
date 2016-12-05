@@ -8,12 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 3-DEC-2016
  * Card abstract class for use in Splice
  * 
- * @author Matt Pierzynski (with some help from eclipse auto-generation
+ * @author Matt Pierzynski
  * @version 1.0
  */
 
@@ -26,27 +27,29 @@ public abstract class Card implements Serializable {
 	
 	@Id
 	@Column(name="card_id")
-	private int cardID;
+	protected int cardID;
 	
 	@Column(name="img_front")
-	private String imgFront;
+	protected String imgFront;
 	
 	@Column(name="img_back")
-	private String imgBack;
+	protected String imgBack;
 	
 	@Column(name="img_border")
-	private String imgBorder;
+	protected String imgBorder;
 	
 	@Column(name="card_name")
-	private String name;
+	protected String name;
 	
 	@Column(name="card_flavor")
-	private String flavor;
+	protected String flavor;
 	
-	private boolean faceUp;
+	@Transient
+	protected boolean faceUp;
 	
 	public Card() {
 		super();
+		this.faceUp = false;
 	}
 
 	public Card(int cardID, String imgFront, String imgBack, String imgBorder, String name, String flavor,

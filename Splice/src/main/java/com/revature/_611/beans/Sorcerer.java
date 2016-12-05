@@ -7,11 +7,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.revature._611.utils.Rando;
+
+/**
+ * 3-DEC-2016
+ * Sorcerer card bean for use in Splice
+ * 
+ * @author Matt Pierzynski
+ * @version 1.0
+ */
 
 @Entity
-@Table(name = "sorcerer")
-@PrimaryKeyJoinColumn(name = "card_id")
+@Table(name="sorcerer")
+@PrimaryKeyJoinColumn(name="card_id")
 public class Sorcerer extends Card implements Serializable {
 
 	private static final long serialVersionUID = 2507717115716407808L;
@@ -31,6 +41,7 @@ public class Sorcerer extends Card implements Serializable {
 	@Column(name="itl")
 	private int intelligence;
 	
+	@Transient
 	private int woundCounters;
 	
 	/*----------------------------------
@@ -67,11 +78,6 @@ public class Sorcerer extends Card implements Serializable {
 		this.woundCounters = 0;
 		
 	}
-
-	//helper function for getting successful rolls
-	private int randInt(int min, int max) {
-		return ThreadLocalRandom.current().nextInt(min,max+1);
-	}
 	
 	/*----------------------------------
 	 * Sorcerer Methods
@@ -94,14 +100,7 @@ public class Sorcerer extends Card implements Serializable {
 	
 	//check if sorcerer is dead
 	public boolean isDead() {
-		
-		boolean dead = false;
-		
-		if (woundCounters >= this.vitality) {
-			dead = true;
-		}
-		
-		return dead;
+		return woundCounters >= this.vitality ? true : false;
 	}
 	
 	//roll on stat for number of successes
@@ -112,23 +111,23 @@ public class Sorcerer extends Card implements Serializable {
 		switch(stat) {
 		
 		case 1: //rolling for vit
-			numSuccesses = randInt(0,this.vitality);
+			numSuccesses = Rando.randInt(0,this.vitality);
 			break;
 			
 		case 2: //rolling for pow
-			numSuccesses = randInt(0,this.power);
+			numSuccesses = Rando.randInt(0,this.power);
 			break;
 			
 		case 3: //rolling for def
-			numSuccesses = randInt(0,this.defense);
+			numSuccesses = Rando.randInt(0,this.defense);
 			break;
 			
 		case 4: //rolling for spd
-			numSuccesses = randInt(0,this.speed);
+			numSuccesses = Rando.randInt(0,this.speed);
 			break;
 			
 		case 5: //rolling for itl
-			numSuccesses = randInt(0,this.intelligence);
+			numSuccesses = Rando.randInt(0,this.intelligence);
 			break;
 			
 		default:
