@@ -2,13 +2,12 @@
 
 body, html {
 	height: 100%;
-	background: black;
+	background-color: black;
+	background-image: url("../images/Dark-Woods.png");
+	background-size: contain;
 }
 
 .main-box {
-	margin-left: 100px;
-	margin-right: 100px;
-	padding: 22px;
 	font-size: 20px;
 	background: white;
 	opacity: 0.9;
@@ -17,17 +16,29 @@ body, html {
 
 .box-top-header {
 	font-size: 24px;	
-	background-color: #c1e6dd;
+	background-color: #3f3f3f;
+	color: #ffffff;
+	text-align: center;
+	padding: 12px 8px;
 }
 
 .box-frame-title {
-	background: #8080ff;
+	background: #3f3f3f;
 	color: white;
+	text-align: center;
+	border-radius: 4px 4px 0px 0px;
 }
 
-.box-frame-list {
-	background-color: #ffcccd;
-	height: 100%;
+.box-player-list {
+	background-color: #585858;
+	height: 600px;
+	border: 2px solid #5BC0DE; 
+	border-radius: 0px 0px 4px 4px;
+	padding-top: 8px;
+}
+
+.box-player-list-queue {
+	height: 550px;
 }
 
 .box-frame-content {
@@ -41,11 +52,26 @@ body, html {
 	float: right;
 }
 
-.box-frame-content {
+.box-session-content {
+	background-color: #585858;
 	height: 250px;
-	border: 1px solid #ccc; 
+	border: 2px solid #5BC0DE; 
 	overflow: auto;
-	background-color: #d0f2cc;
+	border-radius: 0px 0px 4px 4px;
+}
+
+.box-chat-content {
+	background-color: #585858;
+	color: #ffffff;
+	height: 250px;
+	border: 2px solid #5BC0DE; 
+	overflow: auto;
+	padding: 8px;
+	border-radius: 0px 0px 4px 4px;
+}
+
+.box-chat-queue {
+	height: 550px;
 }
 
 .txt-center {
@@ -54,12 +80,43 @@ body, html {
 
 ul {
 	list-style-type: none;
+	margin-left: -30px;
+}
+
+li {
+	color: #ffffff;
+	background-color: #5BC0DE;
+	margin-right: 10px;
+	padding-left: 10px;
 }
 
 table {
 	width: 100%;
 }
 
+th {
+	width: 25%;
+	background-color: #8080FF;
+	text-align: center;
+}
+
 td {
 	width: 25%;
+	background-color: #5BC0DE;
+	color: #ffffff;
+	text-align: center;
+}
+
+.btn-join {
+	background-color: #ffffff;
+	color: #5BC0DE;
+	padding: 1px 16px;
+	margin-right: 16px;
+}
+
+.btn-box-blue {
+	background-color: #8080FF;
+	color: #ffffff;
+	font-size: 18px;
+	padding: 4px 8px;
 }
