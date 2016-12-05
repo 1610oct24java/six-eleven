@@ -1,36 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
-<!-- 
- * 2016/12/01
- * Hibernate Configuration XML 
- * Location: /src/main/java/resources/hibernate.cfg.xml
- * Purpose: Configures Hibernate connection to database
- * Requires: Database URL for jdbc, DB username and password
- *
- * Author: Ric Smith
- * Version: 1.0
- -->
-
 <hibernate-configuration>
 	<session-factory>
-		<!-- Database Configuration -->
-		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <!-- Database Configuration -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		
-		<!-- For local testing purposes, you should modify your DB properties here. 
-		     But do NOT delete the main online DB connection, just comment it out so during pushes,
-		     no one loses the main online connection properties. -->
-		<property name="hibernate.connection.url">jdbc:oracle:thin:@oracle-bear.clqfkdmbotjv.us-east-1.rds.amazonaws.com:1521:ORCL</property>
-		<property name="hibernate.connection.username">jurczakn</property>
-		<property name="hibernate.connection.password">revature</property>
+		<!-- AWS RDS instance information -->
+		<!-- Change to localhost for testing -->
+		<property name="hibernate.connection.url">jdbc:mysql://game611.cmidwbhaqwzg.us-east-1.rds.amazonaws.com:3306/Game611</property>
+		<property name="hibernate.connection.username">gamemaster</property>
+		<property name="hibernate.connection.password">gamemaster</property>
 		<property name="hibernate.connection.pool_size">35</property>
 		
 		<property name="show_sql">true</property>
-		<property name="hibernate.format_sql">false</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="use_sql_comments">true</property>
 		
 		<!-- We have to tell hibernate where our classes it maps are -->
 		<mapping class="com.revature._611.beans.User"/>
+		<mapping class="com.revature._611.beans.Card"/>
+		<mapping class="com.revature._611.beans.Sorcerer"/>
 		
 		<!-- Example of an HBM FILE MAPPING -->
 		<!-- <mapping resource="myObject.hbm.xml"/> -->
