@@ -8,7 +8,7 @@ app.controller("loginController", function($scope, $http) {
 	// this function pulls the login info from the textfields and sends as a http post
 	$scope.getUsername = function(){
 		// JSON object
-		var loginData = JSON.stringify({userId: -1, username: $scope.user, password: $scope.pass});
+		var loginData = JSON.stringify({username: $scope.user, password: $scope.pass});
 		
 		postData(loginData);
 		console.log("Username: " + $scope.user + " Password: " + $scope.pass);
