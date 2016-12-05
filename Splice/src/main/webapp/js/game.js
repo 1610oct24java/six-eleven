@@ -1,19 +1,9 @@
-(function() {
-    var app = angular.module('spliceGame', []);
-    
-    app.controller('WyldsController', function(){
-       this.creatures = creatures; 
-    });
-    
-    app.controller('PlayerController', function(){
-       this.sorcerer = sorcerers[0]; 
-    });
-    
+(function () {
     var sorcerers = [
         {
             name: 'Xanitov, Radiant Husk',
             vit: 5,
-            pow: 6, 
+            pow: 6,
             def: 5,
             spd: 6,
             int: 7,
@@ -23,12 +13,12 @@
             image: "stickSorc.png"
         }
     ];
-
+    
     var creatures = [
         {
             name: 'Grand Hart',
             vit: 5,
-            pow: 2, 
+            pow: 2,
             def: 2,
             spd: 2,
             int: 0,
@@ -40,7 +30,7 @@
         {
             name: 'Crag Wasp',
             vit: 4,
-            pow: 3, 
+            pow: 3,
             def: 2,
             spd: 2,
             int: 1,
@@ -50,4 +40,14 @@
             image: "stickSorc.png"
         }
     ];
+    
+    var app = angular.module('spliceGame', []);
+    
+    app.controller('WyldsController', function () {
+        this.creatures = creatures;
+    });
+    
+    app.controller('PlayerController', function () {
+        this.sorcerer = sorcerers[0];
+    });
 })();

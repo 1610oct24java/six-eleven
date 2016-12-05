@@ -1,89 +1,88 @@
 <!DOCTYPE html>
+<!-- 1334-by-750 iPhone resolution -->
 <html ng-app="spliceGame">
-  <head>
+<head>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-      <link rel="stylesheet" href="style/base.css">
-  <link rel="stylesheet" href="style/card.css">
+    <link rel="stylesheet" href="style/base.css">
+    <link rel="stylesheet" href="style/card.css">
     <script type="text/javascript" src="js/lib/angular.min.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
-  </head>
+</head>
     
-<body class="list-group">
-    <header>
-      <h1 class="text-center">Splice</h1>
-    </header>
-        <div class = "container">
-            <section id = "opponent">
-                <div class = "container cf">
-                    <div class = "card">
-                    
+    
+<body>
+    <h1 class = "text-center">Splice</h1>
+    <div class="container-fluid">
+        <div id="opponent" class="row text-center">
+            <div class = "col-sm-1">
+                <h2 class = "rotate">Opponents</h2>
+            </div>
+            <div class = "col-sm-2 card-area">
+                <div class = "card card-sorc" ng-controller = "PlayerController as p">
+                    <div class = "name">
+                        <span>{{p.sorcerer.name}}</span>
+                    </div>
+                    <div class = "flavor">
+                        <p>{{p.sorcerer.flavor}}</p>
+                    </div>
+                    <div class = "cardart">
+                        <img ng_src = "images/{{creature.image}}">
                     </div>
                 </div>
-            </section id = "player">
-            <section id = "wylds" ng-controller = "WyldsController as wylds">
-                <div class = "container cf">
-                    <div class = "card" ng-repeat="creature in wylds.creatures">
-                        <div class = "name">
-                            <span>{{creature.name}}</span>
-                        </div>
-                        <div class = "stat">
-                            <div class = "vit">
-                                <span>VIT: {{creature.vit}}</span>
-                            </div>
-                            <div class = "pow">
-                                <span>POW: {{creature.pow}}</span>
-                            </div>
-                            <div class = "def">
-                                <span>DEF: {{creature.def}}</span>
-                            </div>
-                            <div class = "spd">
-                                <span>SPD: {{creature.spd}}</span>
-                            </div>
-                            <div class = "int">
-                                <span>INT: {{creature.int}}</span>
-                            </div>
-                        </div>
-                        <div class = "flavor">
-                            <span>{{creature.flavor}}</span>
-                        </div>
-                        <div class = "cardart">
-                            <img ng_src = "images/{{creature.image}}">
-                        </div>
+            </div>
+        </div>
+        <br>
+        <div id = "wylds" class = "row text-center">
+            <div class = "col-md-1">
+                <h2 class = "rotate">Wylds</h2>
+            </div>
+            <div class = "col-md-3 card-area" ng-controller = "WyldsController as wylds">
+                <div class = "card card-creature"  ng-repeat="creature in wylds.creatures">
+                    <div class = "name">
+                        <span>{{creature.name}}</span>
+                    </div>
+                    <div class = "flavor">
+                        <p>{{creature.flavor}}</p>
+                    </div>
+                    <div class = "cardart">
+                        <img ng_src = "images/{{creature.image}}">
                     </div>
                 </div>
-            </section>
-            <section id = "player" ng-controller = "PlayerController as p">
-                <div class = "container cf">
-                    <div class = "card">
-                        <div class = "name">
-                            <span>{{p.sorcerer.name}}</span>
+            </div>
+        </div>
+        <br>
+        <div id = "player" class = "row text-center">
+            <div class = "col-sm-1">
+                <h2 class = "rotate">Player</h2>
+            </div>
+            <div class = "col-sm-2">
+            
+            </div>
+            <div class = "col-sm-3 card-area">
+                <div class = "card card-sorc" ng-controller = "PlayerController as p">
+                    <div class = "name">
+                        <span>{{p.sorcerer.name}}</span>
+                    </div>
+                    <div class = "flavor">
+                        <p>{{p.sorcerer.flavor}}</p>
+                    </div>
+                    <div class = "cardart">
+                        <img ng_src = "images/{{creature.image}}">
+                    </div>
+                    <div class = "stat">
+                        <div class = "vit">
+                            <div class = "label">
+                                VIT: 
+                            </div>
+                            {{p.sorcerer.vit}}
                         </div>
-                        <div class = "stat">
-                            <div class = "vit">
-                                <span>VIT: {{creature.vit}}</span>
-                            </div>
-                            <div class = "pow">
-                                <span>POW: {{creature.pow}}</span>
-                            </div>
-                            <div class = "def">
-                                <span>DEF: {{creature.def}}</span>
-                            </div>
-                            <div class = "spd">
-                                <span>SPD: {{creature.spd}}</span>
-                            </div>
-                            <div class = "int">
-                                <span>INT: {{creature.int}}</span>
-                            </div>
-                        </div>
-                        <div class = "flavor">
-                            <span>{{creature.flavor}}</span>
-                        </div>
-                        <div class = "cardart">
-                            <img ng_src = "images/{{creature.image}}">
+                        <div class = "block">
+                        
                         </div>
                     </div>
                 </div>
-            </section id = "player">
+            </div>
+        </div>
     </div>
-  </body>
+</body>
 </html>
