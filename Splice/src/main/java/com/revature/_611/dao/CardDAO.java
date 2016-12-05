@@ -3,15 +3,15 @@ package com.revature._611.dao;
 import java.util.List;
 
 import com.revature._611.beans.Card;
+import com.revature._611.beans.Creature;
+import com.revature._611.beans.Sorcerer;
 
 public interface CardDAO {
 
-	Card getCard(int id);
+	Sorcerer getSorcererByID(int id);
 	
-	List<Card> getAllCards();
+	List<Sorcerer> getAllSorcerers();
 	
-	List<Card> getSorcerers();
-	
-	List<Card> getCreatures();
+	List<Creature> getAllCreatures();
 	
 }

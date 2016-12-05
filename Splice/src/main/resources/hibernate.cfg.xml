@@ -22,6 +22,7 @@
 		<mapping class="com.revature._611.beans.User"/>
 		<mapping class="com.revature._611.beans.Card"/>
 		<mapping class="com.revature._611.beans.Sorcerer"/>
+		<mapping class="com.revature._611.beans.Creature"/>
 		
 		<!-- Example of an HBM FILE MAPPING -->
 		<!-- <mapping resource="myObject.hbm.xml"/> -->
