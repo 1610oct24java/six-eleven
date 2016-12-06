@@ -50,6 +50,8 @@ public class Game implements Serializable {
 		 * DESCRIPTION: Put out the first cards into
 		 * the Wylds.
 		 */
+		CardDAO cDAO = new CardDAOimp();
+		deckCreatures.setContents(cDAO.getAllCreatures());
 		deckCreatures.shuffle();
 		wylds = deckCreatures.deal(4);
 	}
@@ -64,11 +66,11 @@ public class Game implements Serializable {
 		 */
 		CardDAO cDAO = new CardDAOimp();
 
-		// List<Sorcerer> sorcs = cDAO.getAllSorcerers();
-		List<Sorcerer> sorcs = new ArrayList<Sorcerer>();
-		sorcs.add(new Sorcerer("Xanatov"));
-		sorcs.add(new Sorcerer("Xilos"));
-		sorcs.add(new Sorcerer("Talmir"));
+		List<Sorcerer> sorcs = cDAO.getAllSorcerers();
+//		List<Sorcerer> sorcs = new ArrayList<Sorcerer>();
+//		sorcs.add(new Sorcerer("Xanatov"));
+//		sorcs.add(new Sorcerer("Xilos"));
+//		sorcs.add(new Sorcerer("Talmir"));
 
 		for (int i = 0; i < numPlayers; i++) {
 			Player newPlayer = new Player();
