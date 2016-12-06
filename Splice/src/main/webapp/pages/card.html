@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html ng-app = "gemStore">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,15 +12,26 @@
 
   <link rel="stylesheet" href="style/base.css">
   <link rel="stylesheet" href="style/card.css">
+  <script type="text/javascript" src="js/lib/angular.min.js"></script>
+  <script type="text/javascript" src="js/game.js"></script>
   
 </head>
 <body>
     <div id = "container">
         <section>
             <div class = "container cf">
+                
+            </div>
+        </section>
+    </div>
+    
+    <div id = "container">
+        <section>
+            <div class = "container cf">
                 <div class = "card">
                     <div class = "name">
-                <span>Xanatov</span>
+                        {{2+3}}
+                <span></span>
             </div>
             <div class = "stat">
                 <div class = "vit">
@@ -50,4 +61,5 @@
             </div>
         </section>
     </div>
+    
 </body>

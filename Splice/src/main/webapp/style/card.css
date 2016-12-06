@@ -1,84 +1,103 @@
-.container {
-  margin: 0 auto;
-  padding: 20px; }
-  .container .card {
+.card-area {
+    border: 1px solid;
+    border-color: saddlebrown;
+    width: 80%;
+}
+.card-area .card {
     float: left;
     position: relative;
-    width: 160px;
-    height: 200px;
-    margin: 40px 20px;
-    background: #fff;
+    margin: 5px 5px;
+    background: #d3b376;
     border-radius: 5px;
-    border: 5px solid;
+    border: 2px solid;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     border-color: black;
+}
+.card-area .card-sorc {
+    width: 200px;
+    height: 280px;
+    font-size: 10px;
+}
+.card-area .card-creature {
+    width: 100px;
+    height: 140px;
+    font-size: 6px;
 }
 
 .name {
     position: absolute;
-    top: 5px;
-    left: 5px; 
-    width: 100px;
+    top: 3%;
+    left: 3%;
+    height: 8%;
+    width: 75%;
 }
 .name span {
-    font-size:14px;
+    overflow: hidden;
     text-align: left;
+    float: left;
+    font-size: 140%
 }
+
 .stat {
-    font-size: 14px;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    width: 50px;
+    width: 25%;
+    float: right;
     text-align: right;
-}
-.stat .vit {
-    top: 5px;
+    font-size: 130%;
+    overflow: hidden;
+} .label {
+    color: saddlebrown;
+    font-size: 50%;
+    font-weight: normal;
+} .vit {
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    font-weight: bold;
     width: inherit;
-    text-align: inherit;
-}
-.stat .pow {
-    position: relative;
-    width:inherit;
-    text-align: inherit;
-    top: 100px;
-}
-.stat .def {
-    position: relative;
-    width:inherit;
-    text-align: inherit;
-    top: 100px;
-}
-.stat .spd {
-    position: relative;
-    width:inherit;
-    text-align: inherit;
-    top: 100px;
-}
-.stat .int {
-    position: relative;
-    width:inherit;
-    text-align: inherit;
-    top:100px;
+} .pow {
+    position: absolute;
+    top: 55%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
+} .def {
+    position: absolute;
+    top: 65%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
+} .spd {
+    position: absolute;
+    top: 75%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
+} .int {
+    position: absolute;
+    top: 85%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
 }
 
 .flavor {
     position: absolute;
-    top: 100px;
-    left: 5px;
-    font-size: 8px;
-    width: 90px;
+    top: 55%;
+    left: 5%;
+    width: 70%;
+    height: 44%;
     border-radius: 1px;
-    border-color: black;
     border: 1px SOLID;
+    border-color: saddlebrown;
 } .flavor p{
     padding: 2px;
+    font-size: 80%;
 }
-.cardart {
-    text-align: center;
-} .cardart img{
-    position: relative;
-    top: 19px;
-    width: 115px;
-    
+.cardart img {
+    position: absolute;
+    object-position: center;
+    top: 15%;
+    left: 5%;
+    width: 90%;
+    height: 40%;
 }
