@@ -38,13 +38,49 @@
             favStat: 4,
             dmpStat: 1,
             image: "stickSorc.png"
+        },
+        {
+            name: 'Wyld Rat',
+            vit: 5,
+            pow: 2,
+            def: 2,
+            spd: 2,
+            int: 0,
+            flavor: "A noble creature with a savage secret: A hart's horns will only grow a new point the next season if they spill hot blood.",
+            favStat: 2,
+            dmpStat: 5,
+            image: "grand_hart.png"
+        },
+        {
+            name: 'Great Mantis',
+            vit: 5,
+            pow: 2,
+            def: 2,
+            spd: 2,
+            int: 0,
+            flavor: "A noble creature with a savage secret: A hart's horns will only grow a new point the next season if they spill hot blood.",
+            favStat: 2,
+            dmpStat: 5,
+            image: "grand_hart.png"
+        },
+        {
+            name: 'Cliffside Stalker',
+            vit: 5,
+            pow: 2,
+            def: 2,
+            spd: 2,
+            int: 0,
+            flavor: "A noble creature with a savage secret: A hart's horns will only grow a new point the next season if they spill hot blood.",
+            favStat: 2,
+            dmpStat: 5,
+            image: "grand_hart.png"
         }
     ];
     
     var app = angular.module('spliceGame', []);
     
     app.controller('WyldsController', function () {
-        this.creatures = creatures;
+        this.creatures = [creatures[0], creatures[1], creatures[2], creatures[3]];
     });
     
     app.controller('PlayerController', function () {

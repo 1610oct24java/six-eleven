@@ -13,11 +13,12 @@
 <body>
     <h1 class = "text-center">Splice</h1>
     <div class="container-fluid">
-        <div id="opponent" class="row text-center">
-            <div class = "col-sm-1">
+        <div id="opponent" class="row">
+            <div class = "col-md-1">
                 <h2 class = "rotate">Opponents</h2>
             </div>
-            <div class = "col-sm-2 card-area">
+            <div class = "col-md-4"></div>
+            <div class = "col-md-2 card-area">
                 <div class = "card card-sorc" ng-controller = "PlayerController as p">
                     <div class = "name">
                         <span>{{p.sorcerer.name}}</span>
@@ -64,11 +65,12 @@
             </div>
         </div>
         <br>
-        <div id = "wylds" class = "row text-center">
+        <div id = "wylds" class = "row">
             <div class = "col-md-1">
                 <h2 class = "rotate">Wylds</h2>
             </div>
-            <div class = "col-md-3 card-area" ng-controller = "WyldsController as wylds">
+            <div class = "col-md-3"></div>
+            <div class = "col-md-4 card-area" ng-controller = "WyldsController as wylds">
                 <div class = "card card-creature"  ng-repeat="creature in wylds.creatures">
                     <div class = "name">
                         <span>{{creature.name}}</span>
@@ -113,22 +115,19 @@
                             </div>
                             {{creature.int}}
                         </div>
-                        <div class = "block">
-                        
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <br>
-        <div id = "player" class = "row text-center">
-            <div class = "col-sm-1">
+        <div id = "player" class = "row">
+            <div class = "col-md-1">
                 <h2 class = "rotate">Player</h2>
             </div>
-            <div class = "col-sm-2">
+            <div class = "col-md-4">
             
             </div>
-            <div class = "col-sm-3 card-area">
+            <div class = "col-md-2 card-area">
                 <div class = "card card-sorc" ng-controller = "PlayerController as p">
                     <div class = "name">
                         <span>{{p.sorcerer.name}}</span>
