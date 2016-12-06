@@ -1,5 +1,22 @@
-var app = angular.module("gameApp", []); 
-app.controller("myCtrl", function($scope, $http) {
+var app = angular.module("gameApp", [ngRoute]); 
+
+app.config(function($routeProvider){
+	$routeProvider
+	.when("/", {
+		templateUrl : "login-box.html",
+		controller : "loginController"
+	})
+	.when("/lobby", {
+		templateUrl : "pages/lobby-box.html",
+		controller : "lobbyController"
+	})
+	.when("/queue", {
+		templateUrl : "pages/queue-box.html",
+		controller : "queueController"
+	})
+});
+
+app.controller("loginController", function($scope, $http) {
 
 	$scope.user;
 	$scope.pass;
@@ -26,3 +43,11 @@ app.controller("myCtrl", function($scope, $http) {
 		});
 	}
 });
+
+app.controller("lobbyController", function($scope, $http) {
+	
+})
+
+app.controller("queueController", function($scope, $http) {
+	
+})
