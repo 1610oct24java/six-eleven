@@ -28,6 +28,7 @@ app.controller("loginController", function($scope, $http, $location) {
 
 	$scope.user;
 	$scope.pass;
+<<<<<<< HEAD
 	$scope.registerUser;
 	$scope.registerPass;
 	
@@ -35,6 +36,13 @@ app.controller("loginController", function($scope, $http, $location) {
 	$scope.getUsername = function(){
 		// JSON object
 		var loginData = JSON.stringify({username: this.user, password: this.pass});
+=======
+
+	// this function pulls the login info from the textfields and sends as a http post
+	$scope.getUsername = function(){
+		// JSON object
+		var loginData = JSON.stringify({Command: "Login", Data:{username: this.user, password: this.pass}});
+>>>>>>> 04a2a6393fee61ab9002c8a2c57f608ebd914a8d
 		
 		postLoginData(loginData);
 		console.log("Username: " + this.user + " Password: " + this.pass);
@@ -52,9 +60,12 @@ app.controller("loginController", function($scope, $http, $location) {
 			url: 'Login.do',
 			headers: {'Content-Type': 'application/json'},
 			data: data
-		}).success(function (output){
+		}).success(function (response){
 			//console.log(JSON.parse(output));
+			console.log(response.data);
 			$location.path("/lobby");
+		}).error(function (response){
+			console.log(response.status);
 		});
 	}
 });
