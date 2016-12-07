@@ -25,6 +25,34 @@ header, section, footer, aside, nav, article, figure {
   .cf:after {
     clear: both; }
 
+.rotate {
+
+    /* Safari */
+
+    -webkit-transform: rotate(-90deg);
+
+    /* Firefox */
+
+    -moz-transform: rotate(-90deg);
+
+    /* IE */
+
+    -ms-transform: rotate(-90deg);
+
+    /* Opera */
+
+    -o-transform: rotate(-90deg);
+
+    /* Internet Explorer */
+
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+
+
+    display: inline-block; margin-top: 20px; margin-right: -7px;
+
+}
+
 ::-moz-selection {
   background: #333;
   color: #fff;
@@ -44,7 +72,7 @@ html {
   -webkit-font-smoothing: antialiased; }
 
 body {
-  background: #050;
+  
   font-size: 62.5%;
   font-family: Arial, san-serif;
   -webkit-animation: reset 1s ease 1;
