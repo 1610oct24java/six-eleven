@@ -10,13 +10,14 @@ import com.revature._611.dao.CardDAOimp;
 import com.revature._611.dao.UserDAOImpl;
 
 public class TestDriver {
-
-	public static int randInt(int min, int max) {
-		return ThreadLocalRandom.current().nextInt(min,max+1);
-	}
 	
 	public static void main(String[] args) {
-		CardDAOimp carddao = new CardDAOimp();
+		
+		UserDAOImpl userDao = new UserDAOImpl();
+		
+		User u1 = new User("pski","poop");
+		
+		System.out.println(userDao.login(u1));
 		
 	}
 

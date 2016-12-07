@@ -2,9 +2,11 @@ package com.revature._611.dao;
 
 import java.util.ArrayList;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.revature._611.beans.User;
 import com.revature._611.utils.HibernateUtil;
@@ -54,6 +56,21 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public User login(User usr) {
+		
+		Session sesh = hu.getSession();
+		
+		User rtnUser = (User) sesh.createCriteria(User.class)
+								.add(Restrictions.eq("username",usr.getUsername()))
+								.add(Restrictions.eq("password",usr.getPassword()))
+								.uniqueResult();
+		
+		sesh.close();
+		
+		return rtnUser;
+	}
+	
+	@Override
 	public User userLogin(User usr) {
 		
 		ArrayList<User> users;
@@ -85,4 +102,5 @@ public class UserDAOImpl implements UserDAO {
 		
 		return user;
 	}
+
 }
