@@ -61,35 +61,101 @@ app.controller("loginController", function($scope, $http, $location) {
 
 app.controller("lobbyController", function($scope, $http) {
 	
+	$scope.playerCount = '1';
+	$scope.username = "Henry";
 	
-	$scope.joinGame = function(){
-		var loginData = JSON.stringify({});
+	$scope.playerList = [ {
+		playerName : 'Ric'
+	}, {
+		playerName : 'Henry'
+	}];
+	
+	$scope.gameList = [ {
+		playerCount : '1',
+		creator : 'Ric',
+		gameName : 'noobs only'
+	}];
+	
+	$scope.createGame = function(){
+		$scope.products.push({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
 		
-		postGameListData(loginData);
-		console.log(loginData);
+		var newGameData = JSON.stringify({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
+		
+		postNewGameData(newGameData);
+		console.log("Username: " + this.user + " Password: " + this.pass);
+		console.log(loginData); 
+		$scope.gameName = "";
 	}
 	
-	function postGameListData(data){
+	function postNewGameData(data){
 		$http({
 			method: 'POST',
-			url: 'Login.do',
+			url: 'GameList.do',
 			headers: {'Content-Type': 'application/json'},
 			data: data
 		}).success(function (output){
-			//console.log(JSON.parse(output));
-			$location.path("/lobby");
+			console.log("JSON output: " + JSON.parse(output));
 		});
 	}
 	
-	$http.get("some url")
-	.then(function (response) {$scope.games = response.data.games;});
-
+	$scope.joinGame = function(){
+		var queueData = JSON.stringify({});
+		
+		postQueueData(queueData);
+		console.log(queueData);
+		
+		$location.path("/queue");
+	}
+	
+	$scope.deleteGame = function(index){
+		$scope.gameList.splice(index,1);
+	}
+	
 	$scope.chatlog = [];
 	$scope.sendMessage = function(){
-		$scope.chatlog.push($scope.message);
+		$scope.chatlog.push({chatlog:$scope.message});
+		
+		var newMessageData = JSON.stringify({chatlog:$scope.message});
+		
+		postNewMessage(newMessageData);
+		
+		console.log(newMessageData); 
+		$scope.gameName = "";
+		
+		$scope.message = "";
 	}
-})
+	
+	function postNewMessage(data){
+		$http({
+			method: 'POST',
+			url: 'SendMessage.do',
+			headers: {'Content-Type': 'application/json'},
+			data: messageData
+		}).success(function (output){
+			console.log("JSON output: " + JSON.parse(output));
+		});
+	}
+
+	$scope.logOut = function(){
+		$http({
+			method: 'POST',
+			url: 'LogOut.do',
+			headers: {'Content-Type': 'application/json'},
+			//data: data
+		}).success(function (output){
+			console.log("JSON output: " + JSON.parse(output));
+			$location.path="/login";
+		});
+		
+	}
+});
+app.directive('playerCount', function(){
+	return { template : '{{playerList.length}}'};
+});
+app.directive('gameCount',function(){
+	return { template : '{{gameList.length}}'};
+});
 
 app.controller("queueController", function($scope, $http) {
 	
-})
+});
