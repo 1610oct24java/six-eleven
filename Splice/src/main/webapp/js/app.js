@@ -1,5 +1,3 @@
-'use strict';
-
 var app = angular.module("gameApp", ["ngRoute"]); 
 
 app.config(function($routeProvider){
@@ -30,14 +28,14 @@ app.controller("loginController", function($scope, $http, $location) {
 
 	$scope.user;
 	$scope.pass;
-	
+
 	// this function pulls the login info from the textfields and sends as a http post
 	$scope.getUsername = function(){
 		// JSON object
-		var loginData = JSON.stringify({username: $scope.user, password: $scope.pass});
+		var loginData = JSON.stringify({Command: "Login", Data:{username: this.user, password: this.pass}});
 		
-		postData(loginData);
-		console.log("Username: " + $scope.user + " Password: " + $scope.pass);
+		postLoginData(loginData);
+		console.log("Username: " + this.user + " Password: " + this.pass);
 		console.log(loginData); 
 	}
 	
@@ -46,15 +44,18 @@ app.controller("loginController", function($scope, $http, $location) {
 	}
 	
 	// postData takes in JSON, sends with HTTP POST to given servlet url
-	function postData(data){
+	function postLoginData(data){
 		$http({
 			method: 'POST',
 			url: 'Login.do',
 			headers: {'Content-Type': 'application/json'},
 			data: data
-		}).success(function (output){
+		}).success(function (response){
 			//console.log(JSON.parse(output));
+			console.log(response.data);
 			$location.path("/lobby");
+		}).error(function (response){
+			console.log(response.status);
 		});
 	}
 });
