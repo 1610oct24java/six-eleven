@@ -60,7 +60,7 @@ app.controller("loginController", function($scope, $http, $location) {
 	}
 });
 
-app.controller("lobbyController", function($scope, $http) {
+app.controller("lobbyController", function($scope, $http, $location) {
 	
 	$scope.playerCount = '1';
 	$scope.username = "Henry";
@@ -78,13 +78,12 @@ app.controller("lobbyController", function($scope, $http) {
 	}];
 	
 	$scope.createGame = function(){
-		$scope.products.push({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
+		$scope.gameList.push({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
 		
 		var newGameData = JSON.stringify({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
 		
 		postNewGameData(newGameData);
-		console.log("Username: " + this.user + " Password: " + this.pass);
-		console.log(loginData); 
+		console.log(newGameData); 
 		$scope.gameName = "";
 	}
 	
@@ -99,12 +98,7 @@ app.controller("lobbyController", function($scope, $http) {
 		});
 	}
 	
-	$scope.joinGame = function(){
-		var queueData = JSON.stringify({});
-		
-		postQueueData(queueData);
-		console.log(queueData);
-		
+	$scope.joinGame = function(index){
 		$location.path("/queue");
 	}
 	
@@ -112,16 +106,19 @@ app.controller("lobbyController", function($scope, $http) {
 		$scope.gameList.splice(index,1);
 	}
 	
-	$scope.chatlog = [];
+	$scope.chatlog = [{
+		playerName : 'Ric',
+		message : 'testing'
+	}];
+	
 	$scope.sendMessage = function(){
-		$scope.chatlog.push({chatlog:$scope.message});
+		$scope.chatlog.push({playerName:$scope.username,message:$scope.message});
 		
 		var newMessageData = JSON.stringify({chatlog:$scope.message});
 		
 		postNewMessage(newMessageData);
 		
 		console.log(newMessageData); 
-		$scope.gameName = "";
 		
 		$scope.message = "";
 	}
@@ -147,7 +144,7 @@ app.controller("lobbyController", function($scope, $http) {
 			console.log("JSON output: " + JSON.parse(output));
 			$location.path="/login";
 		});
-		
+		$location.path="/login";
 	}
 });
 app.directive('playerCount', function(){
@@ -157,6 +154,62 @@ app.directive('gameCount',function(){
 	return { template : '{{gameList.length}}'};
 });
 
-app.controller("queueController", function($scope, $http) {
+app.controller("queueController", function($scope, $http, $location) {
+	
+	$scope.startGame = function(){
+		$http({
+			method: 'POST',
+			url: 'startGame.do',
+			headers: {'Content-Type': 'application/json'},
+			//data: data
+		}).success(function (output){
+			//console.log("JSON output: " + JSON.parse(output));
+			$location.path="/game";
+		});
+		$location.path="/game";
+	}
+	
+	$scope.leaveGame = function(){
+		$http({
+			method: 'POST',
+			url: 'LeaveGame.do',
+			headers: {'Content-Type': 'application/json'},
+			//data: data
+		}).success(function (output){
+			//console.log("JSON output: " + JSON.parse(output));
+			$location.path="/lobby";
+		});
+		$location.path="/lobby";
+	}
+	
+	$scope.playerCount = '1';
+	$scope.username = "Henry";
+	
+	$scope.playerList = [ {
+		playerName : 'Ric'
+	}, {
+		playerName : 'Henry'
+	}];
+	
+	$scope.chatlog = [{
+		playerName : 'Ric',
+		message : 'testing'
+	}];
+	
+	$scope.sendMessage = function(){
+		$scope.chatlog.push({playerName:$scope.username,message:$scope.message});
+		
+		var newMessageData = JSON.stringify({chatlog:$scope.message});
+		
+		postNewMessage(newMessageData);
+		
+		console.log(newMessageData); 
+		
+		$scope.message = "";
+	}
+	
+});
+
+app.controller("gameController", function($scope, $http, $location) {
 	
 });

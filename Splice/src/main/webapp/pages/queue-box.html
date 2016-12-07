@@ -6,11 +6,11 @@
   	</div>
   	
   	<div class="col-md-6 box-top-header">
-  		<button class="btn btn-lg btn-success" type="button" ng-click="queue.startGame()">Start Game</button>
+  		<button class="btn btn-lg btn-success" type="button" ng-click="startGame()">Start Game</button>
   	</div>
   	
   	<div class="col-md-2 box-top-header">
-  		<button class="btn btn-lg btn-danger box-right" type="button" ng-click="queue.leaveGame()">Leave Game</button>
+  		<button class="btn btn-lg btn-danger box-right" type="button" ng-click="leaveGame()">Leave Game</button>
   	</div>
   </div>
   
@@ -18,13 +18,10 @@
   
   <div class="row">
     <div class="col-md-2 col-md-offset-1">
-      <div class="box-frame-title">Online [{{NUM}}]</div>
+      <div class="box-frame-title">Online (<player-count></player-count>)</div>
       <div class="box-player-list box-player-list-queue">
         <ul>
-          <li>work</li>
-          <li>player2</li>
-          <li>player4</li>
-          <li>Ricster</li>
+          <li ng-repeat="player in playerList">{{player.playerName}}</li>
         </ul>
       </div>
     </div>
@@ -37,31 +34,17 @@
     	
 		<div class="row">
 		  <div class="box-chat-content box-chat-queue">
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : wat<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
+		  <!-- chat messages will populate here -->
+		  	<p ng-repeat="msg in chatlog">{{msg.playerName}} : {{msg.message}}</p>
 		  </div>
 		</div>    	
     	
     	<div class="row">
     	  <form>
-             <input type="text" class="col-md-10" name="message" placeholder="type a message">
-             <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="lobby.sendMessage()">Send</button>
+             <input ng-model="message" type="text" class="col-md-10" name="message" placeholder="type a message">
+             <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="sendMessage()">Send</button>
           </form>
     	</div>
-    	
     </div>
   </div>
 </div>

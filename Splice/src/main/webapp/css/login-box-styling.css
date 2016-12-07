@@ -12,3 +12,9 @@
 .login-title {
 	color: #ffffff;
 }
+
+#logoDiv img {
+	display: block;
+	margin: auto;
+	width: 40%;
+}
