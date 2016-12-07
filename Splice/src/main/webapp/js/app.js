@@ -1,9 +1,12 @@
-var app = angular.module("gameApp", [ngRoute]); 
+'use strict';
+
+var app = angular.module("gameApp", ["ngRoute"]); 
 
 app.config(function($routeProvider){
+	
 	$routeProvider
-	.when("/", {
-		templateUrl : "login-box.html",
+	.when("/login", {
+		templateUrl : "pages/login-box.html",
 		controller : "loginController"
 	})
 	.when("/lobby", {
@@ -14,9 +17,16 @@ app.config(function($routeProvider){
 		templateUrl : "pages/queue-box.html",
 		controller : "queueController"
 	})
+	.when("/error404", {
+		templateUrl : "pages/error404.html",
+		controller : "errorController"
+	})
+	.otherwise({
+		redirectTo : "/login"
+	})
 });
 
-app.controller("loginController", function($scope, $http) {
+app.controller("loginController", function($scope, $http, $location) {
 
 	$scope.user;
 	$scope.pass;
@@ -31,6 +41,10 @@ app.controller("loginController", function($scope, $http) {
 		console.log(loginData); 
 	}
 	
+	$scope.testLogin = function(){
+		$location.path("/lobby");
+	}
+	
 	// postData takes in JSON, sends with HTTP POST to given servlet url
 	function postData(data){
 		$http({
@@ -39,7 +53,8 @@ app.controller("loginController", function($scope, $http) {
 			headers: {'Content-Type': 'application/json'},
 			data: data
 		}).success(function (output){
-			console.log(JSON.parse(output));
+			//console.log(JSON.parse(output));
+			$location.path("/lobby");
 		});
 	}
 });
