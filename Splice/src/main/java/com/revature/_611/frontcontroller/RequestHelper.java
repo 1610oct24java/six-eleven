@@ -17,13 +17,14 @@ import com.revature._611.logic.Commands;
 
 public class RequestHelper {
 	private ObjectMapper objectMapper;
+	private JSONObject json;
 
 	public String process(HttpServletRequest request, HttpServletResponse response) throws JSONException, IOException {
 		
 		switch(request.getRequestURI()){
 		
 		case("/Splice/Login.do"):
-			JSONObject json = new JSONObject(request.getReader().readLine());
+			json = new JSONObject(request.getReader().readLine());
 			Commands.doCommand(json, request.getSession(), response.getWriter());
 			if(request.getSession().getAttribute("loggedIn").equals("true")){
 				// send 202 Accepted
@@ -35,29 +36,11 @@ public class RequestHelper {
 			}
 			return "login";
 			
-		case("/Splice/AuthenticateUser.do"):
-			
-//			objectMapper = new ObjectMapper();
-//			//User user;
-//			
-//			try {
-//				
-//				user = objectMapper.readValue(request.getParameter("user"), User.class);
-//				System.out.println(user.toString());
-//				
-//			} catch (JsonParseException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			} catch (JsonMappingException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			} catch (IOException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-			
-			//TODO haha nice return value peggy
-			return "some string of data or something like  game.html";
+		case("/Splice/LogOut.do"):
+			json = new JSONObject(request.getReader().readLine());
+			Commands.doCommand(json, request.getSession(), response.getWriter());
+			response.setStatus(200);
+			return "index";
 		
 		case("/Splice/GetUser.do"):
 			User testUser = new User();

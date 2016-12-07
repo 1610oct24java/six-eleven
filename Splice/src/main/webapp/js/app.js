@@ -138,14 +138,18 @@ app.controller("lobbyController", function($scope, $http) {
 	}
 
 	$scope.logOut = function(){
+		var logoutData = JSON.stringify({Command: "Logout", Data: " "});
+		
 		$http({
 			method: 'POST',
 			url: 'LogOut.do',
 			headers: {'Content-Type': 'application/json'},
-			//data: data
-		}).success(function (output){
-			console.log("JSON output: " + JSON.parse(output));
+			data: logoutData
+		}).success(function (response){
+			console.log(response.status);
 			$location.path="/login";
+		}).error(function (response){
+			console.log("wtf happened with this logout?");
 		});
 		
 	}
