@@ -1,6 +1,5 @@
 <div class="row" ng-controller="loginController">
 	<form class="col-md-3 col-md-offset-7">
-<<<<<<< HEAD
       <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-info">
           <input type="radio" ng-model="switchlogin" value="radlogin" name="options" autocomplete="off" checked>Login
@@ -56,75 +55,5 @@
 		  </div>		
 		</form>
       </div>
-=======
-		<div class="btn-group" data-toggle="buttons">
-			<label class="btn btn-link active"> <input type="radio"
-				ng-model="switchlogin" value="radlogin" name="options"
-				autocomplete="off" checked>Login
-			</label> <label class="btn btn-link"> <input type="radio"
-				ng-model="switchlogin" value="radregister" name="options"
-				autocomplete="off">Register
-			</label>
-		</div>
-	</form>
-
-	<div ng-switch="switchlogin">
-		<div ng-switch-when="radlogin"
-			class="col-md-4 col-md-offset-6 login-box-border">
-			<h3>Login to SPLICE</h3>
-			<form name="formlog">
-				<div class="input-group vert-space-sm">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span> <input ng-model="user"
-						type="text" class="form-control" name="user"
-						placeholder="Username" required autofocus> <span
-						ng-show="formlog.user.$touched && formlog.user.$invalid">Username
-						is required!</span>
-				</div>
-				<div class="input-group vert-space-sm">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-lock"></i></span> <input ng-model="pass"
-						type="password" class="form-control" name="pass"
-						placeholder="Password" required> <span
-						ng-show="formlog.pass.$touched && formlog.pass.$invalid">Password
-						is required!</span>
-				</div>
-				<div class="vert-space-sm">
-					<button ng-click="getUsername()" type="button"
-						class="btn btn-large btn-success pull-right"
-						ng-disabled="formlog.user.$dirty && formlog.user.$invalid || 
-		    	formlog.pass.$dirty && formlog.pass.$invalid">Login</button>
-				</div>
-			</form>
-		</div>
-		<div ng-switch-when="radregister"
-			class="col-md-4 col-md-offset-6 login-box-border">
-			<h3>Register with SPLICE</h3>
-			<form name="formreg" novalidate>
-				<div class="input-group vert-space-sm">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span> <input
-						ng-model="registerUser" type="text" class="form-control"
-						name="user" placeholder="Username" required autofocus> <span
-						ng-show="formreg.user.$touched && formreg.user.$invalid">Username
-						is required!</span>
-				</div>
-				<div class="input-group vert-space-sm">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-lock"></i></span> <input
-						ng-model="registerPass" type="password" class="form-control"
-						name="pass" placeholder="Password" required> <span
-						ng-show="formreg.pass.$touched && formreg.pass.$invalid">Password
-						is required!</span>
-				</div>
-				<div class="vert-space-sm">
-					<button ng-click="getUsername()" type="button"
-						class="btn btn-large btn-primary pull-right"
-						ng-disabled="formreg.user.$dirty && formreg.user.$invalid || 
-		    	formreg.pass.$dirty && formreg.pass.$invalid">Register</button>
-				</div>
-			</form>
-		</div>
->>>>>>> 04a2a6393fee61ab9002c8a2c57f608ebd914a8d
 	</div>
 </div>

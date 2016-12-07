@@ -28,21 +28,11 @@ app.controller("loginController", function($scope, $http, $location) {
 
 	$scope.user;
 	$scope.pass;
-<<<<<<< HEAD
-	$scope.registerUser;
-	$scope.registerPass;
-	
-	// this function pulls the login info from the textfields and sends as a http post
-	$scope.getUsername = function(){
-		// JSON object
-		var loginData = JSON.stringify({username: this.user, password: this.pass});
-=======
 
 	// this function pulls the login info from the textfields and sends as a http post
 	$scope.getUsername = function(){
 		// JSON object
 		var loginData = JSON.stringify({Command: "Login", Data:{username: this.user, password: this.pass}});
->>>>>>> 04a2a6393fee61ab9002c8a2c57f608ebd914a8d
 		
 		postLoginData(loginData);
 		console.log("Username: " + this.user + " Password: " + this.pass);
