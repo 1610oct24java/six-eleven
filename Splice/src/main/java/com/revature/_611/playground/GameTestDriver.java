@@ -1,6 +1,6 @@
 package com.revature._611.playground;
 
-import com.revature._611.beans.Game;
+import com.revature._611.game.Game;
 
 public class GameTestDriver {
 	Game theGame;
@@ -21,6 +21,7 @@ public class GameTestDriver {
 		p("# Initializing wylds...");
 		theGame.initWylds();
 		p(theGame.toString());
+		p(theGame.printStatus());
 	}
 	
 	public void p (String s) {

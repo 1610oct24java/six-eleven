@@ -14,8 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player implements Serializable {
-	Sorcerer sorc;
-	List<Creature> lab = new ArrayList<Creature>();
+	private Sorcerer sorc;
+	private List<Creature> lab = new ArrayList<Creature>();
+	private int researchPool;
 	
 	/*
 	 *  CONSTRUCTORS
@@ -50,6 +51,16 @@ public class Player implements Serializable {
 
 	public void setLab(List<Creature> lab) {
 		this.lab = lab;
+	}
+	
+	
+
+	public int getResearchPool() {
+		return researchPool;
+	}
+
+	public void setResearchPool(int researchPool) {
+		this.researchPool = researchPool;
 	}
 
 	/*

@@ -1,13 +1,17 @@
 /**
  * 
  */
-package com.revature._611.beans;
+package com.revature._611.game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.revature._611.beans.Creature;
+import com.revature._611.beans.Deck;
+import com.revature._611.beans.Player;
+import com.revature._611.beans.Sorcerer;
 import com.revature._611.dao.CardDAO;
 import com.revature._611.dao.CardDAOimp;
 import com.revature._611.utils.Rando;
@@ -29,21 +33,27 @@ public class Game implements Serializable {
 	private List<Player> players = new ArrayList<Player>();
 	private Deck deckCreatures = new Deck();
 	private List<Creature> wylds = new ArrayList<Creature>();
-	private int round;
-	private int turn;
-	private int phase;
-	private boolean inProgress;
+	private GameState state = new GameState();
 	
-	public void run() {
+	public String printStatus() {
 		/*
-		 * INPUT: None 
-		 * OUTPUT: None
-		 * DESCRIPTION: Organizes the core game loop
-		 * and game setup.
+		 * INPUT: None
+		 * OUTPUT: Status Report (String)
+		 * DESCRIPTION: Reports the current phase, turn, and round
 		 */
-
-		initWylds();
-		initPlayers(2);
+		String output = ""
+				+ "Phase: " + state.getPhase() + ", "
+				+ "Turn: " + players.get(state.getTurn()).getSorc().getName() + ", "
+				+ "Round: ";
+		if (state.getPhase() == 1) {
+			output += "Research";
+		} else if (state.getPhase() == 2){
+			output += "Combat";
+		} else {
+			output += "INVALID";
+		}
+		
+		return output;
 	}
 
 	public void initWylds() {
