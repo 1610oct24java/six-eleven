@@ -25,9 +25,10 @@ public class Commands {
 			String password = data.getString("password");
 			User user = new User(username, password);
 			User loggedInUser = userDao.userLogin(user);
-			System.out.println("JSON User: " + user.toString());
-			System.out.println("Logged in user: " + loggedInUser.toString());
 			
+			if(loggedInUser == null){
+				loggedInUser = new User("bad","login");
+			}
 			// login if equal
 			if(username.equals(loggedInUser.getUsername()) && password.equals(loggedInUser.getPassword())){
 				session.setAttribute("loggedIn", "true");
@@ -36,11 +37,14 @@ public class Commands {
 				session.setAttribute("loggedIn", "false");
 			}
 			break;
+		}case LOGOUT:{
+			if(session.getAttribute("loggedIn").equals("true")){
+				session.invalidate();
+			}
+			System.out.println("Logging Out");
+			break;
 		}
 		
 		}
-		
-		
 	}
-
 }
