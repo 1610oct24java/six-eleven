@@ -1,4 +1,4 @@
-<div class="main-box col-md-10 col-md-offset-1">
+<div class="main-box col-md-10 col-md-offset-1" ng-controller="lobbyController">
 
   <div class="row">
   	<div class="col-md-2 col-md-offset-1 box-top-header">
@@ -43,12 +43,12 @@
     		      <th>Name</th>
     		      <th></th>
     		   </tr>
-    		   <tr>
-    		      <td>1/2</td>
-    		      <td>Ric</td>
-    		      <td>noobs only</td>
+    		   <tr ng-repeat="game in games">
+    		      <td>{{ game.playerCount }}</td>
+    		      <td>{{ game.creator }}</td>
+    		      <td>{{ game.name }}</td>
     		      <td><button class="btn btn-xs btn-join box-right" type="button" 
-    		      		ng-click="lobby.joinGame()">Join</button></td>
+    		      		ng-click="joinGame()">Join</button></td>
     		   </tr>
 			</table>
     	</div>
@@ -67,7 +67,7 @@
     	</div>
     	
 		<div class="row">
-		  <div class="box-chat-content">
+		  <div ng-model="" class="box-chat-content">
 		  Ric : lol<br>
 		  Ric : lol<br>
 		  Ric : lol<br>
@@ -89,7 +89,7 @@
     	<div class="row">
     	  <form>
              <input type="text" class="col-md-10" name="message" placeholder="type a message">
-             <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="lobby.sendMessage()">Send</button>
+             <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="sendMessage()">Send</button>
           </form>
     	</div>
     	

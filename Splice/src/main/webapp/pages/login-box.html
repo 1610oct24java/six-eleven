@@ -1,10 +1,10 @@
 <div class="row" ng-controller="loginController">
 	<form class="col-md-3 col-md-offset-7">
       <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-link active">
+        <label class="btn btn-info">
           <input type="radio" ng-model="switchlogin" value="radlogin" name="options" autocomplete="off" checked>Login
         </label>
-        <label class="btn btn-link">
+        <label class="btn btn-info">
           <input type="radio" ng-model="switchlogin" value="radregister" name="options" autocomplete="off">Register
         </label>
       </div>
@@ -27,7 +27,7 @@
 			  <span ng-show="formlog.pass.$touched && formlog.pass.$invalid">Password is required!</span>
 		  </div>
 		  <div class="vert-space-sm">
-		    <button ng-click="testLogin()" type="button" class="btn btn-large btn-success pull-right"
+		    <button ng-click="getUsername()" type="button" class="btn btn-large btn-success pull-right"
 		    	ng-disabled="formlog.user.$dirty && formlog.user.$invalid || 
 		    	formlog.pass.$dirty && formlog.pass.$invalid">Login</button>
 		  </div>		
@@ -38,20 +38,20 @@
         <form name="formreg" novalidate>
 		  <div class="input-group vert-space-sm">
 		    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-		      <input ng-model="user" type="text" class="form-control" 
-						name="user" placeholder="Username" required autofocus>
-			  <span ng-show="formreg.user.$touched && formreg.user.$invalid">Username is required!</span>
+		      <input ng-model="registerUser" type="text" class="form-control" 
+						name="registerUser" placeholder="Username" required autofocus>
+			  <span ng-show="formreg.registerUser.$touched && formreg.registerUser.$invalid">Username is required!</span>
 		  </div>
 		  <div class="input-group vert-space-sm">
 			<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
-			  <input ng-model="pass" type="password" class="form-control" 
-						name="pass" placeholder="Password" required>
-			  <span ng-show="formreg.pass.$touched && formreg.pass.$invalid">Password is required!</span>
+			  <input ng-model="registerPass" type="password" class="form-control" 
+						name="registerPass" placeholder="Password" required>
+			  <span ng-show="formreg.registerPass.$touched && formreg.registerPass.$invalid">Password is required!</span>
 		  </div>
 		  <div class="vert-space-sm">
 		    <button ng-click="getUsername()" type="button" class="btn btn-large btn-primary pull-right"
-		    	ng-disabled="formreg.user.$dirty && formreg.user.$invalid || 
-		    	formreg.pass.$dirty && formreg.pass.$invalid">Register</button>
+		    	ng-disabled="formreg.registerUser.$dirty && formreg.registerUser.$invalid || 
+ 		    	formreg.registerPass.$dirty && formreg.registerPass.$invalid">Register</button> 
 		  </div>		
 		</form>
       </div>
