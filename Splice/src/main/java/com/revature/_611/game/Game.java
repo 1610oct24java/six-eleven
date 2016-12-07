@@ -35,6 +35,116 @@ public class Game implements Serializable {
 	private List<Creature> wylds = new ArrayList<Creature>();
 	private GameState state = new GameState();
 	
+	public boolean attackCreature(String creatureName) {
+		/*
+		 * INPUT: Creature name (String)
+		 * OUTPUT: Success status (boolean)
+		 * DESCRIPTION: Handles an action to attack a creature
+		 */
+		if(state.getPhase() != 2) {
+			// Ensure it is the combat phase.
+			System.out.println("Attack FAILED: Invalid phase");
+			return false;
+		}
+		Creature target = null;
+		for (Creature c : wylds) {
+			if (c.getName().equals(creatureName)) {
+				target = c;
+			}
+		}
+		if (target == null) {
+			// Ensure creature is in wilds.
+			System.out.println("Attack FAILED: Creature not in wylds");
+		}
+		Sorcerer mySorc = players.get(state.getTurn()).getSorc();
+		
+		// Damage the creature
+		int wounds = calcDamagePvC(mySorc, target);
+		target.wound(wounds);
+		
+		System.out.println(wounds + " damage dealt to the " + target.getName());
+		
+		if (target.isDead()) {
+			System.out.println(target.getName() + " was killed!");
+			// Handle creature death
+			Player me = players.get(state.getTurn());
+			// Remove it from the Wylds
+			wylds.remove(target);
+			// Replace it with a new creature
+			wylds.add(deckCreatures.deal());
+			// Add it to the players lab
+			List<Creature> newLab = me.getLab();
+			newLab.add(target);
+			me.setLab(newLab);
+			System.out.println(me.toString());
+		} else {
+			// The creature survived
+			// Update creature in wylds
+			int index = wylds.indexOf(target);
+			wylds.set(index, target);
+		}
+		
+		state.setPhase(1);
+		if (state.getTurn() < players.size() - 1){
+			state.setTurn(state.getTurn() + 1);
+		} else {
+			state.setTurn(0);
+			state.setRound(state.getRound() + 1);
+		}
+		
+		return true;
+	}
+	
+	public boolean handleHeal(String sorcName) {		
+		if (state.getPhase() != 1 ) {
+			// Ensure it is, in fact, the research phase.
+			System.out.println("Heal FAILED: Invalid phase");
+			return false;
+		}
+		if (players.get(state.getTurn()).getSorc().getWoundCounters() <= 0) {
+			// Ensure the target sorcerer is wounded.
+			System.out.println("Heal FAILED: Target not wounded");
+			return false;
+		}
+		String currSorcName = players.get(state.getTurn()).getSorc().getName();
+		if ( !currSorcName.equals(sorcName)) {
+			// Ensure the current player controls that sorcerer.
+			System.out.println("Heal FAILED: Invalid target");
+			return false;
+		}
+		if (players.get(state.getTurn()).getResearchPool() < 1) {
+			// Ensure the current player has sufficient research counters to spend;
+			System.out.println("Heal FAILED: Insufficient research counters");
+			return false;
+		}
+		Player me = players.get(state.getTurn());
+		Sorcerer mySorc = me.getSorc();
+		me.setResearchPool(me.getResearchPool() - 1);
+		mySorc.setWoundCounters(mySorc.getWoundCounters() - 1);
+		
+		return true;
+	}
+	
+	private int calcDamagePvC(Sorcerer attacker, Creature defender) {
+		/*
+		 * INPUT: Attacker (Sorcerer), Defender (Creature)
+		 * OUTPUT: Wounds dealt (int)
+		 * DESCRIPTION: Calculates the result of an attack on a creature.
+		 */
+		int output = 0;
+		
+		int atkSuccess = attacker.roll(2);
+		int defSuccess = defender.getDefense();
+		
+		output = atkSuccess - defSuccess;
+		if (output < 0 ) {
+			// Set floor to 0
+			output = 0;
+		}
+		
+		return output;
+	}
+	
 	public String printStatus() {
 		/*
 		 * INPUT: None
@@ -42,9 +152,9 @@ public class Game implements Serializable {
 		 * DESCRIPTION: Reports the current phase, turn, and round
 		 */
 		String output = ""
-				+ "Phase: " + state.getPhase() + ", "
+				+ "Round: " + state.getRound() + ", "
 				+ "Turn: " + players.get(state.getTurn()).getSorc().getName() + ", "
-				+ "Round: ";
+				+ "Phase: ";
 		if (state.getPhase() == 1) {
 			output += "Research";
 		} else if (state.getPhase() == 2){
@@ -81,10 +191,6 @@ public class Game implements Serializable {
 		CardDAO cDAO = new CardDAOimp();
 
 		List<Sorcerer> sorcs = cDAO.getAllSorcerers();
-//		List<Sorcerer> sorcs = new ArrayList<Sorcerer>();
-//		sorcs.add(new Sorcerer("Xanatov"));
-//		sorcs.add(new Sorcerer("Xilos"));
-//		sorcs.add(new Sorcerer("Talmir"));
 
 		for (int i = 0; i < numPlayers; i++) {
 			Player newPlayer = new Player();
@@ -101,23 +207,15 @@ public class Game implements Serializable {
 		// Randomize player order
 		Collections.shuffle(players);
 	}
-
-	public void initTestDeck() {
-		List<Creature> testContents = new ArrayList<Creature>();
-		testContents.add(new Creature("Wyld Rat"));
-		testContents.add(new Creature("Great Stag"));
-		testContents.add(new Creature("Askyon Wolf"));
-		testContents.add(new Creature("Askyon Recluse"));
-		testContents.add(new Creature("Cliffside Stalker"));
-		testContents.add(new Creature("Carrion Stritch"));
-		testContents.add(new Creature("Cockatrice"));
-		testContents.add(new Creature("Great Drake"));
-		testContents.add(new Creature("Spined Wyrm"));
-		testContents.add(new Creature("Frilled Wyrm"));
-		
-		deckCreatures.setContents(testContents);
+	
+	public List<Creature> getWylds(){
+		return wylds;
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		String output = "Game [players=";
@@ -131,6 +229,12 @@ public class Game implements Serializable {
 		output = output + "]";
 
 		return output;
+	}
+	
+	public void debugSetState(int round, int turn, int phase) {
+		state.setPhase(phase);
+		state.setTurn(turn);
+		state.setRound(round);
 	}
 
 }

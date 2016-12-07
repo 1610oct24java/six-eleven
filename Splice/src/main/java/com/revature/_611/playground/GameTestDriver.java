@@ -13,13 +13,27 @@ public class GameTestDriver {
 	public void drive() {
 		p("Driving...");
 		theGame = new Game();
-		theGame.initTestDeck();
 		p(theGame.toString());
 		p("# Initializing players...");
 		theGame.initPlayers(2);
 		p(theGame.toString());
 		p("# Initializing wylds...");
 		theGame.initWylds();
+		p(theGame.toString());
+		p(theGame.printStatus());
+		theGame.debugSetState(1, 0, 2);
+		p(theGame.printStatus());
+		theGame.attackCreature(theGame.getWylds().get(2).getName());
+		p(theGame.toString());
+		p(theGame.printStatus());
+		theGame.attackCreature(theGame.getWylds().get(2).getName());
+		theGame.debugSetState(1, 1, 2);
+		p(theGame.toString());
+		p(theGame.printStatus());
+		theGame.attackCreature(theGame.getWylds().get(2).getName());
+		p(theGame.toString());
+		p(theGame.printStatus());
+		theGame.attackCreature(theGame.getWylds().get(2).getName());
 		p(theGame.toString());
 		p(theGame.printStatus());
 	}

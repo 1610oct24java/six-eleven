@@ -25,6 +25,7 @@ public class Player implements Serializable {
 	public Player() {
 		super();
 		// TODO Auto-generated constructor stub
+		//researchPool = sorc.getIntelligence();
 	}
 	
 	/*
