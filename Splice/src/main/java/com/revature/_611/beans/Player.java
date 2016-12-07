@@ -15,8 +15,8 @@ import java.util.List;
 
 public class Player implements Serializable {
 	private Sorcerer sorc;
+	private int researchPool = 5;
 	private List<Creature> lab = new ArrayList<Creature>();
-	private int researchPool;
 	
 	/*
 	 *  CONSTRUCTORS
@@ -104,13 +104,15 @@ public class Player implements Serializable {
 		return true;
 	}
 
+	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Player [sorc=" + sorc + ", lab=" + lab + "]";
+		return "Player [sorc=" + sorc + ", researchPool=" + researchPool + ", lab=" + lab + "]";
 	}
 	
 	

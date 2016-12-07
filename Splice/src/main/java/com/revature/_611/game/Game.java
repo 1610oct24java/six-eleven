@@ -25,6 +25,10 @@ import com.revature._611.utils.Rando;
  * @version 1.0
  */
 
+// TODO Convert sysouts to Logging
+// TODO Make custom exceptions
+// TODO Isolate step game state
+
 public class Game implements Serializable {
 	/**
 	 * 
@@ -87,9 +91,17 @@ public class Game implements Serializable {
 		state.setPhase(1);
 		if (state.getTurn() < players.size() - 1){
 			state.setTurn(state.getTurn() + 1);
+			Player next = players.get(state.getTurn());
+			next.setResearchPool(next.getSorc().getIntelligence());
+			int index = players.indexOf(next);
+			players.set(index, next);
 		} else {
 			state.setTurn(0);
 			state.setRound(state.getRound() + 1);
+			Player next = players.get(state.getTurn());
+			next.setResearchPool(next.getSorc().getIntelligence());
+			int index = players.indexOf(next);
+			players.set(index, next);
 		}
 		
 		return true;
@@ -153,6 +165,46 @@ public class Game implements Serializable {
 			state.setRound(state.getRound() + 1);
 		}
 		
+		return true;
+	}
+	
+	public boolean handleResearch(String creatureName) {
+		/*
+		 * INPUT: Creature Name (String)
+		 * OUTPUT: Status flag (boolean)
+		 * DESCRIPTION: Handles assigning research points to a creature,
+		 * including error checking.
+		 */
+		if ( state.getPhase() != 1 ) {
+			// Ensure it is actually the research phase
+			System.out.println("Research FAILED: Invalid phase");
+			return false;
+		}
+		
+		// Get the instance of the target creature
+		Creature target = null;
+		Player me = players.get(state.getTurn());
+		for (Creature c : me.getLab()) {
+			if (c.getName().equals(creatureName)) {
+				target = c;
+			}
+		}
+		if (target == null) {
+			// Ensure creature is in the player's lab
+			System.out.println("Research FAILED: " + creatureName + " not in laboratory");
+			return false;
+		}
+		
+		if (me.getResearchPool() > 0) {
+			// Assign the research points
+			target.research(1);
+			me.setResearchPool(me.getResearchPool() - 1);
+		} else {
+			// Abandon the research
+			System.out.println("Research FAILED: Insufficient counters");
+			return false;
+		}
+		System.out.println(players.get(state.getTurn()).toString());
 		return true;
 	}
 	
