@@ -36,6 +36,21 @@ public class GameTestDriver {
 		theGame.attackCreature(theGame.getWylds().get(2).getName());
 		p(theGame.toString());
 		p(theGame.printStatus());
+		theGame.debugSetState(2, 0, 2);
+		p(theGame.printStatus());
+		theGame.attackSorcerer(theGame.getPlayers().get(1).getSorc().getName());
+		p(theGame.toString());
+		p(theGame.printStatus());
+		theGame.debugSetState(3, 0, 2);
+		p(theGame.printStatus());
+		theGame.attackSorcerer(theGame.getPlayers().get(1).getSorc().getName());
+		p(theGame.toString());
+		p(theGame.printStatus());
+		theGame.debugSetState(4, 0, 2);
+		p(theGame.printStatus());
+		theGame.attackSorcerer(theGame.getPlayers().get(1).getSorc().getName());
+		p(theGame.toString());
+		p(theGame.printStatus());
 	}
 	
 	public void p (String s) {

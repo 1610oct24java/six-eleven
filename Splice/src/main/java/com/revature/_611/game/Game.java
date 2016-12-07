@@ -95,6 +95,67 @@ public class Game implements Serializable {
 		return true;
 	}
 	
+	public boolean attackSorcerer(String sorcName) {
+		/*
+		 * INPUT: Sorcerer name (String)
+		 * OUTPUT: Success status (boolean)
+		 * DESCRIPTION: Handles an action to attack a sorcerer
+		 */
+		if(state.getPhase() != 2) {
+			// Ensure it is the combat phase.
+			System.out.println("Attack FAILED: Invalid phase");
+			return false;
+		}
+		Player targetOwner = null;
+		Sorcerer target = null;
+		for (Player p : players) {
+			Sorcerer s = p.getSorc();
+			if (s.getName().equals(sorcName)) {
+				target = s;
+				targetOwner = p;
+			}
+			
+		}
+		if (target == null) {
+			// Ensure target is in the game
+			System.out.println("Attack FAILED: Not a valid target");
+		}
+		Sorcerer mySorc = players.get(state.getTurn()).getSorc();
+		if(mySorc == target) {
+			// Ensure active player is not the target
+			System.out.println("Attack FAILED: Don't attack yourself");
+		}
+		
+		// Damage the creature
+		int wounds = calcDamagePvP(mySorc, target);
+		target.wound(wounds);
+		
+		System.out.println(wounds + " damage dealt to " + target.getName());
+		
+		if (target.isDead()) {
+			// Handle player death
+			System.out.println(target.getName() + " was killed!");
+			// Remove player from game
+			players.remove(targetOwner);
+		} else {
+			// The creature survived
+			// Update sorcerer
+			int index = players.indexOf(targetOwner);
+			targetOwner.setSorc(target);
+			players.set(index, targetOwner);
+		}
+		
+		state.setPhase(1);
+		if (state.getTurn() < players.size() - 1){
+			state.setTurn(state.getTurn() + 1);
+		} else {
+			state.setTurn(0);
+			state.setRound(state.getRound() + 1);
+		}
+		
+		return true;
+	}
+	
 	public boolean handleHeal(String sorcName) {		
 		if (state.getPhase() != 1 ) {
 			// Ensure it is, in fact, the research phase.
@@ -135,6 +196,26 @@ public class Game implements Serializable {
 		
 		int atkSuccess = attacker.roll(2);
 		int defSuccess = defender.getDefense();
+		
+		output = atkSuccess - defSuccess;
+		if (output < 0 ) {
+			// Set floor to 0
+			output = 0;
+		}
+		
+		return output;
+	}
+	
+	private int calcDamagePvP(Sorcerer attacker, Sorcerer defender) {
+		/*
+		 * INPUT: Attacker (Sorcerer), Defender (Creature)
+		 * OUTPUT: Wounds dealt (int)
+		 * DESCRIPTION: Calculates the result of an attack on a creature.
+		 */
+		int output = 0;
+		
+		int atkSuccess = attacker.roll(2);
+		int defSuccess = defender.roll(3);
 		
 		output = atkSuccess - defSuccess;
 		if (output < 0 ) {
@@ -210,6 +291,10 @@ public class Game implements Serializable {
 	
 	public List<Creature> getWylds(){
 		return wylds;
+	}
+	
+	public List<Player> getPlayers() {
+		return players;
 	}
 	
 	/*

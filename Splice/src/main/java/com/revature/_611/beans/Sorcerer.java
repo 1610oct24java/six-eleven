@@ -246,8 +246,6 @@ public class Sorcerer extends Card implements Serializable {
 			return false;
 		if (vitality != other.vitality)
 			return false;
-		if (woundCounters != other.woundCounters)
-			return false;
 		return true;
 	}
 
