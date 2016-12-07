@@ -26,9 +26,13 @@ public class Game implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	List<Player> players = new ArrayList<Player>();
-	Deck deckCreatures = new Deck();
-	List<Creature> wylds = new ArrayList<Creature>();
+	private List<Player> players = new ArrayList<Player>();
+	private Deck deckCreatures = new Deck();
+	private List<Creature> wylds = new ArrayList<Creature>();
+	private int round;
+	private int turn;
+	private int phase;
+	private boolean inProgress;
 	
 	public void run() {
 		/*
