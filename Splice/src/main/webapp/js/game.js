@@ -77,6 +77,10 @@
         }
     ];
     
+    var game = {
+        
+    }
+    
     var app = angular.module('spliceGame', []);
     
     app.controller('WyldsController', function () {
