@@ -114,6 +114,13 @@ td {
 	margin-right: 16px;
 }
 
+.btn-box-red {
+	background-color: #ea0075;
+	color: #ffffff;
+	padding: 1px 16px;
+	margin-right: 16px;
+}
+
 .btn-box-blue {
 	background-color: #8080FF;
 	color: #ffffff;
