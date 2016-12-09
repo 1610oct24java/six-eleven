@@ -1,3 +1,16 @@
+.game-board {
+    border: 5px solid;
+    border-radius: 10px;
+    border-color: saddlebrown;
+    background-image: url("../images/leather.png");
+    background-size: 100% 100%;
+}
+
+.custom-title{
+    color: palegoldenrod;
+    
+}
+
 .card-area {
     border: 1px solid;
     border-color: saddlebrown;
@@ -8,10 +21,12 @@
     position: relative;
     margin: 5px 5px;
     background: #d3b376;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 2px solid;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
     border-color: black;
+    background-image: url("../images/parchment.png");
+    background-size: contain;
 }
 .card-area .card-sorc {
     width: 200px;
@@ -30,6 +45,7 @@
     left: 3%;
     height: 8%;
     width: 75%;
+    font-weight: bold;    
 }
 .name span {
     overflow: hidden;
