@@ -63,12 +63,12 @@ app.controller("loginController", function($scope, $http, $location) {
 app.controller("lobbyController", function($scope, $http, $location) {
 	
 	$scope.playerCount = '1';
-	$scope.username = "Henry";
+	$scope.username = "Connor";
 	
 	$scope.playerList = [ {
 		playerName : 'Ric'
 	}, {
-		playerName : 'Henry'
+		playerName : 'Connor'
 	}];
 	
 	$scope.gameList = [ {
@@ -142,9 +142,9 @@ app.controller("lobbyController", function($scope, $http, $location) {
 			//data: data
 		}).success(function (output){
 			console.log("JSON output: " + JSON.parse(output));
-			$location.path="/login";
+			$location.path=("/login");
 		});
-		$location.path="/login";
+		$location.path("/login");
 	}
 });
 app.directive('playerCount', function(){
@@ -157,38 +157,38 @@ app.directive('gameCount',function(){
 app.controller("queueController", function($scope, $http, $location) {
 	
 	$scope.startGame = function(){
-		$http({
-			method: 'POST',
-			url: 'startGame.do',
-			headers: {'Content-Type': 'application/json'},
-			//data: data
-		}).success(function (output){
-			//console.log("JSON output: " + JSON.parse(output));
-			$location.path="/game";
-		});
-		$location.path="/game";
+//		$http({
+//			method: 'POST',
+//			url: 'StartGame.do',
+//			headers: {'Content-Type': 'application/json'},
+//			//data: data
+//		}).success(function (output){
+//			//console.log("JSON output: " + JSON.parse(output));
+//			$location.path="/game";
+//		});
+		$location.path("/game");
 	}
 	
 	$scope.leaveGame = function(){
-		$http({
-			method: 'POST',
-			url: 'LeaveGame.do',
-			headers: {'Content-Type': 'application/json'},
-			//data: data
-		}).success(function (output){
-			//console.log("JSON output: " + JSON.parse(output));
-			$location.path="/lobby";
-		});
-		$location.path="/lobby";
+//		$http({
+//			method: 'POST',
+//			url: 'LeaveGame.do',
+//			headers: {'Content-Type': 'application/json'},
+//			//data: data
+//		}).success(function (output){
+//			//console.log("JSON output: " + JSON.parse(output));
+//			//$location.path="/lobby";
+//		});
+		$location.path("/lobby");
 	}
 	
 	$scope.playerCount = '1';
-	$scope.username = "Henry";
+	$scope.username = "Connor";
 	
 	$scope.playerList = [ {
 		playerName : 'Ric'
 	}, {
-		playerName : 'Henry'
+		playerName : 'Connor'
 	}];
 	
 	$scope.chatlog = [{
