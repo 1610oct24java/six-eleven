@@ -38,7 +38,7 @@ var sorcerers = [
      	            flavor: "Their hives keep the drakes from moving to the warmer southern peaks.",
      	            favStat: 4,
      	            dmpStat: 1,
-     	            image: "stickSorc.png"
+     	            image: "crag_wasp.png"
      	        },
      	        {
      	            name: 'Wyld Rat',
@@ -50,7 +50,7 @@ var sorcerers = [
      	            flavor: "A noble creature with a savage secret: A hart's horns will only grow a new point the next season if they spill hot blood.",
      	            favStat: 2,
      	            dmpStat: 5,
-     	            image: "grand_hart.png"
+     	            image: "wyld_rat.png"
      	        },
      	        {
      	            name: 'Great Mantis',
@@ -62,7 +62,7 @@ var sorcerers = [
      	            flavor: "A noble creature with a savage secret: A hart's horns will only grow a new point the next season if they spill hot blood.",
      	            favStat: 2,
      	            dmpStat: 5,
-     	            image: "grand_hart.png"
+     	            image: "great_mantis.png"
      	        },
      	        {
      	            name: 'Cliffside Stalker',
@@ -74,7 +74,7 @@ var sorcerers = [
      	            flavor: "A noble creature with a savage secret: A hart's horns will only grow a new point the next season if they spill hot blood.",
      	            favStat: 2,
      	            dmpStat: 5,
-     	            image: "grand_hart.png"
+     	            image: "cliffside_stalker.png"
      	        }
      	    ];
      	    
