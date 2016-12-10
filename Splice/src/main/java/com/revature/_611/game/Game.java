@@ -36,6 +36,15 @@ public class Game implements Serializable {
 	private List<Creature> wylds = new ArrayList<Creature>();
 	private GameState state = new GameState();
 	
+	
+	/* ===============
+	 * ACTION HANDLERS
+	 * ===============
+	 */
+	public void skipPhase(){
+		state.step(players.size());
+	}
+	
 	public boolean attackCreature(String creatureName) {
 		/*
 		 * INPUT: Creature name (String)
@@ -85,7 +94,9 @@ public class Game implements Serializable {
 			wylds.set(index, target);
 		}
 		
-		state.setPhase(1);
+		state.step(players.size());
+		
+		/*state.setPhase(1);
 		if (state.getTurn() < players.size() - 1){
 			state.setTurn(state.getTurn() + 1);
 			Player next = players.get(state.getTurn());
@@ -99,7 +110,7 @@ public class Game implements Serializable {
 			next.setResearchPool(next.getSorc().getIntelligence());
 			int index = players.indexOf(next);
 			players.set(index, next);
-		}
+		}*/
 		
 		return true;
 	}
@@ -154,13 +165,15 @@ public class Game implements Serializable {
 			players.set(index, targetOwner);
 		}
 		
-		state.setPhase(1);
+		state.step(players.size());
+		
+		/*state.setPhase(1);
 		if (state.getTurn() < players.size() - 1){
 			state.setTurn(state.getTurn() + 1);
 		} else {
 			state.setTurn(0);
 			state.setRound(state.getRound() + 1);
-		}
+		}*/
 		
 		return true;
 	}
@@ -235,6 +248,11 @@ public class Game implements Serializable {
 		return true;
 	}
 	
+	/* ======================
+	 * ROLLS AND CALCULATIONS
+	 * ======================
+	 */
+	
 	private int calcDamagePvC(Sorcerer attacker, Creature defender) {
 		/*
 		 * INPUT: Attacker (Sorcerer), Defender (Creature)
@@ -275,26 +293,10 @@ public class Game implements Serializable {
 		return output;
 	}
 	
-	public String printStatus() {
-		/*
-		 * INPUT: None
-		 * OUTPUT: Status Report (String)
-		 * DESCRIPTION: Reports the current phase, turn, and round
-		 */
-		String output = ""
-				+ "Round: " + state.getRound() + ", "
-				+ "Turn: " + players.get(state.getTurn()).getSorc().getName() + ", "
-				+ "Phase: ";
-		if (state.getPhase() == 1) {
-			output += "Research";
-		} else if (state.getPhase() == 2){
-			output += "Combat";
-		} else {
-			output += "INVALID";
-		}
-		
-		return output;
-	}
+	/* ===============
+	 * SETUP FUNCTIONS
+	 * ===============
+	 */
 	
 	public void initGame(int numPlayers, boolean debugFlag){
 		initWylds(debugFlag);
@@ -349,6 +351,11 @@ public class Game implements Serializable {
 		Collections.shuffle(players);
 	}
 	
+	/* ===================
+	 * GETTERS AND SETTERS
+	 * ===================
+	 */
+	
 	public List<Creature> getWylds(){
 		return wylds;
 	}
@@ -376,10 +383,36 @@ public class Game implements Serializable {
 		return output;
 	}
 	
+	/*  ====================
+	 *  DEBUG & TESTING ONLY
+	 *  ====================
+	 */ 
 	public void debugSetState(int round, int turn, int phase) {
 		state.setPhase(phase);
 		state.setTurn(turn);
 		state.setRound(round);
 	}
+	
+	public String printStatus() {
+		/*
+		 * INPUT: None
+		 * OUTPUT: Status Report (String)
+		 * DESCRIPTION: Reports the current phase, turn, and round
+		 */
+		String output = ""
+				+ "Round: " + state.getRound() + ", "
+				+ "Turn: " + players.get(state.getTurn()).getSorc().getName() + ", "
+				+ "Phase: ";
+		if (state.getPhase() == 1) {
+			output += "Research";
+		} else if (state.getPhase() == 2){
+			output += "Combat";
+		} else {
+			output += "INVALID";
+		}
+		
+		return output;
+	}
+	
 
 }

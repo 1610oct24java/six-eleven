@@ -31,6 +31,18 @@ public class GameTestDriver {
 		p(theGame.printStatus());
 		theGame.handleResearch(theGame.getPlayers().get(0).getLab().get(0).getName());
 		p(theGame.printStatus());
+		theGame.skipPhase();
+		p(theGame.printStatus());
+		theGame.skipPhase();
+		p(theGame.printStatus());
+		theGame.skipPhase();
+		p(theGame.printStatus());
+		theGame.skipPhase();
+		p(theGame.printStatus());
+		theGame.skipPhase();
+		p(theGame.printStatus());
+		theGame.skipPhase();
+		p(theGame.printStatus());
 		/*p(theGame.toString());
 		p(theGame.printStatus());
 		theGame.attackCreature(theGame.getWylds().get(2).getName());

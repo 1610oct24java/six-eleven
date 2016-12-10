@@ -38,14 +38,19 @@ public class GameState {
 		 * DESCRIPTION: Moves the game a step forward, taking the number of players
 		 * remaining in the game into account.
 		 */
+		
+		System.out.println("\tPRE: " + round + ", " + turn + ", " + phase);
 		if (++phase > 2){
-			if (++turn > numPlayers) {
+			//System.out.println("\tIF ++Phase: " + round + ", " + turn + ", " + phase);
+			if (++turn >= numPlayers) {
+				//System.out.println("\tIf ++Turn: " + round + ", " + turn + ", " + phase);
 				round++;
 				turn = 0;
 			}
+			//System.out.println("\tPOST if ++Turn: " + round + ", " + turn + ", " + phase);
 			phase = 1;
 		}
-		
+		System.out.println("\tPOST: " + round + ", " + turn + ", " + phase);		
 	}
 	
 	public int getRound() {
