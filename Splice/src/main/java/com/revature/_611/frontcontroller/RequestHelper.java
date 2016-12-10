@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature._611.beans.User;
 import com.revature._611.dao.UserDAOImpl;
+import com.revature._611.logic.Commands;
 
 public class RequestHelper {
 	private ObjectMapper objectMapper;
@@ -22,28 +23,17 @@ public class RequestHelper {
 		switch(request.getRequestURI()){
 		
 		case("/Splice/Login.do"):
-			objectMapper = new ObjectMapper();
 			JSONObject json = new JSONObject(request.getReader().readLine());
-			System.out.println("JSON: " + json.toString());
-			
-			try {
-				
-				User jUser = objectMapper.readValue(json.toString(), User.class);
-				UserDAOImpl newUser = new UserDAOImpl();
-				newUser.registerNewUser(jUser);
-				System.out.println("Registered user: " + jUser);
-				
-			} catch (JsonParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (JsonMappingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			Commands.doCommand(json, request.getSession(), response.getWriter());
+			if(request.getSession().getAttribute("loggedIn").equals("true")){
+				// send 202 Accepted
+				System.out.println("202 status!");
+				response.setStatus(202);
+			}else{
+				// send 401 Unauthorized
+				response.setStatus(401);
 			}
-			return json.toString();
+			return "login";
 			
 		case("/Splice/AuthenticateUser.do"):
 			

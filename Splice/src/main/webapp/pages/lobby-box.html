@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html ng-app="gameApp">
-<head>
-<meta charset="ISO-8859-1">
-<title>Splice</title>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.min.js"></script>
-
-	<!-- CSS - Bootstrap -->
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-		crossorigin="anonymous">
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-
-	<!-- CSS - Custom -->
-	<link rel="stylesheet" type="text/css" href="../css/common-box-styling.css" />
-</head>
-<body>
-<div class="container-fluid">
-<!-- ====================================================================================== -->
-
-<div class="main-box col-md-10 col-md-offset-1">
+<div class="main-box col-md-10 col-md-offset-1" ng-controller="lobbyController">
 
   <div class="row">
   	<div class="col-md-2 col-md-offset-1 box-top-header">
@@ -32,7 +10,7 @@
   	</div>
   	
   	<div class="col-md-2 box-top-header">
-  		<button class="btn btn-md btn-danger box-right" type="button" ng-click="lobby.logOut()">Log Out</button>
+  		<button class="btn btn-md btn-danger box-right" type="button" ng-click="logOut()">Log Out</button>
   	</div>
   </div>
   
@@ -40,13 +18,10 @@
   
   <div class="row">
     <div class="col-md-2 col-md-offset-1">
-      <div class="box-frame-title">Online [{{NUM}}]</div>
+      <div class="box-frame-title">Online (<player-count></player-count>)</div>
       <div class="box-player-list">
         <ul>
-          <li>work</li>
-          <li>player2</li>
-          <li>player4</li>
-          <li>Ricster</li>
+          <li ng-repeat="player in playerList">{{player.playerName}}</li>
         </ul>
       </div>
     </div>
@@ -54,7 +29,7 @@
     <div class="col-md-8">
     	
     	<div class="row">
-    		<div class="box-frame-title">Game Sessions [{{NUM}}]</div>
+    		<div class="box-frame-title">Game Sessions (<game-count></game-count>)</div>
     	</div>
     	
     	<div class="row box-session-content">
@@ -65,20 +40,23 @@
     		      <th>Name</th>
     		      <th></th>
     		   </tr>
-    		   <tr>
-    		      <td>1/2</td>
-    		      <td>Ric</td>
-    		      <td>noobs only</td>
-    		      <td><button class="btn btn-xs btn-join box-right" type="button" 
-    		      		ng-click="lobby.joinGame()">Join</button></td>
+    		   <tr ng-repeat="game in gameList">
+    		      <td>{{ game.playerCount }}</td>
+    		      <td>{{ game.creator }}</td>
+    		      <td>{{ game.gameName }}</td>
+    		      <td><span><button class="btn btn-xs btn-join box-right" type="button" 
+    		      		ng-click="joinGame($index)">Join</button>
+    		      		<button class="btn btn-xs btn-box-red box-right" type="button" 
+    		      		ng-click="deleteGame($index)">Delete</button>
+    		      		</span></td>
     		   </tr>
 			</table>
     	</div>
     	
     	<div class="row">
     	  <form class="box-right">
-             <input type="text" class="" name="gamename" placeholder="Game Name">
-             <button class="btn btn-md btn-box-blue" type="button"  ng-click="lobby.createGame()">Create New Game</button>
+             <input ng-model="gameName" type="text" class="" name="gamename" placeholder="Game Name">
+             <button class="btn btn-md btn-box-blue" type="button"  ng-click="createGame()">Create New Game</button>
           </form>
     	</div>
     	
@@ -90,38 +68,17 @@
     	
 		<div class="row">
 		  <div class="box-chat-content">
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : wat<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
-		  Ric : lol<br>
+		  	<!-- chat messages will populate here -->
+		  	<p ng-repeat="msg in chatlog">{{msg.playerName}} : {{msg.message}}</p>
 		  </div>
 		</div>    	
     	
     	<div class="row">
     	  <form>
-             <input type="text" class="col-md-10" name="message" placeholder="type a message">
-             <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="lobby.sendMessage()">Send</button>
+             <input ng-model="message" type="text" class="col-md-10" name="message" placeholder="type a message">
+             <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="sendMessage()">Send</button>
           </form>
     	</div>
-    	
     </div>
   </div>
 </div>
-
-<!-- ====================================================================================== -->
-</div>
-	<script type="text/javascript" src="../js/lib/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/controllers/loginCtrl.js"></script>
-</body>
-</html>
