@@ -6,22 +6,20 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-	<!-- Enable annotations for Spring MVC -->
+	<context:component-scan base-package="com.revature._611"></context:component-scan>
+
 	<mvc:annotation-driven />
 
-	<mvc:resources location="/static" mapping="/**"></mvc:resources>
-
-	<!-- Search for spring beans -->
-	<context:component-scan base-package="com.revature" />
+	<mvc:resources location="/" mapping="/**"></mvc:resources>
 
 	<!-- Set up our front controller -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/pages/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
+		<!-- <property name="prefix">
+			<value>/static/</value>
+		</property> -->
+		<!-- <property name="suffix">
+			<value>.html</value>
+		</property> -->
 	</bean>
 </beans>

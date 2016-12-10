@@ -1,6 +1,7 @@
 package com.revature._611.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -84,5 +85,24 @@ public class UserDAOImpl implements UserDAO {
 		session.close();
 		
 		return user;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getUsers() 
+	{
+		List<User> users = null;
+		
+		Session session = hu.getSession();
+		Transaction trans = session.beginTransaction();
+		String hql = "FROM User";
+		Query query = session.createQuery(hql);
+		
+		users = (ArrayList<User>) query.list();
+		
+		trans.commit();
+		session.close();
+		
+		return users;
 	}
 }

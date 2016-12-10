@@ -3,6 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Splice</title>
+
 	<!-- Angular -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.js"></script>
@@ -15,23 +16,24 @@
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
 
 	<!-- CSS - Custom -->
-	<link rel="stylesheet" type="text/css" href="css/login-box-styling.css" />
-	<link rel="stylesheet" type="text/css" href="css/common-box-styling.css" />
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="style/base.css">
-    <link rel="stylesheet" href="style/card.css">
+	<link rel="stylesheet" type="text/css" href="res/css/login-box-styling.css" />
+	<link rel="stylesheet" type="text/css" href="res/css/common-box-styling.css" />
+	<link rel="stylesheet" type="text/css" href="res/css/lib/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="res/css/base.css">
+    <link rel="stylesheet" type="text/css" href="res/css/card.css">
+    
 </head>
 <body>
 <div class="container-fluid">
 <!-- ====================================================================================== -->
 
-
+<!-- Angular Routing DIV - HTML snippets in webapp/WEB-INF/pages -->
 <div ng-view></div>
 
 	
 <!-- ====================================================================================== -->
 </div>
-	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/game.js"></script>
+	<script type="text/javascript" src="res/js/app.js"></script>
+	<script type="text/javascript" src="res/js/game.js"></script>
 </body>
 </html>
