@@ -27,7 +27,7 @@
 			  <span ng-show="formlog.pass.$touched && formlog.pass.$invalid">Password is required!</span>
 		  </div>
 		  <div class="vert-space-sm">
-		    <button ng-click="getUsername()" type="button" class="btn btn-large btn-success pull-right"
+		    <button ng-click="doLogin()" type="button" class="btn btn-large btn-success pull-right"
 		    	ng-disabled="formlog.user.$dirty && formlog.user.$invalid || 
 		    	formlog.pass.$dirty && formlog.pass.$invalid">Login</button>
 		  </div>		
@@ -57,5 +57,5 @@
       </div>
 	</div>
 	
-	<div id="logoDiv"><img src="images/SpliceLogo.png" alt="Splice Logo"></div>
+	<div id="logoDiv"><img src="res/images/SpliceLogo.png" alt="Splice Logo"></div>
 </div>

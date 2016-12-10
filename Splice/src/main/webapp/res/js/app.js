@@ -1,5 +1,6 @@
 var app = angular.module("gameApp", ["ngRoute"]); 
 
+var authUser = null;
 var sorcerers = [
      	        {
      	            name: 'Xanitov, Radiant Husk',
@@ -95,15 +96,15 @@ app.config(function($routeProvider){
 	
 	$routeProvider
 	.when("/login", {
-		templateUrl : "pages/login-box.html",
+		templateUrl : "login-box.html",
 		controller : "loginController"
 	})
 	.when("/lobby", {
-		templateUrl : "pages/lobby-box.html",
+		templateUrl : "lobby-box.html",
 		controller : "lobbyController"
 	})
 	.when("/queue", {
-		templateUrl : "pages/queue-box.html",
+		templateUrl : "queue-box.html",
 		controller : "queueController"
 	})
 	.when("/game", {
@@ -121,32 +122,37 @@ app.controller("loginController", function($scope, $http, $location) {
 	$scope.pass;
 
 	// this function pulls the login info from the textfields and sends as a http post
-	$scope.getUsername = function(){
+	$scope.doLogin = function(){
 		// JSON object
-		var loginData = JSON.stringify({Command: "Login", Data:{username: this.user, password: this.pass}});
+		var loginData = '{username:' + this.user + ',password:' + this.pass + '}';
 		
-		postLoginData(loginData);
+		postLoginData(loginData, this.user);
+		
 		console.log("Username: " + this.user + " Password: " + this.pass);
-		console.log(loginData); 
+		console.log("login data: " + loginData); 
 	}
 	
-	$scope.testLogin = function(){
-		$location.path("/lobby");
-	}
-	
-	// postData takes in JSON, sends with HTTP POST to given servlet url
-	function postLoginData(data){
+	// postData takes in JSON, sends with HTTP POST to Spring LoginController
+	function postLoginData(data, username)
+	{
 		$http({
 			method: 'POST',
-			url: 'Login.do',
+			url: '/login',
 			headers: {'Content-Type': 'application/json'},
 			data: data
-		}).success(function (response){
-			//console.log(JSON.parse(output));
-			console.log(response.data);
-			$location.path("/lobby");
+		}).success(function (data){
+			console.log(data);
+			if(data == "ok")
+			{
+				authUser = username;
+				$location.path("/lobby");
+			}else {
+				//display failed login message
+				console.log("Your username or password was wrong!")
+			}
+			
 		}).error(function (response){
-			console.log(response.status);
+			$location.path("/lobby");
 		});
 	}
 });
@@ -217,7 +223,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
 	function postNewMessage(data){
 		$http({
 			method: 'POST',
-			url: 'SendMessage.do',
+			url: '/sendMessage',
 			headers: {'Content-Type': 'application/json'},
 			data: messageData
 		}).success(function (output){
@@ -228,7 +234,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
 	$scope.logOut = function(){
 		$http({
 			method: 'POST',
-			url: 'LogOut.do',
+			url: '/logout',
 			headers: {'Content-Type': 'application/json'},
 			//data: data
 		}).success(function (output){
