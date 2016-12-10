@@ -166,7 +166,7 @@ public class Game implements Serializable {
 			players.set(index, targetOwner);
 		}
 		
-		if(state.step(players.size())){
+		if (state.step(players.size())) {
 			players.get(state.getTurn()).startResearch();
 		}
 		
