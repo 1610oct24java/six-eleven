@@ -138,9 +138,7 @@ app.controller("lobbyController", function($scope, $http) {
 	}
 
 	$scope.logOut = function(){
-		var logoutData = JSON.stringify({Com
-			mand: "Logout", Data: " "});
-		}
+		var logoutData = JSON.stringify({Command: "Logout", Data: " "});
 		
 		$http({
 			method: 'POST',
