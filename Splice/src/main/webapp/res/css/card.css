@@ -1,0 +1,119 @@
+.game-board {
+    border: 5px solid;
+    border-radius: 10px;
+    border-color: saddlebrown;
+    background-image: url("../images/leather.png");
+    background-size: 100% 100%;
+}
+
+.custom-title{
+    color: palegoldenrod;
+    
+}
+
+.card-area {
+    border: 1px solid;
+    border-color: saddlebrown;
+   
+}
+.card-area .card {
+    float: left;
+    position: relative;
+    margin: 5px 5px;
+    background: #d3b376;
+    border-radius: 10px;
+    border: 2px solid;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
+    border-color: black;
+    background-image: url("../images/parchment.png");
+    background-size: contain;
+}
+.card-area .card-sorc {
+    width: 200px;
+    height: 280px;
+    font-size: 10px;
+}
+.card-area .card-creature {
+    width: 100px;
+    height: 140px;
+    font-size: 6px;
+}
+
+.name {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    height: 8%;
+    width: 75%;
+    font-weight: bold;    
+}
+.name span {
+    overflow: hidden;
+    text-align: left;
+    float: left;
+    font-size: 140%
+}
+
+.stat {
+    width: 25%;
+    float: right;
+    text-align: right;
+    font-size: 130%;
+    overflow: hidden;
+} .label {
+    color: saddlebrown;
+    font-size: 50%;
+    font-weight: normal;
+} .vit {
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
+} .pow {
+    position: absolute;
+    top: 55%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
+} .def {
+    position: absolute;
+    top: 65%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
+} .spd {
+    position: absolute;
+    top: 75%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
+} .int {
+    position: absolute;
+    top: 85%;
+    right: 2%;
+    font-weight: bold;
+    width: inherit;
+}
+
+.flavor {
+    position: absolute;
+    top: 55%;
+    left: 5%;
+    width: 70%;
+    height: 44%;
+    border-radius: 1px;
+    border: 1px SOLID;
+    border-color: saddlebrown;
+} .flavor p{
+    padding: 2px;
+    font-size: 80%;
+}
+.cardart img {
+    position: absolute;
+    object-position: center;
+    top: 15%;
+    left: 5%;
+    width: 90%;
+    height: 40%;
+}

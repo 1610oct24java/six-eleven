@@ -8,57 +8,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 2016/12/01
- * User bean for first sprint of Project 2: Splice Game. <br>
+ * 2016/12/01 User bean for first sprint of Project 2: Splice Game. <br>
  * Using: Hibernate, Serializable <br>
  * Overrides: toString(), hashCode(), equals()
  * 
  * @author Ric Smith
+ * @author Matt Pierzynski
  * @version 1.0
  */
+
 @Entity
-@Table(name="USER")
+@Table(name = "user_login")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 6833446773570802563L;
-	
+
 	@Id
-	@Column(name="USER_ID")
-	private int userId;
-	
-	@Column(name="USERNAME")
+	@Column(name = "username")
 	private String username;
-	
-	@Column(name="PASSWORD")
+
+	@Column(name = "passwd")
 	private String password;
-	
-	public User() { 
-		super(); 
-		this.userId = -1;
-		this.username = "";
-		this.password = "";
-	}
-	
-	public User(int userId, String username, String password) 
-	{
+
+	public User() {
 		super();
-		this.userId = userId;
+	}
+
+	public User(String username, String password) {
+		super();
 		this.username = username;
 		this.password = password;
-	}
-
-	@Override
-	public String toString() 
-	{
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -78,19 +57,16 @@ public class User implements Serializable {
 	}
 
 	@Override
-	public int hashCode() 
-	{
+	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) 
-	{
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -103,8 +79,6 @@ public class User implements Serializable {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (userId != other.userId)
-			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -112,5 +86,10 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + "]";
+	}
 	
-}//Bean User
+}
