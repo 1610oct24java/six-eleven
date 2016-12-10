@@ -21,7 +21,7 @@
       <div class="box-frame-title">Online (<player-count></player-count>)</div>
       <div class="box-player-list">
         <ul>
-          <li ng-repeat="player in players></li>
+          <li ng-repeat="player in playerList">{{player.playerName}}</li>
         </ul>
       </div>
     </div>
@@ -40,13 +40,13 @@
     		      <th>Name</th>
     		      <th></th>
     		   </tr>
-    		   <tr ng-repeat="game in games">
+    		   <tr ng-repeat="game in gameList">
     		      <td>{{ game.playerCount }}</td>
     		      <td>{{ game.creator }}</td>
-    		      <td>{{ game.name }}</td>
+    		      <td>{{ game.gameName }}</td>
     		      <td><span><button class="btn btn-xs btn-join box-right" type="button" 
     		      		ng-click="joinGame($index)">Join</button>
-    		      		<button class="btn btn-xs btn-join box-right" type="button" 
+    		      		<button class="btn btn-xs btn-box-red box-right" type="button" 
     		      		ng-click="deleteGame($index)">Delete</button>
     		      		</span></td>
     		   </tr>
@@ -67,8 +67,9 @@
     	</div>
     	
 		<div class="row">
-		  <div ng-repeat="msg in chatlog" class="box-chat-content">
+		  <div class="box-chat-content">
 		  	<!-- chat messages will populate here -->
+		  	<p ng-repeat="msg in chatlog">{{msg.playerName}} : {{msg.message}}</p>
 		  </div>
 		</div>    	
     	
@@ -78,7 +79,6 @@
              <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="sendMessage()">Send</button>
           </form>
     	</div>
-    	
     </div>
   </div>
 </div>

@@ -1,7 +1,8 @@
 package com.revature._611.dao;
 
+import java.util.List;
+
 import com.revature._611.beans.User;
-import com.revature._611.utils.HibernateUtil;
 
 /**
  * 2016/12/01
@@ -13,8 +14,11 @@ import com.revature._611.utils.HibernateUtil;
  */
 public interface UserDAO {
 
-	boolean registerNewUser(User usr);
+	// CREATE
+	public boolean registerNewUser(User usr);
 	
-	User userLogin(User usr);
+	// READ
+	public User userLogin(User usr);
+	public List<User> getUsers();
 	
 }

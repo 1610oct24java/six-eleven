@@ -109,14 +109,14 @@ td {
 
 .btn-join {
 	background-color: #ffffff;
-	color: #ffffff;
+	color: #5BC0DE;
 	padding: 1px 16px;
 	margin-right: 16px;
 }
 
-.btn-delete {
+.btn-box-red {
 	background-color: #ea0075;
-	color: #5BC0DE;
+	color: #ffffff;
 	padding: 1px 16px;
 	margin-right: 16px;
 }

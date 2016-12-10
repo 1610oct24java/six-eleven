@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<!-- 1334-by-750 iPhone resolution -->
-<html ng-app="spliceGame">
-<head>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="style/base.css">
-    <link rel="stylesheet" href="style/card.css">
-    <script type="text/javascript" src="js/lib/angular.min.js"></script>
-    <script type="text/javascript" src="js/game.js"></script>
-</head>
-    
-    
-<body>
-    <h1 class = "text-center">Splice</h1>
+ <div class = "wrap game-board">
+    <h1 class = "text-center custom-title">Splice</h1>
     <div class="container-fluid">
         <div id="opponent" class="row">
             <div class = "col-md-1">
-                <h2 class = "rotate">Opponents</h2>
+                <h2 class = "rotate custom-title">Opponents</h2>
             </div>
             <div class = "col-md-4"></div>
             <div class = "col-md-2 card-area">
@@ -67,7 +55,7 @@
         <br>
         <div id = "wylds" class = "row">
             <div class = "col-md-1">
-                <h2 class = "rotate">Wylds</h2>
+                <h2 class = "rotate custom-title">Wylds</h2>
             </div>
             <div class = "col-md-3"></div>
             <div class = "col-md-4 card-area" ng-controller = "WyldsController as wylds">
@@ -122,7 +110,7 @@
         <br>
         <div id = "player" class = "row">
             <div class = "col-md-1">
-                <h2 class = "rotate">Player</h2>
+                <h2 class = "rotate custom-title">Player</h2>
             </div>
             <div class = "col-md-4">
             
@@ -174,5 +162,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>    

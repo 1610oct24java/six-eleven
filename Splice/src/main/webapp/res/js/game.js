@@ -77,6 +77,19 @@
         }
     ];
     
+    var game = {
+        players: [],
+        wylds: [],
+        deck: [],
+        state: {
+            round: 1,
+            turn: 0,
+            phase: 1,
+        }
+    }
+    
+    game.deck = creatures;
+    
     var app = angular.module('spliceGame', []);
     
     app.controller('WyldsController', function () {
