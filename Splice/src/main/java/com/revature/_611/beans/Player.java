@@ -114,6 +114,11 @@ public class Player implements Serializable {
 	public String toString() {
 		return "Player [sorc=" + sorc + ", researchPool=" + researchPool + ", lab=" + lab + "]";
 	}
+
+	public void startResearch() {
+		// TODO Auto-generated method stub
+		this.researchPool = this.sorc.getIntelligence();
+	}
 	
 	
 }

@@ -31,13 +31,14 @@ public class GameState {
 		this.phase = phase;
 	}
 	
-	public void step(int numPlayers) {
+	public boolean step(int numPlayers) {
 		/*
 		 * INPUT: Number of Players (int)
-		 * OUTPUT: None
+		 * OUTPUT: Research Start? (boolean)
 		 * DESCRIPTION: Moves the game a step forward, taking the number of players
 		 * remaining in the game into account.
 		 */
+		boolean output = false;
 		
 		System.out.println("\tPRE: " + round + ", " + turn + ", " + phase);
 		if (++phase > 2){
@@ -50,7 +51,14 @@ public class GameState {
 			//System.out.println("\tPOST if ++Turn: " + round + ", " + turn + ", " + phase);
 			phase = 1;
 		}
-		System.out.println("\tPOST: " + round + ", " + turn + ", " + phase);		
+		System.out.println("\tPOST: " + round + ", " + turn + ", " + phase);
+		
+		if(phase == 1){
+			// If we just entered the research phase, let people know
+			// so we can hand out some research counters
+			return true;
+		}
+		return output;
 	}
 	
 	public int getRound() {

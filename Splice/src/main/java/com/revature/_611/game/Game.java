@@ -24,7 +24,6 @@ import com.revature._611.utils.Rando;
 
 // TODO Convert sysouts to Logging
 // TODO Make custom exceptions
-// TODO Isolate step game state
 
 public class Game implements Serializable {
 	/**
@@ -94,7 +93,9 @@ public class Game implements Serializable {
 			wylds.set(index, target);
 		}
 		
-		state.step(players.size());
+		if(state.step(players.size())){
+			players.get(state.getTurn()).startResearch();
+		}
 		
 		/*state.setPhase(1);
 		if (state.getTurn() < players.size() - 1){
@@ -165,7 +166,9 @@ public class Game implements Serializable {
 			players.set(index, targetOwner);
 		}
 		
-		state.step(players.size());
+		if(state.step(players.size())){
+			players.get(state.getTurn()).startResearch();
+		}
 		
 		/*state.setPhase(1);
 		if (state.getTurn() < players.size() - 1){
