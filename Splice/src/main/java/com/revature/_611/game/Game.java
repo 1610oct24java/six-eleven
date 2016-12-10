@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.revature._611.game;
 
 import java.io.Serializable;
@@ -22,7 +19,7 @@ import com.revature._611.utils.Rando;
  * Overrides: toString(), hashCode(), equals()
  * 
  * @author Christian Gonzalez
- * @version 1.0
+ * @version 1.1
  */
 
 // TODO Convert sysouts to Logging
@@ -298,25 +295,31 @@ public class Game implements Serializable {
 		
 		return output;
 	}
-
-	public void initWylds() {
-		// TODO: Switch back to private
+	
+	public void initGame(int numPlayers, boolean debugFlag){
+		initWylds(debugFlag);
+		initPlayers(numPlayers, debugFlag);
+	}
+	
+	private void initWylds(boolean debugFlag) {
 		/*
-		 * INPUT : None
+		 * INPUT : Debug Mode Flag (boolean)
 		 * OUPUT: None
 		 * DESCRIPTION: Put out the first cards into
 		 * the Wylds.
 		 */
+		
 		CardDAO cDAO = new CardDAOimp();
 		deckCreatures.setContents(cDAO.getAllCreatures());
-		deckCreatures.shuffle();
+		if (!debugFlag) {
+			deckCreatures.shuffle();
+		}
 		wylds = deckCreatures.deal(4);
 	}
-
-	public void initPlayers(int numPlayers) {
-		// TODO: Switch back to private
+	
+	private void initPlayers(int numPlayers, boolean debugFlag) {
 		/*
-		 * INPUT: None
+		 * INPUT: Number of Players (int), Debug Mode Flag (boolean)
 		 * OUPUT: None
 		 * DESCRIPTION: Initial player setup. Assign
 		 * players' their sorcerer, determine turn order.
@@ -324,12 +327,17 @@ public class Game implements Serializable {
 		CardDAO cDAO = new CardDAOimp();
 
 		List<Sorcerer> sorcs = cDAO.getAllSorcerers();
-
+		
+		int n = -1;
 		for (int i = 0; i < numPlayers; i++) {
 			Player newPlayer = new Player();
 
 			// Assign sorcerers
-			int n = Rando.randInt(0, (sorcs.size() - 1));
+			if(!debugFlag) {
+				n = Rando.randInt(0, (sorcs.size() - 1));
+			} else {
+				n++;
+			}
 			newPlayer.setSorc(sorcs.get(n));
 			sorcs.remove(n); // Remove that sorcerer so each player has a unique
 								// sorcerer

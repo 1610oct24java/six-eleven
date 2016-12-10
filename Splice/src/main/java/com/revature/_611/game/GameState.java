@@ -10,8 +10,6 @@ public class GameState {
 	// PHASE: Research is represented by 1, Combat by two.
 	private int phase;
 	
-	
-	
 	public GameState() {
 		/*
 		 * Initializes a default fresh game, in round one, first player's turn, and
@@ -24,11 +22,30 @@ public class GameState {
 	}
 
 	public GameState(int round, int turn, int phase) {
-		// Testing only
+		/*
+		 * Should ONLY be used for TESTING
+		 */
 		super();
 		this.round = round;
 		this.turn = turn;
 		this.phase = phase;
+	}
+	
+	public void step(int numPlayers) {
+		/*
+		 * INPUT: Number of Players (int)
+		 * OUTPUT: None
+		 * DESCRIPTION: Moves the game a step forward, taking the number of players
+		 * remaining in the game into account.
+		 */
+		if (++phase > 2){
+			if (++turn > numPlayers) {
+				round++;
+				turn = 0;
+			}
+			phase = 1;
+		}
+		
 	}
 	
 	public int getRound() {
