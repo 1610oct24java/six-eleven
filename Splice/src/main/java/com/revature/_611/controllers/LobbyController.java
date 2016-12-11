@@ -45,7 +45,7 @@ public class LobbyController {
 		return sb.toString(); 
 	}
 	
-	@RequestMapping(value="/sendMessage", method = RequestMethod.POST)
+	@RequestMapping(value="/sendLobbyMessage", method = RequestMethod.POST)
 	public @ResponseBody String sendMessage(@RequestBody Message msg)  
 	{	
 		// Check received user from Angular post
