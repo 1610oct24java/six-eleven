@@ -124,7 +124,8 @@ app.controller("loginController", function($scope, $http, $location) {
 	// this function pulls the login info from the textfields and sends as a http post
 	$scope.doLogin = function(){
 		// JSON object
-		var loginData = '{username:' + this.user + ',password:' + this.pass + '}';
+		//var loginData = "{username:" + this.user + ",password:" + this.pass + "}";
+		var loginData = {username:this.user,password:this.pass};
 		
 		postLoginData(loginData, this.user);
 		
@@ -137,7 +138,7 @@ app.controller("loginController", function($scope, $http, $location) {
 	{
 		$http({
 			method: 'POST',
-			url: '/login',
+			url: '/Splice/login',
 			headers: {'Content-Type': 'application/json'},
 			data: data
 		}).success(function (data){
@@ -152,7 +153,7 @@ app.controller("loginController", function($scope, $http, $location) {
 			}
 			
 		}).error(function (response){
-			$location.path("/lobby");
+			
 		});
 	}
 });
@@ -187,7 +188,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
 	function postNewGameData(data){
 		$http({
 			method: 'POST',
-			url: 'GameList.do',
+			url: '/Splice/gameList',
 			headers: {'Content-Type': 'application/json'},
 			data: data
 		}).success(function (output){
@@ -223,7 +224,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
 	function postNewMessage(data){
 		$http({
 			method: 'POST',
-			url: '/sendMessage',
+			url: '/Splice/sendMessage',
 			headers: {'Content-Type': 'application/json'},
 			data: messageData
 		}).success(function (output){
@@ -234,7 +235,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
 	$scope.logOut = function(){
 		$http({
 			method: 'POST',
-			url: '/logout',
+			url: '/Splice/logout',
 			headers: {'Content-Type': 'application/json'},
 			//data: data
 		}).success(function (output){
