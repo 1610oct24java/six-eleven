@@ -46,6 +46,6 @@ public class LoginController {
 
 	private void addUser(String username) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		((LoggedInUsersList) context.getBean("UsersList")).addUser(username);
+		((LoggedInUsersList) context.getBean("usersList")).addUser(username);
 	}
 }

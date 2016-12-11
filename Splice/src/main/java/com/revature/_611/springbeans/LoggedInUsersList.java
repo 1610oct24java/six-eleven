@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 
 public class LoggedInUsersList {
-	private ArrayList<String> usersList = new ArrayList<String>();
+	private ArrayList usersList = new ArrayList();
 	
-	public ArrayList<String> getUsersList() {
+	public ArrayList getUsersList() {
 		return usersList;
 	}
 
