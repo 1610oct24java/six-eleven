@@ -12,17 +12,16 @@ import com.revature._611.beans.User;
 import com.revature._611.services.UserService;
 
 @Controller
-@RequestMapping(value="/login")
 public class LoginController {
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public ModelAndView getLoginPage( ModelMap model ) 
 	{
 		return new ModelAndView("");
 	}
 
-	@RequestMapping(method = RequestMethod.POST)	
-	public @ResponseBody String doLogin(@RequestBody User tempUser)  
+	@RequestMapping(value="/login", method = RequestMethod.POST)	
+	public @ResponseBody String login(@RequestBody User tempUser)  
 	{	
 		// Check received user from Angular post
 		System.out.println("Requested user: name=" + tempUser.getUsername() + " pass=" + tempUser.getPassword());
@@ -36,6 +35,6 @@ public class LoginController {
 		}else {
 			System.out.println("Oh, snap! Login failed.. Returning 'bad'");
 			return "bad";
-		} 
+		}
 	}
 }
