@@ -14,11 +14,11 @@ public class LoggedInUsersList {
 		return usersList;
 	}
 
+	public boolean addUser(String username) {
+		return this.usersList.add(username);
+	}
+	
 	public void setUsersList(ArrayList<String> usersList) {
 		this.usersList = usersList;
 	}
-
-
-	
-	
 }
