@@ -142,7 +142,7 @@ app.controller("loginController", function($scope, $http, $location) {
 			data: data
 		}).success(function (data){
 			console.log(data);
-			if(data == "ok")
+			if(data.success == "ok")
 			{
 				authUser = username;
 				$location.path("/lobby");

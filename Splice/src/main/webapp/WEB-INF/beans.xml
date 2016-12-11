@@ -22,4 +22,9 @@
 			<value>.html</value>
 		</property> -->
 	</bean>
+	
+	<bean id="UserList" class="com.revature._611.springbeans.LoggedInUsersList" scope="singleton">
+		<property name="usersList" value="usersList"></property>
+		
+	</bean>
 </beans>
