@@ -120,11 +120,13 @@ app.controller("loginController", function($scope, $http, $location) {
 
 	$scope.user;
 	$scope.pass;
+	$scope.registerUser;
+	$scope.registerPass;
 
 	// this function pulls the login info from the textfields and sends as a http post
 	$scope.doLogin = function(){
 		// JSON object
-		var loginData = '{username:' + this.user + ',password:' + this.pass + '}';
+		var loginData = {username:this.user,password:this.pass};
 		
 		postLoginData(loginData, this.user);
 		
@@ -132,52 +134,82 @@ app.controller("loginController", function($scope, $http, $location) {
 		console.log("login data: " + loginData); 
 	}
 	
+	// this function pulls the register info from the textfields and sends as a http post
+	$scope.doRegister = function(){
+		// JSON object
+		var registerData = {username:this.registerUser,password:this.registerPass};
+		
+		postRegisterData(registerData, this.registerUser);
+		
+		console.log("Username: " + this.registerUser + " Password: " + this.registerPass);
+		console.log("register data: " + registerData); 
+	}
+	
 	// postData takes in JSON, sends with HTTP POST to Spring LoginController
 	function postLoginData(data, username)
 	{
 		$http({
 			method: 'POST',
-			url: '/login',
+			url: '/Splice/login',
 			headers: {'Content-Type': 'application/json'},
 			data: data
 		}).success(function (data){
 			console.log(data);
-			if(data == "ok")
+			if(data.success == "ok")
 			{
 				authUser = username;
 				$location.path("/lobby");
 			}else {
 				//display failed login message
-				console.log("Your username or password was wrong!")
+				console.log("Your username or password was wrong!");
 			}
-			
 		}).error(function (response){
-			$location.path("/lobby");
+			console.log("login error");
+		});
+	}
+	
+	// postData takes in JSON, sends with HTTP POST to Spring LoginController
+	function postRegisterData(data, username)
+	{
+		$http({
+			method: 'POST',
+			url: '/Splice/register',
+			headers: {'Content-Type': 'application/json'},
+			data: data
+		}).success(function (data){
+			console.log(data);
+			if(data.success == "ok")
+			{
+				console.log("OK! received successful register");
+			}else {
+				//display failed login message
+				console.log("Bad! received failed register");
+			}
+		}).error(function (response){
+			console.log("received error while registering");
 		});
 	}
 });
 
 app.controller("lobbyController", function($scope, $http, $location) {
 	
-	$scope.playerCount = '1';
-	$scope.username = "Connor";
+	$scope.playerCount = 0;
+	$scope.onlineUser = authUser;
 	
 	$scope.playerList = [ {
-		playerName : 'Ric'
-	}, {
-		playerName : 'Connor'
+		playerName : authUser
 	}];
 	
 	$scope.gameList = [ {
-		playerCount : '1',
+		playerCount : '0',
 		creator : 'Ric',
-		gameName : 'noobs only'
+		gameName : 'beginners only'
 	}];
 	
 	$scope.createGame = function(){
 		$scope.gameList.push({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
 		
-		var newGameData = JSON.stringify({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
+		//var newGameData = {playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
 		
 		postNewGameData(newGameData);
 		console.log(newGameData); 
@@ -187,7 +219,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
 	function postNewGameData(data){
 		$http({
 			method: 'POST',
-			url: 'GameList.do',
+			url: '/Splice/gameList',
 			headers: {'Content-Type': 'application/json'},
 			data: data
 		}).success(function (output){
@@ -223,7 +255,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
 	function postNewMessage(data){
 		$http({
 			method: 'POST',
-			url: '/sendMessage',
+			url: '/Splice/sendMessage',
 			headers: {'Content-Type': 'application/json'},
 			data: messageData
 		}).success(function (output){
@@ -234,14 +266,13 @@ app.controller("lobbyController", function($scope, $http, $location) {
 	$scope.logOut = function(){
 		$http({
 			method: 'POST',
-			url: '/logout',
+			url: '/Splice/logout',
 			headers: {'Content-Type': 'application/json'},
 			//data: data
 		}).success(function (output){
 			console.log("JSON output: " + JSON.parse(output));
 			$location.path=("/login");
 		});
-		$location.path("/login");
 	}
 });
 app.directive('playerCount', function(){

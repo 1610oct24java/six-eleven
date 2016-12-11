@@ -37,6 +37,10 @@ public class UserService {
 			}
 			break;
 			
+		case REGISTER:
+			success = userDao.registerNewUser(tempUser);
+			break;
+			
 		case LOGOUT: // may not need this for spring here
 			break;
 		
