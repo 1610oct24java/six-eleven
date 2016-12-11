@@ -120,6 +120,8 @@ app.controller("loginController", function($scope, $http, $location) {
 
 	$scope.user;
 	$scope.pass;
+	$scope.registerUser;
+	$scope.registerPass;
 
 	// this function pulls the login info from the textfields and sends as a http post
 	$scope.doLogin = function(){
@@ -130,6 +132,17 @@ app.controller("loginController", function($scope, $http, $location) {
 		
 		console.log("Username: " + this.user + " Password: " + this.pass);
 		console.log("login data: " + loginData); 
+	}
+	
+	// this function pulls the register info from the textfields and sends as a http post
+	$scope.doRegister = function(){
+		// JSON object
+		var registerData = {username:this.registerUser,password:this.registerPass};
+		
+		postRegisterData(registerData, this.registerUser);
+		
+		console.log("Username: " + this.registerUser + " Password: " + this.registerPass);
+		console.log("register data: " + registerData); 
 	}
 	
 	// postData takes in JSON, sends with HTTP POST to Spring LoginController
@@ -148,36 +161,55 @@ app.controller("loginController", function($scope, $http, $location) {
 				$location.path("/lobby");
 			}else {
 				//display failed login message
-				console.log("Your username or password was wrong!")
+				console.log("Your username or password was wrong!");
 			}
-			
 		}).error(function (response){
-			
+			console.log("login error");
+		});
+	}
+	
+	// postData takes in JSON, sends with HTTP POST to Spring LoginController
+	function postRegisterData(data, username)
+	{
+		$http({
+			method: 'POST',
+			url: '/Splice/register',
+			headers: {'Content-Type': 'application/json'},
+			data: data
+		}).success(function (data){
+			console.log(data);
+			if(data.success == "ok")
+			{
+				console.log("OK! received successful register");
+			}else {
+				//display failed login message
+				console.log("Bad! received failed register");
+			}
+		}).error(function (response){
+			console.log("received error while registering");
 		});
 	}
 });
 
 app.controller("lobbyController", function($scope, $http, $location) {
 	
-	$scope.playerCount = '1';
-	$scope.username = "Connor";
+	$scope.playerCount = 0;
+	$scope.onlineUser = authUser;
 	
 	$scope.playerList = [ {
-		playerName : 'Ric'
-	}, {
-		playerName : 'Connor'
+		playerName : authUser
 	}];
 	
 	$scope.gameList = [ {
-		playerCount : '1',
+		playerCount : '0',
 		creator : 'Ric',
-		gameName : 'noobs only'
+		gameName : 'beginners only'
 	}];
 	
 	$scope.createGame = function(){
 		$scope.gameList.push({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
 		
-		var newGameData = JSON.stringify({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
+		//var newGameData = {playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
 		
 		postNewGameData(newGameData);
 		console.log(newGameData); 
@@ -241,7 +273,6 @@ app.controller("lobbyController", function($scope, $http, $location) {
 			console.log("JSON output: " + JSON.parse(output));
 			$location.path=("/login");
 		});
-		$location.path("/login");
 	}
 });
 app.directive('playerCount', function(){

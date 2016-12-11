@@ -49,7 +49,7 @@
 			  <span ng-show="formreg.registerPass.$touched && formreg.registerPass.$invalid">Password is required!</span>
 		  </div>
 		  <div class="vert-space-sm">
-		    <button ng-click="getUsername()" type="button" class="btn btn-large btn-primary pull-right"
+		    <button ng-click="doRegister()" type="button" class="btn btn-large btn-primary pull-right"
 		    	ng-disabled="formreg.registerUser.$dirty && formreg.registerUser.$invalid || 
  		    	formreg.registerPass.$dirty && formreg.registerPass.$invalid">Register</button> 
 		  </div>		
