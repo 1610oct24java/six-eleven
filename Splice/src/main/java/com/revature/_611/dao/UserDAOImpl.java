@@ -24,6 +24,7 @@ public class UserDAOImpl implements UserDAO {
 
 	private static HibernateUtil hu = new HibernateUtil();
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean registerNewUser(User usr) {
 		

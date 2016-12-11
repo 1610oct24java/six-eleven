@@ -31,10 +31,28 @@ public class LoginController {
 		if (success)
 		{
 			System.out.println("Successful login! Returning 'ok'");
-			return "ok";
+			return "{\"success\":\"ok\"}";
 		}else {
 			System.out.println("Oh, snap! Login failed.. Returning 'bad'");
-			return "bad";
+			return "{\"success\":\"bad\"}";
+		}
+	}
+	
+	@RequestMapping(value="/register", method = RequestMethod.POST)	
+	public @ResponseBody String register(@RequestBody User tempUser)
+	{	
+		// Check received user from Angular post
+		System.out.println("Registering user: name=" + tempUser.getUsername() + " pass=" + tempUser.getPassword());
+		
+		boolean success = UserService.doCommand("Register", tempUser);
+		
+		if (success)
+		{
+			System.out.println("Successful registration! Returning 'ok'");
+			return "{\"success\":\"ok\"}";
+		}else {
+			System.out.println("Oh, snap! Registration failed.. Returning 'bad'");
+			return "{\"success\":\"bad\"}";
 		}
 	}
 }
