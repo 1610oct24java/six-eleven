@@ -364,7 +364,7 @@ app.controller("gameController", function($scope, $http, $location) {
     
     this.getTurn = function () {
         return players[this.state.turn].username;
-    }
+    };
     
     this.getPhase = function () {
         if (this.state.phase == 0) {
@@ -376,40 +376,43 @@ app.controller("gameController", function($scope, $http, $location) {
         if (this.state.phase == 2) { 
             return "Combat";
         }
-    }
+    };
     
     $scope.attack = function (input) {
-        console.log("Attack2 called");
+        console.log("Attack called");
         
         var inputData = input;
         
         var packet = {
             command: "attack",
-            data: "",
+            data: input,
             from: ""
-        }
+        };
         
-        packet.data = inputData;
+        packet.data = input;
         
         console.log("Attack: " + inputData);
         console.log("    Command: " + packet.command);
-        console.log("    Data: " + packet.input);
-    }
+        console.log("    Data: " + packet.data);
+        console.log("    From: " + packet.from);
+    };
     
     $scope.research = function (input) {
-        console.log("Research2 called");
+        console.log("Research called");
         
         var inputData = input;
         
         var packet = {
             command: "research",
-            data: inputData
-        }
+            data: input,
+            from: ""
+        };
         
         console.log("Research: " + input);
         console.log("    Command: " + packet.command);
-        console.log("    Data: " + packet.input);
-    }
+        console.log("    Data: " + packet.data);
+        console.log("    From: " + packet.from);
+    };
     
 });
 
