@@ -1,0 +1,67 @@
+<div class="main-box col-md-10 col-md-offset-1">
+
+  <div class="row">
+  	<div class="col-md-2 col-md-offset-1 box-top-header">
+  		SPLICE
+  	</div>
+  	
+  	<div class="col-md-6 box-top-header">
+  		<button class="btn btn-lg btn-success" type="button" ng-click="queue.startGame()">Start Game</button>
+  	</div>
+  	
+  	<div class="col-md-2 box-top-header">
+  		<button class="btn btn-lg btn-danger box-right" type="button" ng-click="queue.leaveGame()">Leave Game</button>
+  	</div>
+  </div>
+  
+  <div style="height:10px;"></div>
+  
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <div class="box-frame-title">Online [{{NUM}}]</div>
+      <div class="box-player-list box-player-list-queue">
+        <ul>
+          <li>work</li>
+          <li>player2</li>
+          <li>player4</li>
+          <li>Ricster</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="col-md-8">
+    	
+    	<div class="row">
+    		<div class="box-frame-title">Chat</div>
+    	</div>
+    	
+		<div class="row">
+		  <div class="box-chat-content box-chat-queue">
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : wat<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  Ric : lol<br>
+		  </div>
+		</div>    	
+    	
+    	<div class="row">
+    	  <form>
+             <input type="text" class="col-md-10" name="message" placeholder="type a message">
+             <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="lobby.sendMessage()">Send</button>
+          </form>
+    	</div>
+    	
+    </div>
+  </div>
+</div>
