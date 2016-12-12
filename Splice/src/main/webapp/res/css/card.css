@@ -8,13 +8,13 @@
 
 .custom-title{
     color: palegoldenrod;
-    
 }
 
 .card-area {
     border: 1px solid;
+    border-radius: 5px;
     border-color: saddlebrown;
-   
+    background-color: rgba(237, 216, 159, .5);
 }
 .card-area .card {
     float: left;

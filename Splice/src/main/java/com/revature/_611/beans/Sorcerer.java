@@ -52,6 +52,11 @@ public class Sorcerer extends Card implements Serializable {
 		super();
 	}
 	
+	public Sorcerer(String _name) {
+		super();
+		this.name = _name;
+	}
+	
 	public Sorcerer(int cardID, String imgFront, String imgBack, String imgBorder, String name, String flavor,
 			boolean faceUp, int vitality, int power, int defense, int speed, int intelligence, int woundCounters) {
 		
@@ -240,8 +245,6 @@ public class Sorcerer extends Card implements Serializable {
 		if (speed != other.speed)
 			return false;
 		if (vitality != other.vitality)
-			return false;
-		if (woundCounters != other.woundCounters)
 			return false;
 		return true;
 	}
