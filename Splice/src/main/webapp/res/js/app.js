@@ -1,6 +1,6 @@
 var app = angular.module("gameApp", ["ngRoute"]); 
 
-var authUser = null;
+var authUser;
 var playerList;
 var playerCount = '0';
 
@@ -144,6 +144,7 @@ app.controller("loginController", function($scope, $http, $location) {
 		}).success(function (data){
 			console.log(data);
 			if(data.success == "ok"){
+				authUser = $scope.user;
 				console.log("Fetching player list...");
 				$scope.getPlayerList();
 			}else {
@@ -159,21 +160,23 @@ app.controller("loginController", function($scope, $http, $location) {
 	$scope.getPlayerList = function(data){
 		$http({method: 'GET', url: '/Splice/getOnlineUsers', headers: {'Content-Type': 'application/json'}, data: data
 		}).success(function (data){
-			// Sets the json logged in player list to the one returned by the server
-			playerList = data;
-			// Prints the list from the server
-			console.log("JSON output from server: " + JSON.parse(data));
-			
-			authUser = username;
-			// Forwards route to the lobby page
+			// Route to lobby if login success
 			$location.path("/lobby");
+			
+			// Sets the json logged in player list to the one returned by the server
+			console.log(data);
+			playerList = data.players;
+			// Prints the list from the server
+			console.log("JSON output from server: " + data.players[0].player );
+			console.log("PlayerList: " + playerList[0].player);
 		});
 	}
-	
 });
 
 app.controller("lobbyController", function($scope, $http, $location) {
-	$scope.username = "Temp-Connor";
+	$scope.playerList = playerList;
+	
+	$scope.username = authUser;
 	
 	$scope.gameList = [ {
 		playerCount : '1',

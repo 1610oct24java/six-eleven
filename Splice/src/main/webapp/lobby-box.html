@@ -6,7 +6,7 @@
   	</div>
   	
   	<div class="col-md-6 box-top-header">
-  		PlayerName &nbsp;&nbsp;&nbsp; Wins: 200 &nbsp;&nbsp;&nbsp; Losses: 1
+  		Welcome, {{username}} &nbsp;&nbsp;&nbsp; Wins: 200 &nbsp;&nbsp;&nbsp; Losses: 1
   	</div>
   	
   	<div class="col-md-2 box-top-header">
@@ -21,7 +21,7 @@
       <div class="box-frame-title">Online (<player-count></player-count>)</div>
       <div class="box-player-list">
         <ul>
-          <li ng-repeat="player in playerList">{{player.playerName}}</li>
+          <li ng-repeat="player in playerList">{{player.player}}</li>
         </ul>
       </div>
     </div>

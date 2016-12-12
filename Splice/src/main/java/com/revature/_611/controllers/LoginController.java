@@ -51,22 +51,11 @@ public class LoginController {
 
 	// Adds the username to the synchronized list of the logged in user
 	private void addUser(String username) {
-		System.out.println("hi! :D ");
 		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml")) {
-			System.out.println("Yo we got into the try block");
-			//LoggedInUsersList usersOnline = (LoggedInUsersList) context.getBean("usersList");
-			System.out.println("PRE");
 			for(String s : usersOnline.getUsersList()){
 				System.out.println("Contains " + s);
 			}
 			usersOnline.addUser(username);
-			System.out.println("POST");
-			/*LoggedInUsersList usersOnline2 = (LoggedInUsersList) context.getBean("usersList");
-			for(String s : usersOnline2.getUsersList()){
-				System.out.println("Contains " + s);
-			}*/
-			
-			System.out.println("After the logged in userslist");
 		}
 	}
 }
