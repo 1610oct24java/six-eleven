@@ -379,18 +379,36 @@ app.controller("gameController", function($scope, $http, $location) {
     }
     
     $scope.attack = function (input) {
+        console.log("Attack2 called");
+        
+        var inputData = input;
         
         var packet = {
             command: "attack",
-            data: input,
-            from: this.getTurn()
+            data: "",
+            from: ""
         }
         
-        console.log("Attack: " + input);
+        packet.data = inputData;
+        
+        console.log("Attack: " + inputData);
+        console.log("    Command: " + packet.command);
+        console.log("    Data: " + packet.input);
     }
+    
     $scope.research = function (input) {
+        console.log("Research2 called");
+        
+        var inputData = input;
+        
+        var packet = {
+            command: "research",
+            data: inputData
+        }
         
         console.log("Research: " + input);
+        console.log("    Command: " + packet.command);
+        console.log("    Data: " + packet.input);
     }
     
 });
