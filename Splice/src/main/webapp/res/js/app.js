@@ -1,6 +1,9 @@
 var app = angular.module("gameApp", ["ngRoute"]); 
 
 var authUser = null;
+var playerList;
+var playerCount = '0';
+
 var sorcerers = [
      	        {
      	            name: 'Xanitov, Radiant Husk',
@@ -91,9 +94,8 @@ var sorcerers = [
      	    }
      	    
      	    game.deck = creatures;
-
+// ---- Routing Configuration ----
 app.config(function($routeProvider){
-	
 	$routeProvider
 	.when("/login", {
 		templateUrl : "login-box.html",
@@ -129,12 +131,11 @@ app.controller("loginController", function($scope, $http, $location) {
 		postLoginData(loginData, this.user);
 		
 		console.log("Username: " + this.user + " Password: " + this.pass);
-		console.log("login data: " + loginData); 
+		console.log("Logging in..."); 
 	}
 	
 	// postData takes in JSON, sends with HTTP POST to Spring LoginController
-	function postLoginData(data, username)
-	{
+	function postLoginData(data, username){
 		$http({
 			method: 'POST',
 			url: '/Splice/login',
@@ -142,31 +143,37 @@ app.controller("loginController", function($scope, $http, $location) {
 			data: data
 		}).success(function (data){
 			console.log(data);
-			if(data.success == "ok")
-			{
-				authUser = username;
-				$location.path("/lobby");
+			if(data.success == "ok"){
+				console.log("Fetching player list...");
+				$scope.getPlayerList();
 			}else {
 				//display failed login message
 				console.log("Your username or password was wrong!")
 			}
-			
 		}).error(function (response){
-			
+			console.log("Failed to login");
 		});
 	}
+	
+	// Gets the current logged in player list from LobbyController.java
+	$scope.getPlayerList = function(data){
+		$http({method: 'GET', url: '/Splice/getOnlineUsers', headers: {'Content-Type': 'application/json'}, data: data
+		}).success(function (data){
+			// Sets the json logged in player list to the one returned by the server
+			playerList = data;
+			// Prints the list from the server
+			console.log("JSON output from server: " + JSON.parse(data));
+			
+			authUser = username;
+			// Forwards route to the lobby page
+			$location.path("/lobby");
+		});
+	}
+	
 });
 
 app.controller("lobbyController", function($scope, $http, $location) {
-	
-	$scope.playerCount = '1';
-	$scope.username = "Connor";
-	
-	$scope.playerList = [ {
-		playerName : 'Ric'
-	}, {
-		playerName : 'Connor'
-	}];
+	$scope.username = "Temp-Connor";
 	
 	$scope.gameList = [ {
 		playerCount : '1',

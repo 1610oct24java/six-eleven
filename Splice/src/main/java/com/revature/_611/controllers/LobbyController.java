@@ -20,38 +20,48 @@ import com.revature._611.springbeans.LoggedInUsersList;
 public class LobbyController {
 
 	@RequestMapping(value="/getOnlineUsers", method = RequestMethod.GET)	
-	public @ResponseBody String getOnlineUsers(@RequestBody User tempUser)  
-	{	
+	public @ResponseBody String getOnlineUsers()  {
+		
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		ArrayList<String> users = context.getBean("usersList", LoggedInUsersList.class).getUsersList();
-		
-		// Create a JSON string of this structure to return only user names
-		// [{"player":"one"},{"player":"two"}]
-		StringBuilder sb = new StringBuilder();
-		sb.append("[");
-		
-		for (int i=0; i < users.size(); i++)
-		{
-			sb.append("{'player':'"+users.get(i)+"'}");
-			
-			if (i < users.size()-1)
-			{
-				sb.append(",");
-			}
+		LoggedInUsersList usersOnline = context.getBean("usersList", LoggedInUsersList.class);
+		List<String> usersList = usersOnline.getUsersList();
+		System.out.println("ONE: " );
+		for(String s : usersOnline.getUsersList()){
+			System.out.println("1 Contains: " + s);
+		}
+		System.out.println("TWO: " );
+		for(String s : usersList){
+			System.out.println("2 Contains: " + s);
 		}
 		
-		sb.append("]");
+		// Create a JSON string of this structure to return only user names
+		// {"players":[{"player":"one"},{"player":"two"}]}
+		StringBuilder jsonString = new StringBuilder();
 		
-		// Check this JSON here...
-		System.out.println("Player list: " + sb.toString());
+		// head of json string:
+		jsonString.append("{\"players\":[");
 		
-		return sb.toString(); 
+		// build players into the players JSON array:
+		for (int i=0; i < usersList.size(); i++){
+			jsonString.append("{\"player\":\" ");
+			jsonString.append(usersList.get(i));
+			jsonString.append( "\"} ");
+			// add a comma if there is an extra player
+			if (i < usersList.size()-1){
+				jsonString.append(",");
+			}
+		}
+		// Add the end of the JSON string
+		jsonString.append("]}");
+		
+		// Check the JSON here...
+		System.out.println("**Player JSON list: " + jsonString.toString());
+		return jsonString.toString(); 
 	}
 	
 	@RequestMapping(value="/sendMessage", method = RequestMethod.POST)
-	public @ResponseBody String sendMessage(@RequestBody Message msg)  
-	{	
+	public @ResponseBody String sendMessage(@RequestBody Message msg)  {	
 		// Check received user from Angular post
 		System.out.println("Receive message: sender=" + msg.getSender() + " content=" + msg.getContent());
 		
@@ -59,8 +69,7 @@ public class LobbyController {
 		
 		boolean success = false; // Message successfully receive and stored in application?
 		
-		if (success)
-		{
+		if (success){
 			System.out.println("Message received! Returning 'ok'");
 			return "ok";
 		}else {
