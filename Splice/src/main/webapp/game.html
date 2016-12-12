@@ -1,52 +1,112 @@
- <div class = "wrap game-board">
+<br>
+<div class = "wrap game-board" ng-controller = "gameController as game">
     <h1 class = "text-center custom-title">Splice</h1>
     <div class="container-fluid">
+        <div class = "row">
+            <div class = "col-xs-4">
+                
+            </div>
+            <div class = "col-xs-4 text-center">
+                <h3 class = "custom-title"><b>Round:</b> {{game.state.round}}, <b>Turn:</b> {{game.getTurn()}}, <b>Phase:</b> {{game.getPhase()}}</h3>
+            </div>
+            <div class = "col-xs-4">
+                
+            </div>
+        </div>
         <div id="opponent" class="row">
             <div class = "col-md-1">
                 <h2 class = "rotate custom-title">Opponents</h2>
             </div>
             <div class = "col-md-4"></div>
             <div class = "col-md-2 card-area">
-                <div class = "card card-sorc" ng-controller = "PlayerController as p">
+                <div class = "card card-sorc">
                     <div class = "name">
-                        <span>{{p.sorcerer.name}}</span>
+                        <span>{{game.players[0].mySorc.name}}</span>
                     </div>
                     <div class = "flavor">
-                        <p>{{p.sorcerer.flavor}}</p>
+                        <p>{{game.players[0].mySorc.flavor}}</p>
                     </div>
                     <div class = "cardart">
-                        <img ng_src = "images/{{p.sorcerer.image}}">
+                        <img ng_src = "images/{{game.players[0].mySorc.image}}">
                     </div>
                     <div class = "stat">
                         <div class = "vit">
                             <div class = "label">
                                 VIT: 
                             </div>
-                            {{p.sorcerer.vit}}
+                            {{game.players[0].mySorc.vit}}
                         </div>
                         <div class = "pow">
                             <div class = "label">
                                 POW: 
                             </div>
-                            {{p.sorcerer.pow}}
+                            {{game.players[0].mySorc.pow}}
                         </div>
                         <div class = "def">
                             <div class = "label">
                                 DEF:
                             </div>
-                            {{p.sorcerer.def}}
+                            {{game.players[0].mySorc.def}}
                         </div>
                         <div class = "spd">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{p.sorcerer.spd}}
+                            {{game.players[0].mySorc.spd}}
                         </div>
                         <div class = "int">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{p.sorcerer.int}}
+                            {{game.players[0].mySorc.int}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-md-3 card-area">
+                <div class = "card card-creature"  ng-repeat="creature in game.players[0].lab" ng-click = "research(creature.name)">
+                    <div class = "name">
+                        <span>{{creature.name}}</span>
+                    </div>
+                    <div class = "flavor">
+                        <p>{{creature.flavor}}</p>
+                    </div>
+                    <div class = "cardart">
+                        <img ng_src = "images/{{creature.image}}">
+                    </div>
+                    <div class = "stat">
+                        <div class = "vit">
+                            <div class = "label">
+                                VIT: 
+                            </div>
+                            {{creature.vit}}
+                        </div>
+                        <div class = "pow">
+                            <div class = "label">
+                                POW: 
+                            </div>
+                            {{creature.pow}}
+                        </div>
+                        
+                        <div class = "def">
+                            <div class = "label">
+                                DEF:
+                            </div>
+                            {{creature.def}}
+                        </div>
+                        
+                        <div class = "spd">
+                            <div class = "label">
+                                SPD:
+                            </div>
+                            {{creature.spd}}
+                        </div>
+                        
+                        <div class = "int">
+                            <div class = "label">
+                                INT:
+                            </div>
+                            {{creature.int}}
                         </div>
                     </div>
                 </div>
@@ -58,8 +118,8 @@
                 <h2 class = "rotate custom-title">Wylds</h2>
             </div>
             <div class = "col-md-3"></div>
-            <div class = "col-md-4 card-area" ng-controller = "WyldsController as wylds">
-                <div class = "card card-creature"  ng-repeat="creature in wylds.creatures">
+            <div class = "col-md-4 card-area">
+                <div class = "card card-creature"  ng-repeat="creature in game.wylds" ng-click = "attack(creature.name)">
                     <div class = "name">
                         <span>{{creature.name}}</span>
                     </div>
@@ -116,46 +176,94 @@
             
             </div>
             <div class = "col-md-2 card-area">
-                <div class = "card card-sorc" ng-controller = "PlayerController as p">
+                <div class = "card card-sorc">
                     <div class = "name">
-                        <span>{{p.sorcerer.name}}</span>
+                        <span>{{game.players[1].mySorc.name}}</span>
                     </div>
                     <div class = "flavor">
-                        <p>{{p.sorcerer.flavor}}</p>
+                        <p>{{game.players[1].mySorc.flavor}}</p>
                     </div>
                     <div class = "cardart">
-                        <img ng_src = "images/{{p.sorcerer.image}}">
+                        <img ng_src = "images/{{game.players[1].mySorc.image}}">
                     </div>
                     <div class = "stat">
                         <div class = "vit">
                             <div class = "label">
                                 VIT: 
                             </div>
-                            {{p.sorcerer.vit}}
+                            {{game.players[1].mySorc.vit}}
                         </div>
                         <div class = "pow">
                             <div class = "label">
                                 POW: 
                             </div>
-                            {{p.sorcerer.pow}}
+                            {{game.players[1].mySorc.pow}}
                         </div>
                         <div class = "def">
                             <div class = "label">
                                 DEF:
                             </div>
-                            {{p.sorcerer.def}}
+                            {{game.players[1].mySorc.def}}
                         </div>
                         <div class = "spd">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{p.sorcerer.spd}}
+                            {{game.players[1].mySorc.spd}}
                         </div>
                         <div class = "int">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{p.sorcerer.int}}
+                            {{game.players[1].mySorc.int}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-md-3 card-area">
+                <div class = "card card-creature"  ng-repeat="creature in game.players[1].lab" ng-click = "research(creature.name)">
+                    <div class = "name">
+                        <span>{{creature.name}}</span>
+                    </div>
+                    <div class = "flavor">
+                        <p>{{creature.flavor}}</p>
+                    </div>
+                    <div class = "cardart">
+                        <img ng_src = "images/{{creature.image}}">
+                    </div>
+                    <div class = "stat">
+                        <div class = "vit">
+                            <div class = "label">
+                                VIT: 
+                            </div>
+                            {{creature.vit}}
+                        </div>
+                        <div class = "pow">
+                            <div class = "label">
+                                POW: 
+                            </div>
+                            {{creature.pow}}
+                        </div>
+                        
+                        <div class = "def">
+                            <div class = "label">
+                                DEF:
+                            </div>
+                            {{creature.def}}
+                        </div>
+                        
+                        <div class = "spd">
+                            <div class = "label">
+                                SPD:
+                            </div>
+                            {{creature.spd}}
+                        </div>
+                        
+                        <div class = "int">
+                            <div class = "label">
+                                INT:
+                            </div>
+                            {{creature.int}}
                         </div>
                     </div>
                 </div>
