@@ -108,8 +108,8 @@ var players = [
 ];
 
 app.config(function ($routeProvider) {
-	
-	$routeProvider
+    
+    $routeProvider
         .when("/login", {
             templateUrl : "login-box.html",
             controller : "loginController"
@@ -133,228 +133,228 @@ app.config(function ($routeProvider) {
 
 app.controller("loginController", function ($scope, $http, $location) {
 
-	$scope.user;
-	$scope.pass;
-	$scope.registerUser;
-	$scope.registerPass;
+    $scope.user;
+    $scope.pass;
+    $scope.registerUser;
+    $scope.registerPass;
 
-	// this function pulls the login info from the textfields and sends as a http post
-	$scope.doLogin = function() {
-		// JSON object
-		var loginData = {username: this.user, password: this.pass};
-		
-		postLoginData(loginData, this.user);
-		
-		console.log("Username: " + this.user + " Password: " + this.pass);
-		console.log("login data: " + loginData); 
-	}
-	
-	// this function pulls the register info from the textfields and sends as a http post
-	$scope.doRegister = function(){
-		// JSON object
-		var registerData = {username:this.registerUser,password:this.registerPass};
-		
-		postRegisterData(registerData, this.registerUser);
-		
-		console.log("Username: " + this.registerUser + " Password: " + this.registerPass);
-		console.log("register data: " + registerData); 
-	}
-	
-	// postData takes in JSON, sends with HTTP POST to Spring LoginController
-	function postLoginData(data, username)
-	{
-		$http({
-			method: 'POST',
-			url: '/Splice/login',
-			headers: {'Content-Type': 'application/json'},
-			data: data
-		}).success(function (data){
-			console.log(data);
-			if(data.success == "ok")
-			{
-				authUser = username;
-				$location.path("/lobby");
-			}else {
-				//display failed login message
-				console.log("Your username or password was wrong!");
-			}
-		}).error(function (response){
-			console.log("login error");
-		});
-	}
-	
-	// postData takes in JSON, sends with HTTP POST to Spring LoginController
-	function postRegisterData(data, username)
-	{
-		$http({
-			method: 'POST',
-			url: '/Splice/register',
-			headers: {'Content-Type': 'application/json'},
-			data: data
-		}).success(function (data){
-			console.log(data);
-			if(data.success == "ok")
-			{
-				console.log("OK! received successful register");
-			}else {
-				//display failed login message
-				console.log("Bad! received failed register");
-			}
-		}).error(function (response){
-			console.log("received error while registering");
-		});
-	}
+    // this function pulls the login info from the textfields and sends as a http post
+    $scope.doLogin = function() {
+        // JSON object
+        var loginData = {username: this.user, password: this.pass};
+        
+        postLoginData(loginData, this.user);
+        
+        console.log("Username: " + this.user + " Password: " + this.pass);
+        console.log("login data: " + loginData); 
+    }
+    
+    // this function pulls the register info from the textfields and sends as a http post
+    $scope.doRegister = function(){
+        // JSON object
+        var registerData = {username:this.registerUser,password:this.registerPass};
+        
+        postRegisterData(registerData, this.registerUser);
+        
+        console.log("Username: " + this.registerUser + " Password: " + this.registerPass);
+        console.log("register data: " + registerData); 
+    }
+    
+    // postData takes in JSON, sends with HTTP POST to Spring LoginController
+    function postLoginData(data, username)
+    {
+        $http({
+            method: 'POST',
+            url: '/Splice/login',
+            headers: {'Content-Type': 'application/json'},
+            data: data
+        }).success(function (data){
+            console.log(data);
+            if(data.success == "ok")
+            {
+                authUser = username;
+                $location.path("/lobby");
+            }else {
+                //display failed login message
+                console.log("Your username or password was wrong!");
+            }
+        }).error(function (response){
+            console.log("login error");
+        });
+    }
+    
+    // postData takes in JSON, sends with HTTP POST to Spring LoginController
+    function postRegisterData(data, username)
+    {
+        $http({
+            method: 'POST',
+            url: '/Splice/register',
+            headers: {'Content-Type': 'application/json'},
+            data: data
+        }).success(function (data){
+            console.log(data);
+            if(data.success == "ok")
+            {
+                console.log("OK! received successful register");
+            }else {
+                //display failed login message
+                console.log("Bad! received failed register");
+            }
+        }).error(function (response){
+            console.log("received error while registering");
+        });
+    }
 });
 
 app.controller("lobbyController", function($scope, $http, $location) {
-	
-	$scope.playerCount = 0;
-	$scope.onlineUser = authUser;
-	
-	$scope.playerList = [ {
-		playerName : authUser
-	}];
-	
-	$scope.gameList = [ {
-		playerCount : '0',
-		creator : 'Ric',
-		gameName : 'beginners only'
-	}];
-	
-	$scope.createGame = function(){
-		$scope.gameList.push({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
-		
-		//var newGameData = {playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
-		
-		postNewGameData(newGameData);
-		console.log(newGameData); 
-		$scope.gameName = "";
-	}
-	
-	function postNewGameData(data){
-		$http({
-			method: 'POST',
-			url: '/Splice/gameList',
-			headers: {'Content-Type': 'application/json'},
-			data: data
-		}).success(function (output){
-			console.log("JSON output: " + JSON.parse(output));
-		});
-	}
-	
-	$scope.joinGame = function(index){
-		$location.path("/queue");
-	}
-	
-	$scope.deleteGame = function(index){
-		$scope.gameList.splice(index,1);
-	}
-	
-	$scope.chatlog = [{
-		playerName : 'Ric',
-		message : 'testing'
-	}];
-	
-	$scope.sendMessage = function(){
-		$scope.chatlog.push({playerName:$scope.username,message:$scope.message});
-		
-		var newMessageData = JSON.stringify({chatlog:$scope.message});
-		
-		postNewMessage(newMessageData);
-		
-		console.log(newMessageData); 
-		
-		$scope.message = "";
-	}
-	
-	function postNewMessage(data){
-		$http({
-			method: 'POST',
-			url: '/Splice/sendMessage',
-			headers: {'Content-Type': 'application/json'},
-			data: messageData
-		}).success(function (output){
-			console.log("JSON output: " + JSON.parse(output));
-		});
-	}
+    
+    $scope.playerCount = 0;
+    $scope.onlineUser = authUser;
+    
+    $scope.playerList = [ {
+        playerName : authUser
+    }];
+    
+    $scope.gameList = [ {
+        playerCount : '0',
+        creator : 'Ric',
+        gameName : 'beginners only'
+    }];
+    
+    $scope.createGame = function(){
+        $scope.gameList.push({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
+        
+        //var newGameData = {playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
+        
+        postNewGameData(newGameData);
+        console.log(newGameData); 
+        $scope.gameName = "";
+    }
+    
+    function postNewGameData(data){
+        $http({
+            method: 'POST',
+            url: '/Splice/gameList',
+            headers: {'Content-Type': 'application/json'},
+            data: data
+        }).success(function (output){
+            console.log("JSON output: " + JSON.parse(output));
+        });
+    }
+    
+    $scope.joinGame = function(index){
+        $location.path("/queue");
+    }
+    
+    $scope.deleteGame = function(index){
+        $scope.gameList.splice(index,1);
+    }
+    
+    $scope.chatlog = [{
+        playerName : 'Ric',
+        message : 'testing'
+    }];
+    
+    $scope.sendMessage = function(){
+        $scope.chatlog.push({playerName:$scope.username,message:$scope.message});
+        
+        var newMessageData = JSON.stringify({chatlog:$scope.message});
+        
+        postNewMessage(newMessageData);
+        
+        console.log(newMessageData); 
+        
+        $scope.message = "";
+    }
+    
+    function postNewMessage(data){
+        $http({
+            method: 'POST',
+            url: '/Splice/sendMessage',
+            headers: {'Content-Type': 'application/json'},
+            data: messageData
+        }).success(function (output){
+            console.log("JSON output: " + JSON.parse(output));
+        });
+    }
 
-	$scope.logOut = function(){
-		$http({
-			method: 'POST',
-			url: '/Splice/logout',
-			headers: {'Content-Type': 'application/json'},
-			//data: data
-		}).success(function (output){
-			console.log("JSON output: " + JSON.parse(output));
-			$location.path=("/login");
-		});
-	}
+    $scope.logOut = function(){
+        $http({
+            method: 'POST',
+            url: '/Splice/logout',
+            headers: {'Content-Type': 'application/json'},
+            //data: data
+        }).success(function (output){
+            console.log("JSON output: " + JSON.parse(output));
+            $location.path=("/login");
+        });
+    }
 });
 app.directive('playerCount', function(){
-	return { template : '{{playerList.length}}'};
+    return { template : '{{playerList.length}}'};
 });
 app.directive('gameCount',function(){
-	return { template : '{{gameList.length}}'};
+    return { template : '{{gameList.length}}'};
 });
 
 app.controller("queueController", function($scope, $http, $location) {
-	
-	$scope.startGame = function(){
-//		$http({
-//			method: 'POST',
-//			url: 'StartGame.do',
-//			headers: {'Content-Type': 'application/json'},
-//			//data: data
-//		}).success(function (output){
-//			//console.log("JSON output: " + JSON.parse(output));
-//			$location.path="/game";
-//		});
-		$location.path("/game");
-	}
-	
-	$scope.leaveGame = function(){
-//		$http({
-//			method: 'POST',
-//			url: 'LeaveGame.do',
-//			headers: {'Content-Type': 'application/json'},
-//			//data: data
-//		}).success(function (output){
-//			//console.log("JSON output: " + JSON.parse(output));
-//			//$location.path="/lobby";
-//		});
-		$location.path("/lobby");
-	}
-	
-	$scope.playerCount = '1';
-	$scope.username = "Connor";
-	
-	$scope.playerList = [ {
-		playerName : 'Ric'
-	}, {
-		playerName : 'Connor'
-	}];
-	
-	$scope.chatlog = [{
-		playerName : 'Ric',
-		message : 'testing'
-	}];
-	
-	$scope.sendMessage = function(){
-		$scope.chatlog.push({playerName:$scope.username,message:$scope.message});
-		
-		var newMessageData = JSON.stringify({chatlog:$scope.message});
-		
-		postNewMessage(newMessageData);
-		
-		console.log(newMessageData); 
-		
-		$scope.message = "";
-	}
-	
+    
+    $scope.startGame = function(){
+//      $http({
+//          method: 'POST',
+//          url: 'StartGame.do',
+//          headers: {'Content-Type': 'application/json'},
+//          //data: data
+//      }).success(function (output){
+//          //console.log("JSON output: " + JSON.parse(output));
+//          $location.path="/game";
+//      });
+        $location.path("/game");
+    }
+    
+    $scope.leaveGame = function(){
+//      $http({
+//          method: 'POST',
+//          url: 'LeaveGame.do',
+//          headers: {'Content-Type': 'application/json'},
+//          //data: data
+//      }).success(function (output){
+//          //console.log("JSON output: " + JSON.parse(output));
+//          //$location.path="/lobby";
+//      });
+        $location.path("/lobby");
+    }
+    
+    $scope.playerCount = '1';
+    $scope.username = "Connor";
+    
+    $scope.playerList = [ {
+        playerName : 'Ric'
+    }, {
+        playerName : 'Connor'
+    }];
+    
+    $scope.chatlog = [{
+        playerName : 'Ric',
+        message : 'testing'
+    }];
+    
+    $scope.sendMessage = function(){
+        $scope.chatlog.push({playerName:$scope.username,message:$scope.message});
+        
+        var newMessageData = JSON.stringify({chatlog:$scope.message});
+        
+        postNewMessage(newMessageData);
+        
+        console.log(newMessageData); 
+        
+        $scope.message = "";
+    }
+    
 });
 
 app.controller("gameController", function($scope, $http, $location) {
-	this.wylds = [creatures[0], creatures[1], creatures[4], creatures[2]];
+    this.wylds = [creatures[0], creatures[1], creatures[4], creatures[2]];
     this.players = [players[0], players[1]];
     this.state = {
         round: 1,
@@ -415,5 +415,4 @@ app.controller("gameController", function($scope, $http, $location) {
     };
     
 });
-
 
