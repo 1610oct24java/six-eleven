@@ -1,4 +1,4 @@
-package com.revature._611.game;
+package com.revature._611.springbeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;

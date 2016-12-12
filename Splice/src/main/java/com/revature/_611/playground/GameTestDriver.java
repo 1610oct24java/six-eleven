@@ -1,6 +1,6 @@
 package com.revature._611.playground;
 
-import com.revature._611.game.Game;
+import com.revature._611.springbeans.Game;
 
 public class GameTestDriver {
 	Game theGame;

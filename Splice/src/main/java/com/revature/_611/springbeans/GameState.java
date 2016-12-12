@@ -1,4 +1,4 @@
-package com.revature._611.game;
+package com.revature._611.springbeans;
 
 public class GameState {
 	// ROUND: A lap around each players. In round 1, not all players have had a turn
