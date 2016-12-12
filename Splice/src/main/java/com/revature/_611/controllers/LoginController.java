@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ import com.revature._611.springbeans.LoggedInUsersList;
 
 @Controller
 public class LoginController {
+	
+	@Autowired
+	LoggedInUsersList usersOnline;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView getLoginPage(ModelMap model) {
@@ -50,17 +54,17 @@ public class LoginController {
 		System.out.println("hi! :D ");
 		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml")) {
 			System.out.println("Yo we got into the try block");
-			LoggedInUsersList usersOnline = (LoggedInUsersList) context.getBean("usersList");
+			//LoggedInUsersList usersOnline = (LoggedInUsersList) context.getBean("usersList");
 			System.out.println("PRE");
 			for(String s : usersOnline.getUsersList()){
 				System.out.println("Contains " + s);
 			}
 			usersOnline.addUser(username);
 			System.out.println("POST");
-			LoggedInUsersList usersOnline2 = (LoggedInUsersList) context.getBean("usersList");
+			/*LoggedInUsersList usersOnline2 = (LoggedInUsersList) context.getBean("usersList");
 			for(String s : usersOnline2.getUsersList()){
 				System.out.println("Contains " + s);
-			}
+			}*/
 			
 			System.out.println("After the logged in userslist");
 		}

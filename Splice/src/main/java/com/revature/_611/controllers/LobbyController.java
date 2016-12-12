@@ -3,6 +3,7 @@ package com.revature._611.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -19,12 +20,16 @@ import com.revature._611.springbeans.LoggedInUsersList;
 @Controller
 public class LobbyController {
 
+	@Autowired
+	LoggedInUsersList usersOnline;
+
 	@RequestMapping(value="/getOnlineUsers", method = RequestMethod.GET)	
 	public @ResponseBody String getOnlineUsers()  {
 		
-		@SuppressWarnings("resource")
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		LoggedInUsersList usersOnline = context.getBean("usersList", LoggedInUsersList.class);
+		// @SuppressWarnings("resource")
+		// ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		// LoggedInUsersList usersOnline = context.getBean("usersList", LoggedInUsersList.class);
+		
 		List<String> usersList = usersOnline.getUsersList();
 		System.out.println("ONE: " );
 		for(String s : usersOnline.getUsersList()){
