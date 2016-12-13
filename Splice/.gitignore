@@ -2,8 +2,9 @@
 .settings
 .reccommenders
 .classpath
+.idea
+six-eleven.iml
 /target/
 /bin/
 /Servers/
 /RemoteSystemsTempFiles/
-/Servers/
