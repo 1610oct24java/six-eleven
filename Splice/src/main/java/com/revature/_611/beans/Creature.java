@@ -57,6 +57,22 @@ public class Creature extends Card implements Serializable {
 	
 	@Transient
 	private int researchCounters;
+	
+	public void wound(int dmg) {
+		this.woundCounters += dmg;
+	}
+	
+	public void research(int i) {
+		this.researchCounters += i;
+	}
+	
+	public boolean isDead() {
+		if (woundCounters >= vitality) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public void wound(int dmg) {
 		this.woundCounters += dmg;
@@ -80,6 +96,13 @@ public class Creature extends Card implements Serializable {
 	
 	public Creature() {
 		super();
+		this.woundCounters = 0;
+		this.researchCounters = 0;
+	}
+	
+	public Creature(String _name){
+		super();
+		this.name = _name;
 		this.woundCounters = 0;
 		this.researchCounters = 0;
 	}

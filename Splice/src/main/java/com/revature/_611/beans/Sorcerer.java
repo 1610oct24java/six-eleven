@@ -56,7 +56,7 @@ public class Sorcerer extends Card implements Serializable {
 		super();
 		this.name = _name;
 	}
-
+	
 	public Sorcerer(int cardID, String imgFront, String imgBack, String imgBorder, String name, String flavor,
 			boolean faceUp, int vitality, int power, int defense, int speed, int intelligence, int woundCounters) {
 		

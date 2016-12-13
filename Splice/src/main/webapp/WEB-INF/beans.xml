@@ -29,15 +29,15 @@
 		
 	</bean>
 	<bean id="lobbyList" class="com.revature._611.springbeans.LobbyList" scope="singleton">
-
+		
 	</bean>
 	<bean id="lobby" class="com.revature._611.springbeans.Lobby" scope="prototype">
-
+		
 	</bean>
 	<bean id="game" class="com.revature._611.springbeans.Game" scope="prototype">
-
+		
 	</bean>
 	<bean id="gameState" class="com.revature._611.springbeans.GameState" scope="prototype">
-
+		
 	</bean>
 </beans>
