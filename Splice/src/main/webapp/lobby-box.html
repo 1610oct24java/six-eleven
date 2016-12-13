@@ -2,7 +2,7 @@
 
   <div class="row">
   	<div class="col-md-2 col-md-offset-1 box-top-header">
-  		SPLICE
+  		Splice
   	</div>
   	
   	<div class="col-md-6 box-top-header">
@@ -29,7 +29,13 @@
     <div class="col-md-8">
     	
     	<div class="row">
-    		<div class="box-frame-title">Lobbies (<game-count></game-count>)</div>
+            <div class = "col-xs-1"></div>
+            <div class = "col-xs-10">
+                <div class="box-frame-title">Lobbies (<game-count></game-count>)</div>
+            </div>
+    		<div class = "col-xs-1">
+                <button class = "btn btn-sm" type = "button" ng-click="refreshLobbyData()">R</button>
+            </div>
     	</div>
     	
     	<div class="row box-session-content">

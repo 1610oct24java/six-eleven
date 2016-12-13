@@ -1,9 +1,15 @@
 package com.revature._611.beans;
 
-import com.revature._611.utils.Rando;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.revature._611.utils.Rando;
 
 /**
  * 3-DEC-2016
