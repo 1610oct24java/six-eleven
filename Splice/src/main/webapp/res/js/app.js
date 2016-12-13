@@ -204,7 +204,6 @@ app.controller("loginController", function ($scope, $http, $location) {
 });
 
 app.controller("lobbyController", function($scope, $http, $location) {
-    
     $scope.playerCount = 0;
     $scope.lobbyList;
     $scope.onlineUser = authUser;
@@ -248,13 +247,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
             url: '/Splice/lobbyCtrl',
             headers: {'Content-Type': 'application/json'}
         }).success(function (data){
-        	console.log("Data: ");
-            console.log(data.lobbies);
-
             $scope.lobbyList = data.lobbies;
-            
-            console.log("LobbyList: ");
-            console.log($scope.lobbyList)
         }).error(function (response){
         	console.log("Something went wrong with creating a new lobby!");
         });
@@ -267,13 +260,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
             headers: {'Content-Type': 'application/json'},
             data: lobbyObject
         }).success(function (data){
-        	console.log("Data: ");
-            console.log(data.lobbies);
-
             $scope.lobbyList = data.lobbies;
-            
-            console.log("LobbyList: ");
-            console.log($scope.lobbyList)
         }).error(function (response){
         	console.log("Something went wrong with creating a new lobby!");
         });
