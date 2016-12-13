@@ -84,6 +84,13 @@ public class Creature extends Card implements Serializable {
 		this.researchCounters = 0;
 	}
 
+	public Creature(String _name){
+		super();
+		this.name = _name;
+		this.woundCounters = 0;
+		this.researchCounters = 0;
+	}
+
 	/*----------------------------------
 	 * Getters
 	 *--------------------------------*/
