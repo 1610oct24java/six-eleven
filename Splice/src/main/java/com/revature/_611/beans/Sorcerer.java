@@ -1,15 +1,9 @@
 package com.revature._611.beans;
 
-import java.io.Serializable;
-import java.util.concurrent.ThreadLocalRandom;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import com.revature._611.utils.Rando;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 3-DEC-2016
@@ -56,7 +50,7 @@ public class Sorcerer extends Card implements Serializable {
 		super();
 		this.name = _name;
 	}
-	
+
 	public Sorcerer(int cardID, String imgFront, String imgBack, String imgBorder, String name, String flavor,
 			boolean faceUp, int vitality, int power, int defense, int speed, int intelligence, int woundCounters) {
 		

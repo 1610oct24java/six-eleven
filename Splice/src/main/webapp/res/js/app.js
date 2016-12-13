@@ -1,4 +1,4 @@
-var app = angular.module("gameApp", ["ngRoute"]);
+var app = angular.module("gameApp", ["ngRoute"]); 
 
 var authUser = null;
 var sorcerers = [
