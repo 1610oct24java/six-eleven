@@ -25,4 +25,22 @@ public class LoggedInUsersList {
 		this.usersList = usersList;
 		Collections.synchronizedList(usersList);
 	}
+	
+	public String toJsonString() {
+		System.out.println(usersList.toString());
+		
+		StringBuilder jsonString = new StringBuilder();
+		
+		jsonString.append("{ \"users\": [");
+		for (int i = 0; i < usersList.size(); i++) {
+			jsonString.append("\"" + usersList.get(i) + "\"");
+			if (i < usersList.size() - 1) {
+				jsonString.append(", ");
+			}
+		}
+		jsonString.append("]}");
+		
+		System.out.println("UsersList JSON: " + jsonString.toString());
+		return jsonString.toString();
+	}
 }

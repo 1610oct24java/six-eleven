@@ -2,15 +2,12 @@ app.controller("lobbyController", function($scope, $http, $location) {
     $scope.playerCount = 0;
     $scope.lobbyList;
     $scope.onlineUser = authUser;
+    $scope.playerList;
     getNewLobbyData();
-    
-    
-    $scope.playerList = [ {
-        playerName : authUser
-    }];
+    getPlayerList();
     
     // Creates a new Lobby bean and adds a new lobby to the Lobbies List view
-    $scope.createLobby = function(){  
+    $scope.createLobby = function() {  
     	$scope.lobbyName = this.lobbyName;
     	console.log("lobby name entered: " + $scope.lobbyName);
     	$scope.hostName;
@@ -33,11 +30,14 @@ app.controller("lobbyController", function($scope, $http, $location) {
     	// Send the Lobby JSON object to the server
     	console.log("Creating new Lobby...");
         postNewLobbyData($scope.newLobby); 
+        getPlayerList();
     }
 
     $scope.refreshLobbyData = function() {
         console.log("Refreshing lobby data... " );
         getNewLobbyData();
+        console.log("Refreshing player data...");
+        getPlayerList();
     }
     
     function getNewLobbyData(){
@@ -57,10 +57,14 @@ app.controller("lobbyController", function($scope, $http, $location) {
         console.log("Fetching online users...");
         $http ({
             method: 'GET',
-            url: '/Splice/usersCtrl',
+            url: '/Splice/getOnlineUsers',
             headers: {'Content-Type': 'application/json'}
         }).success (function (data){
-            // $scope.playerList = data.users;
+            console.log("Players Data: " );
+            console.log(data);
+            $scope.playerList = data.users;
+            console.log("PlayerList: " );
+            console.log($scope.playerList);
         }).error (function (response) {
             console.log("ERROR: Something went wrong fetching the online users!");
         })

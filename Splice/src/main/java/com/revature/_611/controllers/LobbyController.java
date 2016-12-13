@@ -26,37 +26,11 @@ public class LobbyController {
 	public @ResponseBody String getOnlineUsers()  {
 		
 		List<String> usersList = usersOnline.getUsersList();
-		System.out.println("ONE: " );
-		for(String s : usersOnline.getUsersList()){
-			System.out.println("1 Contains: " + s);
-		}
-		System.out.println("TWO: " );
-		for(String s : usersList){
-			System.out.println("2 Contains: " + s);
-		}
 		
-		// Create a JSON string of this structure to return only user names
-		// {"players":[{"player":"one"},{"player":"two"}]}
-		StringBuilder jsonString = new StringBuilder();
-		
-		// head of json string:
-		jsonString.append("{\"players\":[");
-		
-		// build players into the players JSON array:
-		for (int i=0; i < usersList.size(); i++){
-			jsonString.append("{\"player\":\" ");
-			jsonString.append(usersList.get(i));
-			jsonString.append( "\"}");
-			// add a comma if there is an extra player
-			if (i < usersList.size()-1){
-				jsonString.append(",");
-			}
-		}
-		// Add the end of the JSON string
-		jsonString.append("]}");
+		String jsonString = usersOnline.toJsonString();
 		
 		// Check the JSON here...
-		System.out.println("**Player JSON list: " + jsonString.toString());
+		System.out.println("**Player JSON list: " + jsonString);
 		return jsonString.toString(); 
 	}
 	
