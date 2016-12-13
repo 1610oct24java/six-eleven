@@ -57,5 +57,21 @@
       </div>
 	</div>
 	
+	<div ng-show="invalidLoginCredntialsRetrievedFromDatabase">
+		<h1 id="invalidLoginMessage">USERNAME OR PASSWORD IS INCORRECT</h1>
+	</div>
+	
+	<div ng-show="theUsernameYouEnteredHasBeenTakenBySomeoneElse">
+		<h1 id="usernameTakenMessage">that username is taken</h1>
+	</div>
+	
+	<div ng-show="youHaveSuccessfullyRegisteredWithSplice">
+		<h1 id="successfulRegistrationMessage">YoUArENoWReGiStErEdWiTh____SpLiCe</h1>
+	</div>
+	
+	<div ng-show="loadingGIFvisible">
+		<img src="res/images/loading_1.gif" alt="loading">
+	</div>
+	
 	<div id="logoDiv"><img src="res/images/SpliceLogo.png" alt="Splice Logo"></div>
 </div>

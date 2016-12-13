@@ -18,3 +18,18 @@
 	margin: auto;
 	width: 40%;
 }
+
+#invalidLoginMessage {
+	background: red;
+	font-family: Papyrus;
+}
+
+#usernameTakenMessage {
+	background: cyan;
+	font-family: Menlo;
+}
+
+#successfulRegistrationMessage {
+	background: yellow;
+	font-family: Palatino;
+}

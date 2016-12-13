@@ -1,15 +1,20 @@
-app.controller("loginController", function ($scope, $http, $location) {
+app.controller("loginController", function ($rootScope, $scope, $http, $location) {
 
     $scope.user;
     $scope.pass;
     $scope.registerUser;
     $scope.registerPass;
+    $rootScope.invalidLoginCredntialsRetrievedFromDatabase;
+    $rootScope.theUsernameYouEnteredHasBeenTakenBySomeoneElse;
+    $rootScope.youHaveSuccessfullyRegisteredWithSplice;
+    $rootScope.loadingGIFvisible;
 
     // this function pulls the login info from the textfields and sends as a http post
     $scope.doLogin = function() {
         // JSON object
         var loginData = {username: this.user, password: this.pass};
         
+        $rootScope.loadingGIFvisible = true;
         postLoginData(loginData, this.user);
         
         console.log("Username: " + this.user + " Password: " + this.pass);
@@ -21,6 +26,7 @@ app.controller("loginController", function ($scope, $http, $location) {
         // JSON object
         var registerData = {username:this.registerUser,password:this.registerPass};
         
+        $rootScope.loadingGIFvisible = true;
         postRegisterData(registerData, this.registerUser);
         
         console.log("Username: " + this.registerUser + " Password: " + this.registerPass);
@@ -43,7 +49,8 @@ app.controller("loginController", function ($scope, $http, $location) {
                 $location.path("/lobby");
             }else {
                 //display failed login message
-                console.log("Your username or password was wrong!");
+            	$rootScope.invalidLoginCredntialsRetrievedFromDatabase = true;
+            	$rootScope.loadingGIFvisible = false;
             }
         }).error(function (response){
             console.log("login error");
@@ -62,9 +69,13 @@ app.controller("loginController", function ($scope, $http, $location) {
             console.log(data);
             if(data.success == "ok")
             {
+            	$rootScope.youHaveSuccessfullyRegisteredWithSplice = true;
+            	$rootScope.loadingGIFvisible = false;
                 console.log("OK! received successful register");
             }else {
                 //display failed login message
+            	$rootScope.theUsernameYouEnteredHasBeenTakenBySomeoneElse = true;
+            	$rootScope.loadingGIFvisible = false;
                 console.log("Bad! received failed register");
             }
         }).error(function (response){
