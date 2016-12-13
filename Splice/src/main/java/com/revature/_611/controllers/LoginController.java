@@ -1,9 +1,13 @@
 package com.revature._611.controllers;
 
-import com.revature._611.beans.User;
-import com.revature._611.services.UserService;
-import com.revature._611.springbeans.LoggedInUsersList;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import com.revature._611.beans.User;
+import com.revature._611.services.UserService;
+import com.revature._611.springbeans.LoggedInUsersList;
 
 @Controller
 public class LoginController {

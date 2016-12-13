@@ -74,6 +74,22 @@ public class Creature extends Card implements Serializable {
 		}
 	}
 
+	public void wound(int dmg) {
+		this.woundCounters += dmg;
+	}
+
+	public void research(int i) {
+		this.researchCounters += i;
+	}
+
+	public boolean isDead() {
+		if (woundCounters >= vitality) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	/*----------------------------------
 	 * Constructors
 	 *--------------------------------*/

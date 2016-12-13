@@ -1,13 +1,14 @@
 package com.revature._611.dao;
 
-import com.revature._611.beans.User;
-import com.revature._611.utils.HibernateUtil;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.revature._611.beans.User;
+import com.revature._611.utils.HibernateUtil;
 
 /**
  * 2016/12/01
