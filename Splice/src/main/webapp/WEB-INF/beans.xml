@@ -24,9 +24,9 @@
 			<value>.html</value>
 		</property> -->
 	</bean>
-	
+
 	<bean id="usersList" class="com.revature._611.springbeans.LoggedInUsersList" scope="singleton">
-		
+
 	</bean>
 	<bean id="lobbyList" class="com.revature._611.springbeans.LobbyList" scope="singleton">
 

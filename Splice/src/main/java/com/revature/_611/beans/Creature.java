@@ -1,12 +1,7 @@
 package com.revature._611.beans;
 
+import javax.persistence.*;
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  * 5-DEC-2016
@@ -57,22 +52,6 @@ public class Creature extends Card implements Serializable {
 	
 	@Transient
 	private int researchCounters;
-	
-	public void wound(int dmg) {
-		this.woundCounters += dmg;
-	}
-	
-	public void research(int i) {
-		this.researchCounters += i;
-	}
-	
-	public boolean isDead() {
-		if (woundCounters >= vitality) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	public void wound(int dmg) {
 		this.woundCounters += dmg;
@@ -100,13 +79,6 @@ public class Creature extends Card implements Serializable {
 		this.researchCounters = 0;
 	}
 	
-	public Creature(String _name){
-		super();
-		this.name = _name;
-		this.woundCounters = 0;
-		this.researchCounters = 0;
-	}
-
 	public Creature(String _name){
 		super();
 		this.name = _name;
@@ -271,7 +243,4 @@ public class Creature extends Card implements Serializable {
 				+ ", temperment=" + temperment + ", aggressionRating=" + aggressionRating + ", woundCounters="
 				+ woundCounters + ", researchCounters=" + researchCounters + "]";
 	}
-	
-	
-	
 }

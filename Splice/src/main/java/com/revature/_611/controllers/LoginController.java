@@ -61,23 +61,6 @@ public class LoginController {
 		}
 	}
 
-	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public @ResponseBody String register(@RequestBody User tempUser)
-	{
-		// Check received user from Angular post
-		System.out.println("Registering user: name=" + tempUser.getUsername() + " pass=" + tempUser.getPassword());
-
-		boolean success = UserService.doCommand("Register", tempUser);
-
-		if (success)
-		{
-			System.out.println("Successful registration! Returning 'ok'");
-			return "{\"success\":\"ok\"}";
-		}else {
-			System.out.println("Oh, snap! Registration failed.. Returning 'bad'");
-			return "{\"success\":\"bad\"}";
-		}
-	}
 
 	// Adds the username to the synchronized list of the logged in user
 	private void addUser(String username) {
