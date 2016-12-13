@@ -1,24 +1,28 @@
 package com.revature._611.springbeans;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.stereotype.Component;
+import java.util.Collections;
 
 
 public class LoggedInUsersList {
-	private ArrayList usersList = new ArrayList();
+	private ArrayList<String> usersList = new ArrayList<>();
 	
-	public ArrayList getUsersList() {
+	public ArrayList<String> getUsersList() {
 		return usersList;
 	}
 
 	public boolean addUser(String username) {
-		return this.usersList.add(username);
+		boolean status = false;
+		
+		System.out.println("Adding: " + username);
+		
+		status = usersList.add(username);
+		
+		return status;
 	}
 	
 	public void setUsersList(ArrayList<String> usersList) {
 		this.usersList = usersList;
+		Collections.synchronizedList(usersList);
 	}
 }
