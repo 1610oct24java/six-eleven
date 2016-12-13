@@ -144,9 +144,8 @@ app.controller("loginController", function ($scope, $http, $location) {
         var loginData = {username: this.user, password: this.pass};
         
         postLoginData(loginData, this.user);
-        
-        console.log("Username: " + this.user + " Password: " + this.pass);
-        console.log("login data: " + loginData); 
+        console.log("login data object: ");
+        console.log(loginData)
     }
     
     // this function pulls the register info from the textfields and sends as a http post
@@ -161,8 +160,7 @@ app.controller("loginController", function ($scope, $http, $location) {
     }
     
     // postData takes in JSON, sends with HTTP POST to Spring LoginController
-    function postLoginData(data, username)
-    {
+    function postLoginData(data, username){
         $http({
             method: 'POST',
             url: '/Splice/login',
@@ -184,8 +182,7 @@ app.controller("loginController", function ($scope, $http, $location) {
     }
     
     // postData takes in JSON, sends with HTTP POST to Spring LoginController
-    function postRegisterData(data, username)
-    {
+    function postRegisterData(data, username){
         $http({
             method: 'POST',
             url: '/Splice/register',
@@ -209,36 +206,76 @@ app.controller("loginController", function ($scope, $http, $location) {
 app.controller("lobbyController", function($scope, $http, $location) {
     
     $scope.playerCount = 0;
+    $scope.lobbyList;
     $scope.onlineUser = authUser;
+    getNewLobbyData();
+    
     
     $scope.playerList = [ {
         playerName : authUser
     }];
     
-    $scope.gameList = [ {
-        playerCount : '0',
-        creator : 'Ric',
-        gameName : 'beginners only'
-    }];
-    
-    $scope.createGame = function(){
-        $scope.gameList.push({playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
-        
-        //var newGameData = {playerCount:$scope.playerCount,creator:$scope.username,gameName:$scope.gameName});
-        
-        postNewGameData(newGameData);
-        console.log(newGameData); 
-        $scope.gameName = "";
+    // Creates a new Lobby bean and adds a new lobby to the Lobbies List view
+    $scope.createLobby = function(){  
+    	$scope.lobbyName = this.lobbyName;
+    	console.log("lobby name entered: " + $scope.lobbyName);
+    	$scope.hostName;
+    	$scope.membersNames;
+    	$scope.myGame;
+    	$scope.chat;
+    	
+    	// This is a Lobby spring bean
+    	$scope.newLobby = {
+    		lobbyName: $scope.lobbyName,
+    		hostName: $scope.onlineUser,
+    		membersNames: [
+    			$scope.onlineUser
+    		],
+    		myGame: null,
+    		chat: [""]
+    	}
+    	console.log("This is our lobby obj: " + $scope.newLobby);
+    	
+    	// Send the Lobby JSON object to the server
+    	console.log("Creating new Lobby...");
+        postNewLobbyData($scope.newLobby); 
     }
     
-    function postNewGameData(data){
+    function getNewLobbyData(){
+    	console.log("Fetching first lobby data...");
+        $http({
+            method: 'GET',
+            url: '/Splice/lobbyCtrl',
+            headers: {'Content-Type': 'application/json'}
+        }).success(function (data){
+        	console.log("Data: ");
+            console.log(data.lobbies);
+
+            $scope.lobbyList = data.lobbies;
+            
+            console.log("LobbyList: ");
+            console.log($scope.lobbyList)
+        }).error(function (response){
+        	console.log("Something went wrong with creating a new lobby!");
+        });
+    }
+
+    function postNewLobbyData(lobbyObject){
         $http({
             method: 'POST',
-            url: '/Splice/gameList',
+            url: '/Splice/lobbyCtrl',
             headers: {'Content-Type': 'application/json'},
-            data: data
-        }).success(function (output){
-            console.log("JSON output: " + JSON.parse(output));
+            data: lobbyObject
+        }).success(function (data){
+        	console.log("Data: ");
+            console.log(data.lobbies);
+
+            $scope.lobbyList = data.lobbies;
+            
+            console.log("LobbyList: ");
+            console.log($scope.lobbyList)
+        }).error(function (response){
+        	console.log("Something went wrong with creating a new lobby!");
         });
     }
     
@@ -247,7 +284,7 @@ app.controller("lobbyController", function($scope, $http, $location) {
     }
     
     $scope.deleteGame = function(index){
-        $scope.gameList.splice(index,1);
+        $scope.lobbyList.splice(index,1);
     }
     
     $scope.chatlog = [{
@@ -294,7 +331,7 @@ app.directive('playerCount', function(){
     return { template : '{{playerList.length}}'};
 });
 app.directive('gameCount',function(){
-    return { template : '{{gameList.length}}'};
+    return { template : '{{lobbyList.length}}'};
 });
 
 app.controller("queueController", function($scope, $http, $location) {

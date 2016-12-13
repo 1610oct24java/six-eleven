@@ -13,7 +13,6 @@ import com.revature._611.beans.Game;
 */
 
 public class Lobby {
-	
 	String lobbyName = "default";
 	String hostName;
 	List<String> membersNames;
@@ -71,5 +70,55 @@ public class Lobby {
 		this.chat = chat;
 	}
 	
+	/**
+	 * Converts the Lobby object into a json object string
+	 * 
+	 * @return {
+    		\"lobbyName\": \"$scope.lobbyName\",
+    		hostName: $scope.onlineUser,
+    		membersNames: [
+    			$scope.onlineUser
+    		],
+    		myGame: null,
+    		chat: [""]
+    		}
+	 */
+	public String toJsonString(){
+		StringBuilder jsonString = new StringBuilder();
+		
+		// head of json string:
+		jsonString.append("{")
+		.append("\"lobbyName\":\"" + lobbyName + "\",");
+		jsonString.append("\"hostName\":\"" + hostName + "\",");
+		jsonString.append("\"membersNames\":[");
+			for (int i = 0; i < membersNames.size(); i++) {
+				jsonString.append("\"" + membersNames.get(i) + "\"");
+				if (i < (membersNames.size() - 1) ) {
+					jsonString.append(",");
+				}
+			}
+			jsonString.append("],");
+		jsonString.append("\"game\":\"" + "null" + "\",");
+		jsonString.append("\"chat\":[");
+			for (int i = 0; i < chat.size(); i++) {
+				jsonString.append("\"" + chat.get(i) + "\"");
+				if (i < (chat.size() - 1) ) {
+					jsonString.append(",");
+				}
+			}
+			jsonString.append("],");
+		jsonString.append("\"numMembers\":\"" + membersNames.size() + "\"");
+		jsonString.append("}");
+		
+		System.out.println("Lobby toJsonString: " + jsonString.toString());
+		return jsonString.toString();
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Lobby [lobbyName=" + lobbyName + ", hostName=" + hostName + ", membersNames=" + membersNames
+				+ ", myGame=" + myGame + ", chat=" + chat + "]";
+	}
 	
 }

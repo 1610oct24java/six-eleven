@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature._611.beans.Message;
+import com.revature._611.springbeans.Lobby;
+import com.revature._611.springbeans.LobbyList;
 import com.revature._611.springbeans.LoggedInUsersList;
 
 @Controller
@@ -17,6 +19,8 @@ public class LobbyController {
 
 	@Autowired
 	LoggedInUsersList usersOnline;
+	@Autowired
+	LobbyList myLobbies;
 
 	@RequestMapping(value="/getOnlineUsers", method = RequestMethod.GET)	
 	public @ResponseBody String getOnlineUsers()  {
@@ -56,6 +60,20 @@ public class LobbyController {
 		return jsonString.toString(); 
 	}
 	
+	@RequestMapping(value = "/lobbyCtrl", method = RequestMethod.POST)
+	public @ResponseBody String createLobby(@RequestBody Lobby newLobby) {
+		// newLobby is a new Lobby object
+
+		myLobbies.addLobby(newLobby);
+
+		return myLobbies.toJsonString();
+	}
+	
+	@RequestMapping(value = "/lobbyCtrl", method = RequestMethod.GET)
+	public @ResponseBody String getLobby() {
+		return myLobbies.toJsonString();
+	}
+	
 	@RequestMapping(value="/sendLobbyMessage", method = RequestMethod.POST)
 	public @ResponseBody String sendMessage(@RequestBody Message msg)  
 	{	
@@ -74,4 +92,6 @@ public class LobbyController {
 			return "bad";
 		} 
 	}
+	
+	
 }
