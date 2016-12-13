@@ -47,6 +47,21 @@ app.controller("lobbyController", function($scope, $http, $location) {
         	console.log("Something went wrong with creating a new lobby!");
         });
     }
+    
+    function getPlayerList() {
+        console.log("Fetching online users...");
+        $http ({
+            method: 'GET',
+            url: '/Splice/usersCtrl',
+            headers: {'Content-Type': 'application/json'}
+        }).success (function (data){
+            // $scope.playerList = data.users;
+        }).error (function (response) {
+            console.log("ERROR: Something went wrong fetching the online users!");
+        })
+    }
+    
+    function
 
     function postNewLobbyData(lobbyObject){
         $http({
