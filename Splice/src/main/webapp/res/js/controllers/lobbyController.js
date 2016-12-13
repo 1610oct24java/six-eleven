@@ -60,8 +60,6 @@ app.controller("lobbyController", function($scope, $http, $location) {
             console.log("ERROR: Something went wrong fetching the online users!");
         })
     }
-    
-    function
 
     function postNewLobbyData(lobbyObject){
         $http({
