@@ -39,6 +39,11 @@ app.controller("lobbyController", function($scope, $http, $location) {
         console.log("Refreshing player data...");
         getPlayerList();
     }
+
+    $scope.refreshLobbyData = function() {
+        console.log("Refreshing lobby data... " );
+        getNewLobbyData();
+    }
     
     function getNewLobbyData(){
     	console.log("Fetching first lobby data...");

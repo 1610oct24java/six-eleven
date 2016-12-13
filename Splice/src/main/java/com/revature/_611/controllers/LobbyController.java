@@ -1,7 +1,9 @@
 package com.revature._611.controllers;
 
-import java.util.List;
-
+import com.revature._611.beans.Message;
+import com.revature._611.springbeans.Lobby;
+import com.revature._611.springbeans.LobbyList;
+import com.revature._611.springbeans.LoggedInUsersList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.revature._611.beans.Message;
-import com.revature._611.springbeans.Lobby;
-import com.revature._611.springbeans.LobbyList;
-import com.revature._611.springbeans.LoggedInUsersList;
+import java.util.List;
 
 @Controller
 public class LobbyController {
@@ -42,15 +41,15 @@ public class LobbyController {
 
 		return myLobbies.toJsonString();
 	}
-	
+
 	@RequestMapping(value = "/lobbyCtrl", method = RequestMethod.GET)
 	public @ResponseBody String getLobby() {
 		return myLobbies.toJsonString();
 	}
-	
+
 	@RequestMapping(value="/sendLobbyMessage", method = RequestMethod.POST)
-	public @ResponseBody String sendMessage(@RequestBody Message msg)  
-	{	
+	public @ResponseBody String sendMessage(@RequestBody Message msg)
+	{
 		// Check received user from Angular post
 		System.out.println("Receive message: sender=" + msg.getSender() + " content=" + msg.getContent());
 		
@@ -66,6 +65,6 @@ public class LobbyController {
 			return "bad";
 		} 
 	}
-	
-	
+
+
 }
