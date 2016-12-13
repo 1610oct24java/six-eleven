@@ -1,9 +1,8 @@
 package com.revature._611.services;
 
-import org.springframework.stereotype.Component;
-
 import com.revature._611.beans.User;
 import com.revature._611.dao.UserDAOImpl;
+import org.springframework.stereotype.Component;
 
 @Component
 public class UserService {
@@ -37,6 +36,10 @@ public class UserService {
 			}
 			break;
 			
+		case REGISTER:
+			success = userDao.registerNewUser(tempUser);
+			break;
+
 		case LOGOUT: // may not need this for spring here
 			break;
 		

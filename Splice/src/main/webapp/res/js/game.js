@@ -84,9 +84,9 @@
         state: {
             round: 1,
             turn: 0,
-            phase: 1,
+            phase: 1
         }
-    }
+    };
     
     game.deck = creatures;
     

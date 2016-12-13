@@ -6,7 +6,7 @@
   	</div>
   	
   	<div class="col-md-6 box-top-header">
-  		Welcome, {{username}} 
+  		Welcome, {{onlineUser}}!
   	</div>
   	
   	<div class="col-md-2 box-top-header">
@@ -21,7 +21,7 @@
       <div class="box-frame-title">Online (<player-count></player-count>)</div>
       <div class="box-player-list">
         <ul>
-          <li ng-repeat="player in playerList">{{player.player}}</li>
+          <li ng-repeat="player in playerList">{{player.playerName}}</li>
         </ul>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="col-md-8">
     	
     	<div class="row">
-    		<div class="box-frame-title">Game Sessions (<game-count></game-count>)</div>
+    		<div class="box-frame-title">Lobbies (<game-count></game-count>)</div>
     	</div>
     	
     	<div class="row box-session-content">
@@ -40,10 +40,10 @@
     		      <th>Name</th>
     		      <th></th>
     		   </tr>
-    		   <tr ng-repeat="game in gameList">
-    		      <td>{{ game.playerCount }}</td>
-    		      <td>{{ game.creator }}</td>
-    		      <td>{{ game.gameName }}</td>
+    		   <tr ng-repeat="lobby in lobbyList">
+    		      <td>{{ lobby.numMembers }}</td>
+    		      <td>{{ lobby.hostName }}</td>
+    		      <td>{{ lobby.lobbyName }}</td>
     		      <td><span><button class="btn btn-xs btn-join box-right" type="button" 
     		      		ng-click="joinGame($index)">Join</button>
     		      		<button class="btn btn-xs btn-box-red box-right" type="button" 
@@ -55,8 +55,8 @@
     	
     	<div class="row">
     	  <form class="box-right">
-             <input ng-model="gameName" type="text" class="" name="gamename" placeholder="Game Name">
-             <button class="btn btn-md btn-box-blue" type="button"  ng-click="createGame()">Create New Game</button>
+             <input ng-model="lobbyName" type="text" class="" name="gamename" placeholder="Lobby Name">
+             <button class="btn btn-md btn-box-blue" type="button"  ng-click="createLobby()">Create New Lobby</button>
           </form>
     	</div>
     	

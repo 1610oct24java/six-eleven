@@ -1,14 +1,13 @@
 package com.revature._611.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.revature._611.beans.User;
+import com.revature._611.utils.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.revature._611.beans.User;
-import com.revature._611.utils.HibernateUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 2016/12/01
@@ -24,6 +23,7 @@ public class UserDAOImpl implements UserDAO {
 
 	private static HibernateUtil hu = new HibernateUtil();
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean registerNewUser(User usr) {
 		
