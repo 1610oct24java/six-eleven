@@ -139,14 +139,6 @@ app.controller("browserController", function($rootScope, $scope, $http, $locatio
     }
 
     $scope.logOut = function(){
-        $http({
-            method: 'POST',
-            url: '/Splice/logout',
-            headers: {'Content-Type': 'application/json'},
-            //data: data
-        }).success(function (output){
-            console.log("JSON output: " + JSON.parse(output));
-            $location.path=("/login");
-        });
+        $location.path("/login");
     }
 });
