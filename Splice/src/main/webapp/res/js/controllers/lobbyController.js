@@ -23,7 +23,7 @@ app.controller("lobbyController", function($rootScope, $scope, $http, $location)
 	  }).success(function (data){
 		  console.log(data);
 		  $rootScope.game = data;
-		  $location.path("/queue");
+		  $location.path("/game");
 	  });
     }
     

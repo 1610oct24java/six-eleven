@@ -23,10 +23,10 @@ app.controller("gameController", function($rootScope, $scope, $http, $location) 
     };
     
     $scope.leaveGame = function () {
-    	$location.path("/lobby");
+    	$location.path("/queue");
     }
     
-    $scope.checkWin = function() {
+    function getGame() {
     	if ($rootScope.game.winnerIndex > 0 ) {
     		var p = $rootScope.game.players[$rootScope.game.winnerIndex];
         	var s = p.sorc;
