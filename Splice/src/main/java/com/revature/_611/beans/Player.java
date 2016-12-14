@@ -22,7 +22,18 @@ public class Player implements Serializable {
 		StringBuilder json = new StringBuilder();
 		
 		json.append("{");
-		json.append("\"sorc\": " + sorc.toJsonString());
+		json.append("\"sorc\": " + sorc.toJsonString() + ",");
+		json.append("\n");
+		json.append("\"researchPool\": \"" + researchPool + "\",");
+		json.append("\n");
+		json.append("\"lab\": [");
+		for (int i = 0; i < lab.size(); i++ ) {
+			json.append(lab.get(i).toJsonString());
+			if (i < lab.size() - 1){
+				json.append(",");
+			}
+		}
+		json.append("]}");
 		
 		return json.toString();
 	}

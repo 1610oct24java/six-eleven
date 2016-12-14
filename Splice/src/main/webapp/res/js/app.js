@@ -1,7 +1,7 @@
 var app = angular.module("gameApp", ["ngRoute"]);
 
 var authUser = null;
-var sorcerers = [
+/*var sorcerers = [
         {
             name: 'Xanitov, Radiant Husk',
             vit: 5,
@@ -105,7 +105,7 @@ var players = [
         researchPool: 0,
         lab: [creatures[2]]
     }
-];
+];*/
 
 app.config(function ($routeProvider) {
     

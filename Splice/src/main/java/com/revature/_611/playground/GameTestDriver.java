@@ -16,7 +16,7 @@ public class GameTestDriver {
 		
 		theGame = new Game();
 		p("# Initializing game...");
-		theGame.initGame(2, true);
+		theGame.initGame(2, false);
 		p(theGame.toString());
 		System.out.println(theGame.toJsonString());
 		/* p(theGame.toString());

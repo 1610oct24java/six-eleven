@@ -1,17 +1,19 @@
 <br>
-<div class = "wrap game-board" ng-controller = "gameController as game">
+<div class = "wrap game-board" ng-controller = "gameController">
     <h1 class = "text-center custom-title">Splice</h1>
     <div class="container-fluid">
         <div class = "row">
-            <div class = "col-xs-4">
-
+        	<div class = "col-xs-2"></div>
+            <div class = "col-xs-1">
+				 <button class = "btn btn-sm" type = "button" ng-click="stepGame()">S</button>
             </div>
-            <div class = "col-xs-4 text-center">
-                <h3 class = "custom-title"><b>Round:</b> {{game.state.round}}, <b>Turn:</b> {{game.getTurn()}}, <b>Phase:</b> {{game.getPhase()}}</h3>
+            <div class = "col-xs-6 text-center">
+                <h3 class = "custom-title"><b>Round:</b> {{game.state.round}}, <b>Turn:</b> {{getTurn()}}, <b>Phase:</b> {{getPhase()}}</h3>
             </div>
-            <div class = "col-xs-4">
-
+            <div class = "col-xs-1">
+				 <button class = "btn btn-sm" type = "button" ng-click="refreshGame()">R</button>
             </div>
+            <div class = "col-xs-2"></div>
         </div>
         <div id="opponent" class="row">
             <div class = "col-md-1">
@@ -19,46 +21,46 @@
             </div>
             <div class = "col-md-4"></div>
             <div class = "col-md-2 card-area">
-                <div class = "card card-sorc">
+            	<div class = "card card-sorc">
                     <div class = "name">
-                        <span>{{game.players[0].mySorc.name}}</span>
+                        <span>{{game.players[0].sorc.name}}</span>
                     </div>
                     <div class = "flavor">
-                        <p>{{game.players[0].mySorc.flavor}}</p>
+                        <p>{{game.players[0].sorc.flavor}}</p>
                     </div>
                     <div class = "cardart">
-                        <img ng_src = "images/{{game.players[0].mySorc.image}}">
+                        <img ng_src = "images/{{game.players[0].sorc.imgFront}}">
                     </div>
                     <div class = "stat">
                         <div class = "vit">
                             <div class = "label">
                                 VIT: 
                             </div>
-                            {{game.players[0].mySorc.vit}}
+                            {{game.players[0].sorc.vitality}}
                         </div>
                         <div class = "pow">
                             <div class = "label">
                                 POW: 
                             </div>
-                            {{game.players[0].mySorc.pow}}
+                            {{game.players[0].sorc.power}}
                         </div>
                         <div class = "def">
                             <div class = "label">
                                 DEF:
                             </div>
-                            {{game.players[0].mySorc.def}}
+                            {{game.players[0].sorc.defense}}
                         </div>
                         <div class = "spd">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{game.players[0].mySorc.spd}}
+                            {{game.players[0].sorc.speed}}
                         </div>
                         <div class = "int">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{game.players[0].mySorc.int}}
+                            {{game.players[0].sorc.intelligence}}
                         </div>
                     </div>
                 </div>
@@ -72,41 +74,41 @@
                         <p>{{creature.flavor}}</p>
                     </div>
                     <div class = "cardart">
-                        <img ng_src = "images/{{creature.image}}">
+                        <img ng_src = "images/{{creature.imgFront}}">
                     </div>
                     <div class = "stat">
                         <div class = "vit">
                             <div class = "label">
                                 VIT:
                             </div>
-                            {{creature.vit}}
+                            {{creature.vitality}}
                         </div>
                         <div class = "pow">
                             <div class = "label">
                                 POW:
                             </div>
-                            {{creature.pow}}
+                            {{creature.power}}
                         </div>
 
                         <div class = "def">
                             <div class = "label">
                                 DEF:
                             </div>
-                            {{creature.def}}
+                            {{creature.defense}}
                         </div>
 
                         <div class = "spd">
                             <div class = "label">
                                 SPD:
                             </div>
-                            {{creature.spd}}
+                            {{creature.speed}}
                         </div>
 
                         <div class = "int">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{creature.int}}
+                            {{creature.intelligence}}
                         </div>
                     </div>
                 </div>
@@ -127,41 +129,41 @@
                         <p>{{creature.flavor}}</p>
                     </div>
                     <div class = "cardart">
-                        <img ng_src = "images/{{creature.image}}">
+                        <img ng_src = "images/{{creature.imgFront}}">
                     </div>
                     <div class = "stat">
                         <div class = "vit">
                             <div class = "label">
                                 VIT: 
                             </div>
-                            {{creature.vit}}
+                            {{creature.vitality}}
                         </div>
                         <div class = "pow">
                             <div class = "label">
                                 POW: 
                             </div>
-                            {{creature.pow}}
+                            {{creature.power}}
                         </div>
                         
                         <div class = "def">
                             <div class = "label">
                                 DEF:
                             </div>
-                            {{creature.def}}
+                            {{creature.defense}}
                         </div>
                         
                         <div class = "spd">
                             <div class = "label">
                                 SPD:
                             </div>
-                            {{creature.spd}}
+                            {{creature.speed}}
                         </div>
                         
                         <div class = "int">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{creature.int}}
+                            {{creature.intelligence}}
                         </div>
                     </div>
                 </div>
@@ -178,44 +180,44 @@
             <div class = "col-md-2 card-area">
                 <div class = "card card-sorc">
                     <div class = "name">
-                        <span>{{game.players[1].mySorc.name}}</span>
+                        <span>{{game.players[1].sorc.name}}</span>
                     </div>
                     <div class = "flavor">
-                        <p>{{game.players[1].mySorc.flavor}}</p>
+                        <p>{{game.players[1].sorc.flavor}}</p>
                     </div>
                     <div class = "cardart">
-                        <img ng_src = "images/{{game.players[1].mySorc.image}}">
+                        <img ng_src = "images/{{game.players[1].sorc.imgFront}}">
                     </div>
                     <div class = "stat">
                         <div class = "vit">
                             <div class = "label">
                                 VIT: 
                             </div>
-                            {{game.players[1].mySorc.vit}}
+                            {{game.players[1].sorc.vitality}}
                         </div>
                         <div class = "pow">
                             <div class = "label">
                                 POW: 
                             </div>
-                            {{game.players[1].mySorc.pow}}
+                            {{game.players[1].sorc.power}}
                         </div>
                         <div class = "def">
                             <div class = "label">
                                 DEF:
                             </div>
-                            {{game.players[1].mySorc.def}}
+                            {{game.players[1].sorc.defense}}
                         </div>
                         <div class = "spd">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{game.players[1].mySorc.spd}}
+                            {{game.players[1].sorc.speed}}
                         </div>
                         <div class = "int">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{game.players[1].mySorc.int}}
+                            {{game.players[1].sorc.intelligence}}
                         </div>
                     </div>
                 </div>
@@ -229,41 +231,41 @@
                         <p>{{creature.flavor}}</p>
                     </div>
                     <div class = "cardart">
-                        <img ng_src = "images/{{creature.image}}">
+                        <img ng_src = "images/{{creature.imgFront}}">
                     </div>
                     <div class = "stat">
                         <div class = "vit">
                             <div class = "label">
                                 VIT:
                             </div>
-                            {{creature.vit}}
+                            {{creature.vitality}}
                         </div>
                         <div class = "pow">
                             <div class = "label">
                                 POW:
                             </div>
-                            {{creature.pow}}
+                            {{creature.power}}
                         </div>
 
                         <div class = "def">
                             <div class = "label">
                                 DEF:
                             </div>
-                            {{creature.def}}
+                            {{creature.defense}}
                         </div>
 
                         <div class = "spd">
                             <div class = "label">
                                 SPD:
                             </div>
-                            {{creature.spd}}
+                            {{creature.speed}}
                         </div>
 
                         <div class = "int">
                             <div class = "label">
                                 INT:
                             </div>
-                            {{creature.int}}
+                            {{creature.intelligence}}
                         </div>
                     </div>
                 </div>

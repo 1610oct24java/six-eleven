@@ -54,6 +54,7 @@ public class Sorcerer extends Card implements Serializable {
 		json.append("\"imgBack\": \"" + this.imgBack + "\", ");
 		json.append("\n");
 		json.append("\"imgBorder\": \"" + this.imgBorder + "\", ");
+		json.append("\n");
 		json.append("\"name\": \"" + this.name + "\", ");
 		json.append("\n");
 		json.append("\"flavor\": \"" + this.flavor + "\", ");
@@ -62,8 +63,17 @@ public class Sorcerer extends Card implements Serializable {
 		json.append("\n");
 		json.append("\"vitality\": \"" + this.vitality  + "\", ");
 		json.append("\n");
-		json.append("\"imgFront\": \"" + this.imgFront + "\", ");
+		json.append("\"power\": \"" + this.power + "\", ");
 		json.append("\n");
+		json.append("\"defense\": \"" + this.defense + "\", ");
+		json.append("\n");
+		json.append("\"speed\": \"" + this.speed + "\", ");
+		json.append("\n");
+		json.append("\"intelligence\": \"" + this.intelligence + "\", ");
+		json.append("\n");
+		json.append("\"woundCounters\": \"" + this.woundCounters + "\"");
+		json.append("\n");
+		json.append("}");
 		
 		return json.toString();
 	}

@@ -40,11 +40,33 @@ public class Game implements Serializable {
 		StringBuilder json = new StringBuilder();
 		
 		json.append("{");
+		json.append("\n");
 		json.append("\"players\": [");
+		json.append("\n");
 		for (int i = 0; i < players.size(); i++) {
-			System.out.println(i);
 			json.append(players.get(i).toJsonString());
+			if (i < players.size() - 1){
+				json.append(",");
+			}
+			json.append("\n");
 		}
+		json.append("],");
+		json.append("\n");
+		json.append("\"deckCreatures\": " + deckCreatures.toJsonString() + ",");
+		json.append("\n");
+		json.append("\"wylds\": [");
+		for (int i = 0; i < wylds.size(); i++) {
+			json.append(wylds.get(i).toJsonString());
+			if (i < wylds.size() - 1) {
+				json.append(",");
+			}
+			json.append("\n");
+		}
+		json.append("],");
+		json.append("\n");
+		json.append("\"state\": " + state.toJsonString());
+		json.append("\n");
+		json.append("}");
 		
 		return json.toString();
 	}

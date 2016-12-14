@@ -6,18 +6,25 @@ app.controller("lobbyController", function($rootScope, $scope, $http, $location)
 	$scope.playerCount = $rootScope.lobby.numMembers;
     $scope.username = $rootScope.onlineUser;
     $scope.playerList = $rootScope.lobby.membersNames;
+    
+    $rootScope.game;
 	
     $scope.startGame = function(){
-//      $http({
-//          method: 'POST',
-//          url: 'StartGame.do',
-//          headers: {'Content-Type': 'application/json'},
-//          //data: data
-//      }).success(function (output){
-//          //console.log("JSON output: " + JSON.parse(output));
-//          $location.path="/game";
-//      });
-        $location.path("/game");
+    	console.log("Starting game...");
+    	getGame($scope.lobbyName);        
+    }
+    
+    function getGame(lobbyName){
+      $http({
+	      method: 'POST',
+	      url: '/Splice/getGame',
+	      headers: {'Content-Type': 'application/json'},
+	      data: lobbyName
+	  }).success(function (data){
+		  console.log(data);
+		  $rootScope.game = data;
+		  $location.path("/game");
+	  });
     }
     
     $scope.refreshData = function() {

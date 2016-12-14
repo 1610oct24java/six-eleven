@@ -2,7 +2,7 @@ package com.revature._611.springbeans;
 
 import java.util.List;
 
-import com.revature._611.beans.Game;
+import com.revature._611.springbeans.Game;
 
 /*
 * LOBBY
