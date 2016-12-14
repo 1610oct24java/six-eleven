@@ -12,11 +12,14 @@ public class GameTestDriver {
 	
 	public void drive() {
 		p("Driving...");
+		
+		
 		theGame = new Game();
-		p(theGame.toString());
 		p("# Initializing game...");
 		theGame.initGame(2, true);
 		p(theGame.toString());
+		System.out.println(theGame.toJsonString());
+		/* p(theGame.toString());
 		p(theGame.printStatus());
 		theGame.debugSetState(1, 0, 2);
 		p(theGame.printStatus());
@@ -42,7 +45,9 @@ public class GameTestDriver {
 		theGame.skipPhase();
 		p(theGame.printStatus());
 		theGame.skipPhase();
-		p(theGame.printStatus());
+		p(theGame.printStatus());*/
+		
+		
 		/*p(theGame.toString());
 		p(theGame.printStatus());
 		theGame.attackCreature(theGame.getWylds().get(2).getName());

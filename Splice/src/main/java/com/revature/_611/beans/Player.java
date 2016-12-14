@@ -18,6 +18,15 @@ public class Player implements Serializable {
 	private int researchPool = 5;
 	private List<Creature> lab = new ArrayList<Creature>();
 	
+	public String toJsonString() {
+		StringBuilder json = new StringBuilder();
+		
+		json.append("{");
+		json.append("\"sorc\": " + sorc.toJsonString());
+		
+		return json.toString();
+	}
+	
 	/*
 	 *  CONSTRUCTORS
 	 */

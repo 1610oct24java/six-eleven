@@ -36,6 +36,15 @@ public class Lobby {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Boolean addPlaya(String playaName){
+		if(!membersNames.contains(playaName)){
+			membersNames.add(playaName);
+			
+			return true;
+		}
+		return false;
+	}
+	
 	/*
 	 * GETTERS AN SETTERS
 	 */
@@ -111,6 +120,26 @@ public class Lobby {
 		jsonString.append("}");
 		
 		// System.out.println("Lobby toJsonString: " + jsonString.toString());
+		return jsonString.toString();
+	}
+	
+	public String getUsersAsJson() {
+		
+		StringBuilder jsonString = new StringBuilder();
+		
+		//jsonString.append("{");
+		//jsonString.append("\"membersNames\":[");
+		jsonString.append("[");
+
+		for (int i = 0; i < membersNames.size(); i++) {
+			jsonString.append("\"" + membersNames.get(i) + "\"");
+			if (i < (membersNames.size() - 1) ) {
+				jsonString.append(",");
+			}
+		}
+		//jsonString.append("]}");
+		jsonString.append("]");
+		
 		return jsonString.toString();
 	}
 	

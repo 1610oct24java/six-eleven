@@ -44,6 +44,31 @@ public class Sorcerer extends Card implements Serializable {
 	@Transient
 	private int woundCounters;
 	
+
+	public String toJsonString() {
+		StringBuilder json = new StringBuilder();
+		
+		json.append("{");
+		json.append("\"imgFront\": \"" + this.imgFront + "\", ");
+		json.append("\n");
+		json.append("\"imgBack\": \"" + this.imgBack + "\", ");
+		json.append("\n");
+		json.append("\"imgBorder\": \"" + this.imgBorder + "\", ");
+		json.append("\"name\": \"" + this.name + "\", ");
+		json.append("\n");
+		json.append("\"flavor\": \"" + this.flavor + "\", ");
+		json.append("\n");
+		json.append("\"faceUp\": \"" + this.faceUp + "\", ");
+		json.append("\n");
+		json.append("\"vitality\": \"" + this.vitality  + "\", ");
+		json.append("\n");
+		json.append("\"imgFront\": \"" + this.imgFront + "\", ");
+		json.append("\n");
+		
+		return json.toString();
+	}
+	
+	
 	/*----------------------------------
 	 * Constructors
 	 *--------------------------------*/
@@ -254,5 +279,5 @@ public class Sorcerer extends Card implements Serializable {
 		return "Sorcerer [vitality=" + vitality + ", power=" + power + ", defense=" + defense + ", speed=" + speed
 				+ ", intelligence=" + intelligence + ", woundCounters=" + woundCounters + "]";
 	}
-	
+
 }

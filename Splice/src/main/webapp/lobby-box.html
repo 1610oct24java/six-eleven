@@ -2,7 +2,7 @@
 
   <div class="row">
   	<div class="col-md-2 col-md-offset-1 box-top-header">
-  		Splice
+  		<img src="res/images/SpliceLogo.png" alt="Splice Logo">
   	</div>
   	
   	<div class="col-md-6 box-top-header">
@@ -51,7 +51,7 @@
     		      <td>{{ lobby.hostName }}</td>
     		      <td>{{ lobby.lobbyName }}</td>
     		      <td><span><button class="btn btn-xs btn-join box-right" type="button" 
-    		      		ng-click="joinGame($index)">Join</button>
+    		      		ng-click="joinLobby(lobby.lobbyName)">Join</button>
     		      		<button class="btn btn-xs btn-box-red box-right" type="button" 
     		      		ng-click="deleteGame($index)">Delete</button>
     		      		</span></td>

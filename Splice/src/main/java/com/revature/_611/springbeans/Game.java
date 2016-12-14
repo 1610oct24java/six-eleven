@@ -29,12 +29,25 @@ public class Game implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -3068989229702874526L;
 	private List<Player> players = new ArrayList<Player>();
 	private Deck deckCreatures = new Deck();
 	private List<Creature> wylds = new ArrayList<Creature>();
 	private GameState state = new GameState();
 	
+	
+	public String toJsonString() {
+		StringBuilder json = new StringBuilder();
+		
+		json.append("{");
+		json.append("\"players\": [");
+		for (int i = 0; i < players.size(); i++) {
+			System.out.println(i);
+			json.append(players.get(i).toJsonString());
+		}
+		
+		return json.toString();
+	}
 	
 	/* ===============
 	 * ACTION HANDLERS
@@ -353,6 +366,7 @@ public class Game implements Serializable {
 		// Randomize player order
 		Collections.shuffle(players);
 	}
+
 	
 	/* ===================
 	 * GETTERS AND SETTERS

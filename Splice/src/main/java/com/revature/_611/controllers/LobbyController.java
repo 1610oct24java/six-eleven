@@ -44,7 +44,29 @@ public class LobbyController {
 	public @ResponseBody String getLobby() {
 		return myLobbies.toJsonString();
 	}
+	
+	@RequestMapping(value =  "/lobbyJoin", method = RequestMethod.POST)
+	public @ResponseBody String joinLobby (@RequestBody String lobbyAndUser) {
+		String jsonString = "{}";
+		String[] strToSplit = lobbyAndUser.split("\\|");
+		String lobbyName = strToSplit[0];
+		String userName = strToSplit[1];
 
+		// TODO Make sure you're not already in there
+		for (Lobby l : myLobbies.getLobbiesList()) {
+			System.out.println("Lobbyinlist: " + l.getLobbyName() + "\n joiningLobby: " + lobbyName);
+			if (l.getLobbyName().equals(lobbyName)) {				
+				//if (!l.getMembersNames().contains(l.getHostName())) {
+				l.addPlaya(userName);
+				jsonString = l.toJsonString();
+				//}
+			}
+		}
+		
+		System.out.println("JSON String yo:" + jsonString);
+		return jsonString;
+	}
+	
 	@RequestMapping(value="/sendLobbyMessage", method = RequestMethod.POST)
 	public @ResponseBody String sendMessage(@RequestBody Message msg)
 	{

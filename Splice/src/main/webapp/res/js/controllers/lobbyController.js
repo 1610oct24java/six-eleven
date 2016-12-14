@@ -1,5 +1,12 @@
 app.controller("lobbyController", function($rootScope, $scope, $http, $location) {
-    
+	//
+	// VARIABLE DECLARTIONS
+	// 
+	$scope.lobbyName = $rootScope.lobby.lobbyName;
+	$scope.playerCount = $rootScope.lobby.numMembers;
+    $scope.username = $rootScope.onlineUser;
+    $scope.playerList = $rootScope.lobby.membersNames;
+	
     $scope.startGame = function(){
 //      $http({
 //          method: 'POST',
@@ -11,6 +18,26 @@ app.controller("lobbyController", function($rootScope, $scope, $http, $location)
 //          $location.path="/game";
 //      });
         $location.path("/game");
+    }
+    
+    $scope.refreshData = function() {
+        console.log("Refreshing player data...");
+        getPlayerList($scope.lobbyName);
+    }
+    
+    function getPlayerList(lobbyName) {
+        console.log("Fetching online users...");
+        $http ({
+            method: 'POST',
+            url: '/Splice/getUsersInLobby',
+            headers: {'Content-Type': 'application/json'},
+        	data: lobbyName
+        }).success (function (data){
+        	console.log(data);
+            $scope.playerList = data;
+        }).error (function (response) {
+            console.log("ERROR: Something went wrong fetching the online users!");
+        })
     }
     
     $scope.leaveGame = function(){
@@ -26,18 +53,14 @@ app.controller("lobbyController", function($rootScope, $scope, $http, $location)
         $location.path("/lobby");
     }
     
-    $scope.playerCount = '1';
-    $scope.username = "Connor";
+    $scope.playerCount = $rootScope.lobby.numMembers;
+    $scope.username = $rootScope.onlineUser;
     
-    $scope.playerList = [ {
-        playerName : 'Ric'
-    }, {
-        playerName : 'Connor'
-    }];
+    $scope.playerList = $rootScope.lobby.membersNames;
     
     $scope.chatlog = [{
-        playerName : 'Ric',
-        message : 'testing'
+        playerName : 'System: ',
+        message : "Welcome to the lobby!"
     }];
     
     $scope.sendMessage = function(){

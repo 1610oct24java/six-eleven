@@ -1,10 +1,12 @@
 app.controller("browserController", function($rootScope, $scope, $http, $location) {
     $scope.playerCount = 0;
     $scope.lobbyList;
-    $scope.onlineUser = authUser;
+    $rootScope.onlineUser = authUser;
+    $rootScope.lobby;
     $scope.playerList;
     getNewLobbyData();
     getPlayerList();
+    
     
     // Creates a new Lobby bean and adds a new lobby to the Lobbies List view
     $scope.createLobby = function() {  
@@ -18,9 +20,9 @@ app.controller("browserController", function($rootScope, $scope, $http, $locatio
     	// This is a Lobby spring bean
     	$scope.newLobby = {
     		lobbyName: $scope.lobbyName,
-    		hostName: $scope.onlineUser,
+    		hostName: $rootScope.onlineUser,
     		membersNames: [
-    			$scope.onlineUser
+    			$rootScope.onlineUser
     		],
     		myGame: null,
     		chat: [""]
@@ -34,12 +36,16 @@ app.controller("browserController", function($rootScope, $scope, $http, $locatio
     }
 
     $scope.refreshLobbyData = function() {
-        console.log("Hello?");
-
         console.log("Refreshing lobby data... " );
         getNewLobbyData();
         console.log("Refreshing player data...");
         getPlayerList();
+    }
+    
+    $scope.joinLobby = function(lobbyName) {
+    	// needs to pass the user's name that's joining and the lobbyname
+    	console.log("Joining lobby: " + lobbyName + " as " + $rootScope.onlineUser);
+    	postJoinLobby(lobbyName + "|" + $rootScope.onlineUser);
     }
     
     function getNewLobbyData(){
@@ -62,11 +68,7 @@ app.controller("browserController", function($rootScope, $scope, $http, $locatio
             url: '/Splice/getOnlineUsers',
             headers: {'Content-Type': 'application/json'}
         }).success (function (data){
-            console.log("Players Data: " );
-            console.log(data);
             $scope.playerList = data.users;
-            console.log("PlayerList: " );
-            console.log($scope.playerList);
         }).error (function (response) {
             console.log("ERROR: Something went wrong fetching the online users!");
         })
@@ -85,8 +87,23 @@ app.controller("browserController", function($rootScope, $scope, $http, $locatio
         });
     }
     
-    $scope.joinGame = function(index){
+    /*$scope.joinGame = function(index){
         $location.path("/queue");
+    }*/
+    
+    function postJoinLobby(lobbyAndUser) {
+    	$http ({
+    		method: 'POST',
+    		url: '/Splice/lobbyJoin',
+    		headers: {'Content-Type': 'application/json'},
+    		data: lobbyAndUser
+    	}).success (function (data) {
+    		console.log(data);
+    		$rootScope.lobby = data;
+    		$location.path("/queue");
+    	}).error (function (response) {
+    		console.log("Joining borked");
+    	})
     }
     
     $scope.deleteGame = function(index){
