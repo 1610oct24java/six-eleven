@@ -2,6 +2,7 @@ package com.revature._611.controllers;
 
 import java.util.List;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import com.revature._611.beans.Message;
 import com.revature._611.beans.User;
 import com.revature._611.dao.UserDAOImpl;
 
+@Aspect
 @Controller
 public class QueueController {
 

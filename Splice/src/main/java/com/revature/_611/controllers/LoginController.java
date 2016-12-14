@@ -3,6 +3,8 @@ package com.revature._611.controllers;
 import com.revature._611.beans.User;
 import com.revature._611.services.UserService;
 import com.revature._611.springbeans.LoggedInUsersList;
+
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Aspect
 @Controller
 public class LoginController {
 	

@@ -4,8 +4,10 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.json.JSONObject;
 
+@Aspect
 public class ActionHelper {
 
 	

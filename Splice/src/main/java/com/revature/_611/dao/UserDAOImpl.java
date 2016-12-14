@@ -2,6 +2,8 @@ package com.revature._611.dao;
 
 import com.revature._611.beans.User;
 import com.revature._611.utils.HibernateUtil;
+
+import org.aspectj.lang.annotation.Aspect;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,6 +21,7 @@ import java.util.List;
  * @version 1.0
  */
 
+@Aspect
 public class UserDAOImpl implements UserDAO {
 
 	private static HibernateUtil hu = new HibernateUtil();

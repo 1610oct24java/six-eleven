@@ -1,5 +1,6 @@
 package com.revature._611.utils;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -17,6 +18,8 @@ import org.hibernate.service.ServiceRegistry;
  * @author Matt Pierzynski
  * @version 1.0
  */
+
+@Aspect
 public class HibernateUtil
 {
 	private SessionFactory sessionFactory;

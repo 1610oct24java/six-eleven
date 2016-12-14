@@ -2,13 +2,10 @@ package com.revature._611.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.aspectj.lang.annotation.Aspect;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Property;
-import org.hibernate.criterion.Restrictions;
 
-import com.revature._611.beans.Card;
 import com.revature._611.beans.Creature;
 import com.revature._611.beans.Sorcerer;
 import com.revature._611.utils.HibernateUtil;
@@ -21,6 +18,7 @@ import com.revature._611.utils.HibernateUtil;
  * @version 1.0
  */
 
+@Aspect
 public class CardDAOimp implements CardDAO {
 
 	private HibernateUtil hu = new HibernateUtil();

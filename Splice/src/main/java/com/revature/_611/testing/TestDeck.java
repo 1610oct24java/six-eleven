@@ -5,11 +5,13 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.junit.Test;
 
 import com.revature._611.beans.Creature;
 import com.revature._611.beans.Deck;
 
+@Aspect
 public class TestDeck {
 	
 	List<Creature> sbjContents = new ArrayList<Creature>();

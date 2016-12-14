@@ -1,10 +1,12 @@
 package com.revature._611.services;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 import com.revature._611.beans.User;
 import com.revature._611.dao.UserDAOImpl;
 
+@Aspect
 @Component
 public class UserService {
 	
