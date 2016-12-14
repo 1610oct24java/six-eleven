@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<context:component-scan base-package="com.revature._611"></context:component-scan>
+
+	<mvc:annotation-driven />
+
+	<mvc:resources location="/" mapping="/**"></mvc:resources>
+
+	<!-- Set up our front controller -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- <property name="prefix">
+			<value>/static/</value>
+		</property> -->
+		<!-- <property name="suffix">
+			<value>.html</value>
+		</property> -->
+	</bean>
+
+	<bean id="usersList" class="com.revature._611.springbeans.LoggedInUsersList" scope="singleton">
+
+	</bean>
+	<bean id="lobbyList" class="com.revature._611.springbeans.LobbyList" scope="singleton">
+
+	</bean>
+	<bean id="lobby" class="com.revature._611.springbeans.Lobby" scope="prototype">
+
+	</bean>
+	<bean id="game" class="com.revature._611.springbeans.Game" scope="prototype">
+
+	</bean>
+	<bean id="gameState" class="com.revature._611.springbeans.GameState" scope="prototype">
+
+	</bean>
+</beans>

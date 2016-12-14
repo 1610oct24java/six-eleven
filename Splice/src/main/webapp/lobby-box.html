@@ -1,0 +1,90 @@
+<div class="main-box col-md-10 col-md-offset-1" ng-controller="browserController">
+
+  <div class="row">
+  	<div class="col-md-2 col-md-offset-1 box-top-header">
+  		<img src="res/images/SpliceLogo.png" alt="Splice Logo">
+  	</div>
+  	
+  	<div class="col-md-6 box-top-header">
+  		Welcome, {{onlineUser}}!
+  	</div>
+  	
+  	<div class="col-md-2 box-top-header">
+  		<button class="btn btn-md btn-danger box-right" type="button" ng-click="logOut()">Log Out</button>
+  	</div>
+  </div>
+  
+  <div style="height:10px;"></div>
+  
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <div class="box-frame-title">Online (<player-count></player-count>)</div>
+      <div class="box-player-list">
+        <ul>
+          <li ng-repeat="player in playerList">{{player}}</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="col-md-8">
+    	
+    	<div class="row">
+            <div class = "col-xs-1"></div>
+            <div class = "col-xs-10">
+                <div class="box-frame-title">Lobbies (<game-count></game-count>)</div>
+            </div>
+    		<div class = "col-xs-1">
+                <button class = "btn btn-sm" type = "button" ng-click="refreshLobbyData()">R</button>
+            </div>
+    	</div>
+    	
+    	<div class="row box-session-content">
+    		<table>
+    		   <tr>
+    		      <th>Players</th>
+    		      <th>Creator</th>
+    		      <th>Name</th>
+    		      <th></th>
+    		   </tr>
+    		   <tr ng-repeat="lobby in lobbyList">
+    		      <td>{{ lobby.numMembers }}</td>
+    		      <td>{{ lobby.hostName }}</td>
+    		      <td>{{ lobby.lobbyName }}</td>
+    		      <td><span><button class="btn btn-xs btn-join box-right" type="button" 
+    		      		ng-click="joinLobby(lobby.lobbyName)">Join</button>
+    		      		<button class="btn btn-xs btn-box-red box-right" type="button" 
+    		      		ng-click="deleteGame($index)">Delete</button>
+    		      		</span></td>
+    		   </tr>
+			</table>
+    	</div>
+    	
+    	<div class="row">
+    	  <form class="box-right">
+             <input ng-model="lobbyName" type="text" class="" name="gamename" placeholder="Lobby Name">
+             <button class="btn btn-md btn-box-blue" type="button"  ng-click="createLobby()">Create New Lobby</button>
+          </form>
+    	</div>
+    	
+    	<div style="height:5px;"></div>
+    	
+    	<div class="row">
+    		<div class="box-frame-title">Chat</div>
+    	</div>
+    	
+		<div class="row">
+		  <div class="box-chat-content">
+		  	<!-- chat messages will populate here -->
+		  	<p ng-repeat="msg in chatlog">{{msg.playerName}} : {{msg.message}}</p>
+		  </div>
+		</div>    	
+    	
+    	<div class="row">
+    	  <form>
+             <input ng-model="message" type="text" class="col-md-10" name="message" placeholder="type a message">
+             <button class="col-md-2 btn btn-md btn-box-blue" type="button" ng-click="sendMessage()">Send</button>
+          </form>
+    	</div>
+    </div>
+  </div>
+</div>

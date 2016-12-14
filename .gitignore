@@ -1,0 +1,9 @@
+.metadata
+.settings
+.recommenders
+.classpath
+/target/
+/bin/
+/RemoteSystemsTempFiles/
+/Servers/
+/Servers2/
