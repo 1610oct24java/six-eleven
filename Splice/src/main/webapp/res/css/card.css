@@ -6,6 +6,11 @@
     background-size: 100% 100%;
 }
 
+.wounds {
+	font-align: center;
+	font-size: 12px;
+}
+
 .custom-title{
     color: palegoldenrod;
 }
@@ -96,6 +101,7 @@
     width: inherit;
 }
 
+
 .flavor {
     position: absolute;
     top: 55%;
@@ -117,3 +123,4 @@
     width: 90%;
     height: 40%;
 }
+

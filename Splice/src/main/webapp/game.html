@@ -3,7 +3,10 @@
 	<h1 class="text-center custom-title">Splice</h1>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-2"></div>
+		<div class="col-xs-1">
+				<button class="btn btn-sm" type="button" ng-click="leaveGame()">X</button>
+			</div>
+			<div class="col-xs-1"></div>
 			<div class="col-xs-1">
 				<button class="btn btn-sm" type="button" ng-click="stepGame()">S</button>
 			</div>
@@ -19,11 +22,11 @@
 			<div class="col-xs-2"></div>
 		</div>
 		<div id="opponent" class="row">
-			<div class="col-md-1">
+			<div class="col-xs-1">
 				<h2 class="rotate custom-title">Opponents</h2>
 			</div>
-			<div class="col-md-4"></div>
-			<div class="col-md-2 card-area">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-2 card-area">
 				<div class="card card-sorc">
 					<div class="name">
 						<span>{{game.players[0].sorc.name}}</span>
@@ -59,9 +62,9 @@
 					</div>
 				</div>
 				<div class="wounds">Wounds:
-					{{game.players[0].sorc.woundCounters}}</div>
+					<b>{{game.players[0].sorc.woundCounters}}</b></div>
 			</div>
-			<div class="col-md-3 card-area">
+			<div class="col-xs-3 card-area">
 				<div class =  "col-xs-4" ng-repeat="creature in game.players[0].lab">
 					<div class="card card-creature" ng-click="research(creature.name)">
 						<div class="name">
@@ -100,17 +103,17 @@
 						</div>
 					</div>
 					<div class="wounds">Wounds:
-						{{creature.researchCounters}}</div>
+						<b>{{creature.researchCounters}}</b></div>
 				</div>
 			</div>
 		</div>
 		<br>
 		<div id="wylds" class="row">
-			<div class="col-md-1">
+			<div class="col-xs-1">
 				<h2 class="rotate custom-title">Wylds</h2>
 			</div>
-			<div class="col-md-3"></div>
-			<div class="col-md-4 card-area">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4 card-area">
 				<div class="col-xs-3" ng-repeat="creature in game.wylds">
 					<div class="card card-creature" ng-click="attack(creature.name)">
 						<div class="name">
@@ -149,17 +152,17 @@
 						</div>
 					</div>
 					<div class="wounds">Wounds:
-						{{creature.woundCounters}}</div>
+						<b>{{creature.woundCounters}}</b></div>
 				</div>
 			</div>
 		</div>
 		<br>
 		<div id="player" class="row">
-			<div class="col-md-1">
+			<div class="col-xs-1">
 				<h2 class="rotate custom-title">Player</h2>
 			</div>
-			<div class="col-md-4"></div>
-			<div class="col-md-2 card-area">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-2 card-area">
 				<div class="card card-sorc">
 					<div class="name">
 						<span>{{game.players[1].sorc.name}}</span>
@@ -195,9 +198,9 @@
 					</div>
 				</div>
 				<div class="wounds">Wounds:
-					{{game.players[0].sorc.woundCounters}}</div>
+					<b>{{game.players[0].sorc.woundCounters}}</b></div>
 			</div>
-			<div class="col-md-3 card-area">
+			<div class="col-xs-3 card-area">
 				<div class =  "col-xs-4" ng-repeat="creature in game.players[1].lab">
 					<div class="card card-creature" ng-click="research(creature.name)">
 						<div class="name">
@@ -236,7 +239,7 @@
 						</div>
 					</div>
 					<div class="wounds">Research:
-						{{creature.researchCounters}}</div>
+						<b>{{creature.researchCounters}}</b></div>
 				</div>
 			</div>
 		</div>

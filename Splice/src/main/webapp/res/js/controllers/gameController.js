@@ -22,6 +22,20 @@ app.controller("gameController", function($rootScope, $scope, $http, $location) 
         }
     };
     
+    $scope.leaveGame = function () {
+    	$location.path("/lobby");
+    }
+    
+    $scope.checkWin = function() {
+    	if ($rootScope.game.winnerIndex > 0 ) {
+    		var p = $rootScope.game.players[$rootScope.game.winnerIndex];
+        	var s = p.sorc;
+        	var winner= s.name;
+        	
+        	alert(winner + " has won! ");
+    	}
+    }
+    
     $scope.refreshGame = function () {
     	console.log("Refreshing game...");
     	wylds = $rootScope.game.wylds;
@@ -39,6 +53,7 @@ app.controller("gameController", function($rootScope, $scope, $http, $location) 
   	  }).success(function (data){
   		  console.log(data);
   		  $rootScope.game = data;
+      	checkWin();
   	  });
      }
     
@@ -54,6 +69,7 @@ app.controller("gameController", function($rootScope, $scope, $http, $location) 
     	console.log("Skip: ");
     	console.log(packet);
     	handleCommand(packet);
+    	checkWin();
     }
     
     $scope.attack = function (input) {
@@ -109,6 +125,7 @@ app.controller("gameController", function($rootScope, $scope, $http, $location) 
           console.log("packet returned:");
           console.log(data);
           $rootScope.game = data;
+      	checkWin();
       });
     }
 });
