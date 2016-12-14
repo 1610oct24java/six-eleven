@@ -110,7 +110,7 @@ public class Lobby {
 		jsonString.append("\"numMembers\":\"" + membersNames.size() + "\"");
 		jsonString.append("}");
 		
-		System.out.println("Lobby toJsonString: " + jsonString.toString());
+		// System.out.println("Lobby toJsonString: " + jsonString.toString());
 		return jsonString.toString();
 	}
 	

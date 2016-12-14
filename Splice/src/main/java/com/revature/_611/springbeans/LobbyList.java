@@ -46,7 +46,7 @@ public class LobbyList {
 		jsonString.append("]}");
 		
 		// Check the JSON here...
-		System.out.println("**Lobby JSON list: " + jsonString.toString());
+		// System.out.println("**Lobby JSON list: " + jsonString.toString());
 		return jsonString.toString();
 	}
 }

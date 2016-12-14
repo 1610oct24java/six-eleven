@@ -28,8 +28,6 @@ public class LobbyController {
 		
 		String jsonString = usersOnline.toJsonString();
 		
-		// Check the JSON here...
-		System.out.println("**Player JSON list: " + jsonString);
 		return jsonString.toString(); 
 	}
 	
