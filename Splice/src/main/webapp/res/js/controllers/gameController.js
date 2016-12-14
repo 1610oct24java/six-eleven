@@ -5,11 +5,8 @@ app.controller("gameController", function($rootScope, $scope, $http, $location) 
     
     $scope.getTurn = function () {
     	var p = $rootScope.game.players[$rootScope.game.state.turn];
-    	console.log(p);
     	var s = p.sorc;
-    	console.log(s);
     	var n = s.name;
-    	console.log(n);
         return n;
     };
     
@@ -78,6 +75,15 @@ app.controller("gameController", function($rootScope, $scope, $http, $location) 
     
     $scope.research = function (input) {
         console.log("Research called");
+        
+        var p = $rootScope.game.players[$rootScope.game.state.turn];
+        var rp = p.researchPool;
+        var valid = rp > 0;
+        
+        if (!valid) {
+        	alert("You have exhausted all your research this turn!");
+        	$scope.stepGame();
+        }
         
         var inputData = input;
         

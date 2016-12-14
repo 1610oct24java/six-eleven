@@ -16,6 +16,7 @@ import java.util.List;
 public class Player implements Serializable {
 	private Sorcerer sorc;
 	private int researchPool = 5;
+	private int killCount = 0;
 	private List<Creature> lab = new ArrayList<Creature>();
 	
 	public String toJsonString() {
@@ -25,6 +26,8 @@ public class Player implements Serializable {
 		json.append("\"sorc\": " + sorc.toJsonString() + ",");
 		json.append("\n");
 		json.append("\"researchPool\": \"" + researchPool + "\",");
+		json.append("\n");
+		json.append("\"killCount\": \"" + killCount + "\",");
 		json.append("\n");
 		json.append("\"lab\": [");
 		for (int i = 0; i < lab.size(); i++ ) {
@@ -84,24 +87,33 @@ public class Player implements Serializable {
 		this.researchPool = researchPool;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	public int getKillCount() {
+		return killCount;
+	}
+
+	public void setKillCount(int killCount) {
+		this.killCount = killCount;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Player [sorc=" + sorc + ", researchPool=" + researchPool + ", killCount=" + killCount + ", lab=" + lab
+				+ "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + killCount;
 		result = prime * result + ((lab == null) ? 0 : lab.hashCode());
+		result = prime * result + researchPool;
 		result = prime * result + ((sorc == null) ? 0 : sorc.hashCode());
 		return result;
 	}
 
-
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -111,10 +123,14 @@ public class Player implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Player other = (Player) obj;
+		if (killCount != other.killCount)
+			return false;
 		if (lab == null) {
 			if (other.lab != null)
 				return false;
 		} else if (!lab.equals(other.lab))
+			return false;
+		if (researchPool != other.researchPool)
 			return false;
 		if (sorc == null) {
 			if (other.sorc != null)
@@ -122,17 +138,6 @@ public class Player implements Serializable {
 		} else if (!sorc.equals(other.sorc))
 			return false;
 		return true;
-	}
-
-	
-
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Player [sorc=" + sorc + ", researchPool=" + researchPool + ", lab=" + lab + "]";
 	}
 
 	public void startResearch() {

@@ -64,8 +64,9 @@ public class Game implements Serializable {
 		}
 		json.append("],");
 		json.append("\n");
-		json.append("\"state\": " + state.toJsonString());
+		json.append("\"state\": " + state.toJsonString() + ",");
 		json.append("\n");
+		json.append("\"winnerIndex\": \"" + isGameOver() + "\"");
 		json.append("}");
 		
 		return json.toString();
@@ -284,6 +285,25 @@ public class Game implements Serializable {
 		mySorc.setWoundCounters(mySorc.getWoundCounters() - 1);
 		
 		return true;
+	}
+	
+	private int isGameOver() {
+		int winDex = 0;
+		int high = 0;
+		
+		if (deckCreatures.isEmpty()){
+			
+			for(int i = 0; i < players.size(); i++ ){
+				if ( players.get(i).getKillCount() > high ) {
+					winDex = i;
+					high = players.get(i).getKillCount();
+				}
+			}
+			
+			return winDex;
+		} else {
+			return -1;
+		}
 	}
 	
 	/* ======================
