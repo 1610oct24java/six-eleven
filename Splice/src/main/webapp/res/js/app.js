@@ -108,6 +108,7 @@ var players = [
 ];
 
 app.config(function ($routeProvider) {
+
 	
 	$routeProvider
         .when("/login", {
