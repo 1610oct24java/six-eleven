@@ -2,7 +2,11 @@ package com.revature._611.controllers;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.aspectj.lang.annotation.Aspect;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> 42ce088ccab0bc7d1764f1e2d2afaef9df772970
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +16,32 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.revature._611.beans.Message;
 import com.revature._611.beans.User;
 import com.revature._611.dao.UserDAOImpl;
+import com.revature._611.springbeans.Lobby;
+import com.revature._611.springbeans.LobbyList;
 
 @Aspect
 @Controller
 public class QueueController {
+	
+	@Autowired
+	LobbyList myLobbies;
+	
+	@RequestMapping(value="/getUsersInLobby", method = RequestMethod.POST)
+	public @ResponseBody String getUsersInLobby (@RequestBody String lobbyName) {
+		System.out.println("BEHOLD!");
+		String output = "";
+		
+		Lobby l = myLobbies.getLobbyByName(lobbyName);
+		output = l.getUsersAsJson();
+		
+		System.out.println("User List: " + output);
+		
+		return output;
+	}
 
 	@RequestMapping(value="/getUsersInQueue", method = RequestMethod.GET)	
-	public @ResponseBody String getOnlineUsers(@RequestBody User tempUser)  
-	{	
+	public @ResponseBody String getOnlineUsers(@RequestBody User tempUser) {	
+		System.out.println("BEHOLD MY SPLENDOR");
 		UserDAOImpl userDAO = new UserDAOImpl();
 		
 		List<User> users = userDAO.getUsers();

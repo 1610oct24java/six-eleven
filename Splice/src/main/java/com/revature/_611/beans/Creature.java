@@ -52,6 +52,49 @@ public class Creature extends Card implements Serializable {
 	
 	@Transient
 	private int researchCounters;
+	
+	public String toJsonString() {
+		StringBuilder json = new StringBuilder();
+		
+		json.append("{");
+		json.append("\"imgFront\": \"" + this.imgFront + "\", ");
+		json.append("\n");
+		json.append("\"imgBack\": \"" + this.imgBack + "\", ");
+		json.append("\n");
+		json.append("\"imgBorder\": \"" + this.imgBorder + "\", ");
+		json.append("\"name\": \"" + this.name + "\", ");
+		json.append("\n");
+		json.append("\"flavor\": \"" + this.flavor + "\", ");
+		json.append("\n");
+		json.append("\"faceUp\": \"" + this.faceUp + "\", ");
+		json.append("\n");
+		json.append("\"vitality\": \"" + this.vitality  + "\", ");
+		json.append("\n");
+		json.append("\"power\": \"" + this.power + "\", ");
+		json.append("\n");
+		json.append("\"defense\": \"" + this.defense + "\", ");
+		json.append("\n");
+		json.append("\"speed\": \"" + this.speed + "\", ");
+		json.append("\n");
+		json.append("\"intelligence\": \"" + this.intelligence + "\", ");
+		json.append("\n");
+		json.append("\"favoriteStat\": \"" + this.favoriteStat + "\", ");
+		json.append("\n");
+		json.append("\"dumpStat\": \"" + this.dumpStat + "\", ");
+		json.append("\n");
+		json.append("\"temperment\": \"" + this.temperment + "\", ");
+		json.append("\n");
+		json.append("\"aggressionRating\": \"" + this.aggressionRating + "\", ");
+		json.append("\n");
+		json.append("\"woundCounters\": \"" + this.woundCounters + "\", ");
+		json.append("\n");
+		json.append("\"researchCounters\": \"" + this.researchCounters + "\"");
+		json.append("\n");
+		
+		json.append("}");
+			
+		return json.toString();
+	}
 
 	public void wound(int dmg) {
 		this.woundCounters += dmg;

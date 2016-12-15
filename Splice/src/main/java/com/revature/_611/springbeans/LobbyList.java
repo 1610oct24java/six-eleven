@@ -26,6 +26,16 @@ public class LobbyList {
 		this.lobbiesList = lobbiesList;
 	}
 	
+	public Lobby getLobbyByName(String name) {
+		for (Lobby l : lobbiesList) {
+			if(l.getLobbyName().equals(name)) {
+				return l;
+			}
+		}
+		
+		return null;
+	}
+	
 	public String toJsonString(){
 		StringBuilder jsonString = new StringBuilder();
 		
@@ -46,7 +56,7 @@ public class LobbyList {
 		jsonString.append("]}");
 		
 		// Check the JSON here...
-		System.out.println("**Lobby JSON list: " + jsonString.toString());
+		// System.out.println("**Lobby JSON list: " + jsonString.toString());
 		return jsonString.toString();
 	}
 }

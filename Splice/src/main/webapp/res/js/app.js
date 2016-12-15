@@ -1,7 +1,7 @@
 var app = angular.module("gameApp", ["ngRoute"]);
 
 var authUser = null;
-var sorcerers = [
+/*var sorcerers = [
         {
             name: 'Xanitov, Radiant Husk',
             vit: 5,
@@ -105,7 +105,7 @@ var players = [
         researchPool: 0,
         lab: [creatures[2]]
     }
-];
+];*/
 
 app.config(function ($routeProvider) {
     
@@ -116,11 +116,11 @@ app.config(function ($routeProvider) {
         })
         .when("/lobby", {
             templateUrl : "lobby-box.html",
-            controller : "lobbyController"
+            controller : "browserController"
         })
         .when("/queue", {
             templateUrl : "queue-box.html",
-            controller : "queueController"
+            controller : "lobbyController"
         })
         .when("/game", {
             templateUrl : "game.html",
@@ -130,7 +130,6 @@ app.config(function ($routeProvider) {
             redirectTo : "/login"
         });
 });
-
 
 app.directive('playerCount', function(){
     return { template : '{{playerList.length}}'};

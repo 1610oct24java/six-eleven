@@ -10,6 +10,22 @@ public class GameState {
 	// PHASE: Research is represented by 1, Combat by two.
 	private int phase;
 	
+	public String toJsonString() {
+		StringBuilder json = new StringBuilder();
+		
+		json.append("{");
+		json.append("\n");
+		json.append("\"round\": \"" + this.round + "\",");
+		json.append("\n");
+		json.append("\"turn\": \"" + this.turn + "\",");
+		json.append("\n");
+		json.append("\"phase\": \"" + this.phase + "\"");
+		json.append("\n");
+		json.append("}");
+		
+		return json.toString();
+	}
+	
 	public GameState() {
 		/*
 		 * Initializes a default fresh game, in round one, first player's turn, and
@@ -84,5 +100,6 @@ public class GameState {
 	public String toString() {
 		return "GameState [round=" + round + ", turn=" + turn + ", phase=" + phase + "]";
 	}
+
 	
 }
