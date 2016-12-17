@@ -44,6 +44,41 @@ public class Sorcerer extends Card implements Serializable {
 	@Transient
 	private int woundCounters;
 	
+
+	public String toJsonString() {
+		StringBuilder json = new StringBuilder();
+		
+		json.append("{");
+		json.append("\"imgFront\": \"" + this.imgFront + "\", ");
+		json.append("\n");
+		json.append("\"imgBack\": \"" + this.imgBack + "\", ");
+		json.append("\n");
+		json.append("\"imgBorder\": \"" + this.imgBorder + "\", ");
+		json.append("\n");
+		json.append("\"name\": \"" + this.name + "\", ");
+		json.append("\n");
+		json.append("\"flavor\": \"" + this.flavor + "\", ");
+		json.append("\n");
+		json.append("\"faceUp\": \"" + this.faceUp + "\", ");
+		json.append("\n");
+		json.append("\"vitality\": \"" + this.vitality  + "\", ");
+		json.append("\n");
+		json.append("\"power\": \"" + this.power + "\", ");
+		json.append("\n");
+		json.append("\"defense\": \"" + this.defense + "\", ");
+		json.append("\n");
+		json.append("\"speed\": \"" + this.speed + "\", ");
+		json.append("\n");
+		json.append("\"intelligence\": \"" + this.intelligence + "\", ");
+		json.append("\n");
+		json.append("\"woundCounters\": \"" + this.woundCounters + "\"");
+		json.append("\n");
+		json.append("}");
+		
+		return json.toString();
+	}
+	
+	
 	/*----------------------------------
 	 * Constructors
 	 *--------------------------------*/
@@ -56,7 +91,7 @@ public class Sorcerer extends Card implements Serializable {
 		super();
 		this.name = _name;
 	}
-	
+
 	public Sorcerer(int cardID, String imgFront, String imgBack, String imgBorder, String name, String flavor,
 			boolean faceUp, int vitality, int power, int defense, int speed, int intelligence, int woundCounters) {
 		
@@ -254,5 +289,5 @@ public class Sorcerer extends Card implements Serializable {
 		return "Sorcerer [vitality=" + vitality + ", power=" + power + ", defense=" + defense + ", speed=" + speed
 				+ ", intelligence=" + intelligence + ", woundCounters=" + woundCounters + "]";
 	}
-	
+
 }

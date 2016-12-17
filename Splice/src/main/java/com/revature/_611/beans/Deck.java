@@ -103,4 +103,23 @@ public class Deck {
 		return "Deck [contents=" + contents + "]";
 	}
 
+	public String toJsonString() {
+		StringBuilder json = new StringBuilder();
+		
+		json.append("{");
+		json.append("\n");
+		json.append("\"contents\": [");
+		json.append("\n");
+		for (int i = 0; i < this.contents.size(); i++ ) {
+			json.append(contents.get(i).toJsonString());
+			if (i < contents.size() - 1) {
+				json.append(",");
+			}
+			json.append("\n");
+		}
+		json.append("]}");
+		
+		return json.toString();
+	}
+
 }

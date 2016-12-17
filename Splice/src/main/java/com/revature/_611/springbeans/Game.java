@@ -1,4 +1,4 @@
-package com.revature._611.game;
+package com.revature._611.springbeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,12 +29,48 @@ public class Game implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -3068989229702874526L;
 	private List<Player> players = new ArrayList<Player>();
 	private Deck deckCreatures = new Deck();
 	private List<Creature> wylds = new ArrayList<Creature>();
 	private GameState state = new GameState();
 	
+	
+	public String toJsonString() {
+		StringBuilder json = new StringBuilder();
+		
+		json.append("{");
+		json.append("\n");
+		json.append("\"players\": [");
+		json.append("\n");
+		for (int i = 0; i < players.size(); i++) {
+			json.append(players.get(i).toJsonString());
+			if (i < players.size() - 1){
+				json.append(",");
+			}
+			json.append("\n");
+		}
+		json.append("],");
+		json.append("\n");
+		json.append("\"deckCreatures\": " + deckCreatures.toJsonString() + ",");
+		json.append("\n");
+		json.append("\"wylds\": [");
+		for (int i = 0; i < wylds.size(); i++) {
+			json.append(wylds.get(i).toJsonString());
+			if (i < wylds.size() - 1) {
+				json.append(",");
+			}
+			json.append("\n");
+		}
+		json.append("],");
+		json.append("\n");
+		json.append("\"state\": " + state.toJsonString() + ",");
+		json.append("\n");
+		json.append("\"winnerIndex\": \"" + isGameOver() + "\"");
+		json.append("}");
+		
+		return json.toString();
+	}
 	
 	/* ===============
 	 * ACTION HANDLERS
@@ -251,6 +287,25 @@ public class Game implements Serializable {
 		return true;
 	}
 	
+	private int isGameOver() {
+		int winDex = 0;
+		int high = 0;
+		
+		if (deckCreatures.isEmpty()){
+			
+			for(int i = 0; i < players.size(); i++ ){
+				if ( players.get(i).getKillCount() > high ) {
+					winDex = i;
+					high = players.get(i).getKillCount();
+				}
+			}
+			
+			return winDex;
+		} else {
+			return -1;
+		}
+	}
+	
 	/* ======================
 	 * ROLLS AND CALCULATIONS
 	 * ======================
@@ -353,6 +408,7 @@ public class Game implements Serializable {
 		// Randomize player order
 		Collections.shuffle(players);
 	}
+
 	
 	/* ===================
 	 * GETTERS AND SETTERS

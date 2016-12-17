@@ -1,6 +1,6 @@
 package com.revature._611.playground;
 
-import com.revature._611.game.Game;
+import com.revature._611.springbeans.Game;
 
 public class GameTestDriver {
 	Game theGame;
@@ -12,11 +12,14 @@ public class GameTestDriver {
 	
 	public void drive() {
 		p("Driving...");
+		
+		
 		theGame = new Game();
-		p(theGame.toString());
 		p("# Initializing game...");
-		theGame.initGame(2, true);
+		theGame.initGame(2, false);
 		p(theGame.toString());
+		System.out.println(theGame.toJsonString());
+		/* p(theGame.toString());
 		p(theGame.printStatus());
 		theGame.debugSetState(1, 0, 2);
 		p(theGame.printStatus());
@@ -42,7 +45,9 @@ public class GameTestDriver {
 		theGame.skipPhase();
 		p(theGame.printStatus());
 		theGame.skipPhase();
-		p(theGame.printStatus());
+		p(theGame.printStatus());*/
+		
+		
 		/*p(theGame.toString());
 		p(theGame.printStatus());
 		theGame.attackCreature(theGame.getWylds().get(2).getName());

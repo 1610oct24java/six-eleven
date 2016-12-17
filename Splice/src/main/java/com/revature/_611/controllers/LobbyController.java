@@ -1,57 +1,75 @@
 package com.revature._611.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.revature._611.beans.Message;
+import com.revature._611.springbeans.Lobby;
+import com.revature._611.springbeans.LobbyList;
+import com.revature._611.springbeans.LoggedInUsersList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.revature._611.beans.Message;
-import com.revature._611.beans.User;
-import com.revature._611.dao.UserDAOImpl;
-import com.revature._611.springbeans.LoggedInUsersList;
+import java.util.List;
 
 @Controller
 public class LobbyController {
 
+	@Autowired
+	LoggedInUsersList usersOnline;
+	@Autowired
+	LobbyList myLobbies;
+
 	@RequestMapping(value="/getOnlineUsers", method = RequestMethod.GET)	
-	public @ResponseBody String getOnlineUsers(@RequestBody User tempUser)  
-	{	
-		@SuppressWarnings("resource")
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		ArrayList<String> users = context.getBean("usersList", LoggedInUsersList.class).getUsersList();
+	public @ResponseBody String getOnlineUsers()  {
 		
-		// Create a JSON string of this structure to return only user names
-		// [{"player":"one"},{"player":"two"}]
-		StringBuilder sb = new StringBuilder();
-		sb.append("[");
+		List<String> usersList = usersOnline.getUsersList();
 		
-		for (int i=0; i < users.size(); i++)
-		{
-			sb.append("{'player':'"+users.get(i)+"'}");
-			
-			if (i < users.size()-1)
-			{
-				sb.append(",");
+		String jsonString = usersOnline.toJsonString();
+		
+		return jsonString.toString(); 
+	}
+	
+	@RequestMapping(value = "/lobbyCtrl", method = RequestMethod.POST)
+	public @ResponseBody String createLobby(@RequestBody Lobby newLobby) {
+		// newLobby is a new Lobby object
+
+		myLobbies.addLobby(newLobby);
+
+		return myLobbies.toJsonString();
+	}
+
+	@RequestMapping(value = "/lobbyCtrl", method = RequestMethod.GET)
+	public @ResponseBody String getLobby() {
+		return myLobbies.toJsonString();
+	}
+	
+	@RequestMapping(value =  "/lobbyJoin", method = RequestMethod.POST)
+	public @ResponseBody String joinLobby (@RequestBody String lobbyAndUser) {
+		String jsonString = "{}";
+		String[] strToSplit = lobbyAndUser.split("\\|");
+		String lobbyName = strToSplit[0];
+		String userName = strToSplit[1];
+
+		// TODO Make sure you're not already in there
+		for (Lobby l : myLobbies.getLobbiesList()) {
+			System.out.println("Lobbyinlist: " + l.getLobbyName() + "\n joiningLobby: " + lobbyName);
+			if (l.getLobbyName().equals(lobbyName)) {				
+				//if (!l.getMembersNames().contains(l.getHostName())) {
+				l.addPlaya(userName);
+				jsonString = l.toJsonString();
+				//}
 			}
 		}
 		
-		sb.append("]");
-		
-		// Check this JSON here...
-		System.out.println("Player list: " + sb.toString());
-		
-		return sb.toString(); 
+		System.out.println("JSON String yo:" + jsonString);
+		return jsonString;
 	}
 	
 	@RequestMapping(value="/sendLobbyMessage", method = RequestMethod.POST)
-	public @ResponseBody String sendMessage(@RequestBody Message msg)  
-	{	
+	public @ResponseBody String sendMessage(@RequestBody Message msg)
+	{
 		// Check received user from Angular post
 		System.out.println("Receive message: sender=" + msg.getSender() + " content=" + msg.getContent());
 		
@@ -59,8 +77,7 @@ public class LobbyController {
 		
 		boolean success = false; // Message successfully receive and stored in application?
 		
-		if (success)
-		{
+		if (success){
 			System.out.println("Message received! Returning 'ok'");
 			return "ok";
 		}else {
@@ -68,4 +85,6 @@ public class LobbyController {
 			return "bad";
 		} 
 	}
+
+
 }
